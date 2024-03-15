@@ -48,7 +48,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
                         <a class="btn btn-primary" href="<?= base_url() ?>residentcontroller/addresident" role="button">
-                            Add Household
+                            Add Resident
                         </a>
                     </div>
                 </div>
@@ -106,7 +106,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                     </table>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@
         <div class="min-height-200px">
 
             <div class="title pb-20">
-                <h2 class="h3 mb-0">Filter Report</h2>
+                <h2 class="h3 mb-0">Print Report</h2>
             </div>
 
             <div class="card-box mb-30">
@@ -15,7 +15,7 @@
                     <h4 class="text-blue mt-2 h4">Filter</h4>
                 </div>
 
-                <form action="<?= base_url() ?>generatereportcontroller/generatereport" method="post">
+                <form action="<?= base_url() ?>generatereportcontroller/print" target="_blank" method="post">
                     <div class="row mt-3 mx-3">
                         <?= csrf_field() ?>
 
@@ -183,37 +183,11 @@
 
                         <div class="col-lg-12 mt-3">
                             <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary"> Generate </button>
+                                <button type="submit" class="btn btn-danger"> Generate and Print </button>
                             </div>
                         </div>
                     </div>
                 </form>
-            </div>
-
-            <div class="card-box mb-30">
-                <div class="card-header">
-                    <h4 class="text-blue mt-2 h4">Residents Information Table</h4>
-                </div>
-                <div class="pb-20 mt-3 mx-3">
-                    <table class="data-table table stripe hover nowrap">
-                        <thead>
-                            <tr>
-                                <th class="table-plus datatable-nosort">Last Name</th>
-                                <th>First Name</th>
-                                <th>Middle Name</th>
-                                <th>Gender</th>
-                                <th>Age</th>
-                                <th>Contact No.</th>
-                                <th>Date of Birth</th>
-                                <th>Purok</th>
-                                <th class="datatable-nosort">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Data Here -->
-                        </tbody>
-                    </table>
-                </div>
             </div>
 
         </div>

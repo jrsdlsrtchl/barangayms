@@ -19,7 +19,7 @@
                     <div class="row mt-3 mx-3">
                         <?= csrf_field() ?>
 
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Gender</label>
                                 <select name="gender" class="form-control">
@@ -30,7 +30,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Civil Status</label>
                                 <select name="civilstatus" class="form-control">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Religion</label>
                                 <select name="religion" class="form-control">
@@ -63,9 +63,127 @@
                             </div>
                         </div>
 
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label>Ethinicity</label>
+                                <select name="ethnicity" class="form-control">
+                                    <option value="">Select Ethnicity</option>
+                                    <option value="Tagalog">Tagalog</option>
+                                    <option value="Bisaya">Bisaya</option>
+                                    <option value="Ilocano">Ilocano</option>
+                                    <option value="Cebuano">Cebuano</option>
+                                    <option value="Illonggo">Illonggo</option>
+                                    <option value="Bicol">Bicol</option>
+                                    <option value="Waray">Waray</option>
+                                    <option value="Kapampangan">Kapampangan</option>
+                                    <option value="Maranao">Maranao</option>
+                                    <option value="Maguindanao">Illonggo</option>
+                                    <option value="Tausog">Tausog</option>
+                                    <option value="Pangasinan">Pangasinan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label>Educational Attainment</label>
+                                <select name="education" class="form-control">
+                                    <option value="">Select Education</option>
+                                    <option value="None">None</option>
+                                    <option value="ALS">ALS</option>
+                                    <option value="Vocational">Vocational</option>
+                                    <option value="Pre-school">Pre-school</option>
+                                    <option value="Elem. Student">Elem. Student</option>
+                                    <option value="Elem. Undergrad">Elem. Undergrad</option>
+                                    <option value="Elem. Graduate">Elem. Graduate</option>
+                                    <option value="HS Student">HS Student</option>
+                                    <option value="HS Ungrad">HS Ungrad</option>
+                                    <option value="HS Graduate">HS Graduate</option>
+                                    <option value="SHS Student">SHS Student</option>
+                                    <option value="SHS Undergrad">SHS Undergrad</option>
+                                    <option value="College Undergrad">SHS Graduate</option>
+                                    <option value="College Student">College Student</option>
+                                    <option value="College Undergrad">College Undergrad</option>
+                                    <option value="College Gradaute">College Gradaute</option>
+                                    <option value="Post Grad">Post Grad</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label>4P's</label>
+                                <select name="for4ps" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label>PWD</label>
+                                <select name="pwd" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label>Senior Citizen</label>
+                                <select name="senior" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label>Precinct</label>
+                                <select name="precinct" class="form-control" aria-placeholder="">
+                                    <option value="">Select Precinct</option>
+                                    <option value="0023A">0023A</option>
+                                    <option value="0025B">0025B</option>
+                                    <option value="0017C">0017C</option>
+                                    <option value="0021A">0021A</option>
+                                    <option value="0019B">0019B</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label>Purok</label>
+                                <select name="purok_id" class="form-control">
+                                    <option value="">Select Purok</option>
+                                    <?php foreach ($purok as $pur) { ?>
+                                        <option value="<?= $pur->purok_id; ?>"> <?= $pur->purok_desc; ?> </option>
+                                    <?php }; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label>Household</label>
+                                <select class="custom-select2 form-control" name="household_id" style="width: 100%; height: 38px">
+                                    <option value="">Select Household</option>
+                                    <?php foreach ($household as $house) { ?>
+                                        <option value="<?= $house->household_id ?>"> <?= $house->household_desc ?> Residence </option>
+                                    <?php }; ?>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="col-lg-12 mt-3">
                             <div class="form-group text-right">
-                                <button type="submit" class="btn btn-primary"> Submit </button>
+                                <button type="submit" class="btn btn-primary"> Generate </button>
                             </div>
                         </div>
                     </div>
@@ -73,8 +191,13 @@
             </div>
 
             <div class="card-box mb-30">
-                <div class="card-header">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <h4 class="text-blue mt-2 h4">Residents Information Table</h4>
+                    <!-- <a href="<? //= base_url() 
+                                    ?>generatereportcontroller/printreport">
+                        <button class="btn btn-danger ml-3">
+                            <i class="icon-copy bi bi-printer mr-2"></i>Print Report</button>
+                    </a> -->
                 </div>
                 <div class="pb-20 mt-3 mx-3">
                     <table class="table stripe hover nowrap">
@@ -87,9 +210,8 @@
                                 <th>Age</th>
                                 <th>Contact No.</th>
                                 <th>Date of Birth</th>
-                                <th>Civil Status</th>
-                                <th>Religion</th>
-                                <th class="datatable-nosort">Purok</th>
+                                <th>Purok</th>
+                                <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,9 +224,8 @@
                                     <td><?= $res->age; ?></td>
                                     <td><?= $res->mobile; ?></td>
                                     <td><?= $res->datebirth; ?></td>
-                                    <td><?= $res->civilstatus; ?></td>
-                                    <td><?= $res->religion; ?></td>
                                     <td><?= $res->purok_desc; ?></td>
+                                    <td> <a href="" data-toggle="modal" data-target="#viewResident<?= $res->uniid; ?>"><i class="dw dw-eye"></i> View</a></td>
                                 </tr>
                             <?php }; ?>
                         </tbody>
@@ -112,10 +233,10 @@
                 </div>
             </div>
 
-
         </div>
     </div>
 </div>
 
+<?= $this->include("resident/view_resident") ?>
 
 <?= $this->endSection() ?>

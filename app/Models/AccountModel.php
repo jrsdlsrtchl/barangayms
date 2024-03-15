@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 
-class UserModel extends Model
+class AccountModel extends Model
 {
     public function addUserAccount($data)
     {

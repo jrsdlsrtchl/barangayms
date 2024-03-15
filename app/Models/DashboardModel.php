@@ -19,6 +19,20 @@ class DashboardModel extends Model
         }
     }
 
+    public function populationDash()
+    {
+        $builder = $this->db->table('tbl_resident');
+        $builder->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $builder->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $result = $builder->get()->getResult();
+
+        if (count($result) >= 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
     public function male()
     {
         $builder = $this->db->table('tbl_resident');
@@ -32,6 +46,21 @@ class DashboardModel extends Model
         }
     }
 
+    public function maleDash()
+    {
+        $builder = $this->db->table('tbl_resident');
+        $builder->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $builder->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $builder->where('gender', 'Male');
+        $result = $builder->get()->getResult();
+
+        if (count($result) >= 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
     public function female()
     {
         $builder = $this->db->table('tbl_resident');
@@ -39,6 +68,21 @@ class DashboardModel extends Model
         $result = $builder->countAllResults();
 
         if ($result > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function femaleDash()
+    {
+        $builder = $this->db->table('tbl_resident');
+        $builder->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $builder->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $builder->where('gender', 'Female');
+        $result = $builder->get()->getResult();
+
+        if (count($result) >= 0) {
             return $result;
         } else {
             return false;
@@ -71,6 +115,21 @@ class DashboardModel extends Model
         }
     }
 
+    public function seniorDash()
+    {
+        $builder = $this->db->table('tbl_resident');
+        $builder->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $builder->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $builder->where('senior', 'Yes');
+        $result = $builder->get()->getResult();
+
+        if (count($result) >= 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
     public function pwd()
     {
         $builder = $this->db->table('tbl_resident');
@@ -78,6 +137,21 @@ class DashboardModel extends Model
         $result = $builder->countAllResults();
 
         if ($result > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function pwdDash()
+    {
+        $builder = $this->db->table('tbl_resident');
+        $builder->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $builder->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $builder->where('pwd', 'Yes');
+        $result = $builder->get()->getResult();
+
+        if (count($result) >= 0) {
             return $result;
         } else {
             return false;
@@ -97,6 +171,21 @@ class DashboardModel extends Model
         }
     }
 
+    public function for4psDash()
+    {
+        $builder = $this->db->table('tbl_resident');
+        $builder->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $builder->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $builder->where('for4ps', 'Yes');
+        $result = $builder->get()->getResult();
+
+        if (count($result) >= 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
     public function voter()
     {
         $builder = $this->db->query("SELECT COUNT(*)
@@ -109,5 +198,16 @@ class DashboardModel extends Model
         } else {
             return false;
         }
+    }
+
+    public function voterDash()
+    {
+        $builder = $this->db->table('tbl_resident');
+        $builder->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $builder->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $builder->where('precinct IS NOT NULL')->where('precinct != ""');
+        $result = $builder->get()->getResult();
+
+        return $result;
     }
 }

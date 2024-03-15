@@ -178,7 +178,7 @@
 
             <div class="card-box mb-30">
                 <div class="card-header">
-                    <h4 class="text-blue mt-2 h4">Dashboard Table</h4>
+                    <h4 class="text-blue mt-2 h4"><?= $title; ?></h4>
                 </div>
                 <div class="pb-20 mt-3 mx-3">
                     <table class="data-table table stripe hover nowrap">
@@ -196,7 +196,19 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            <?php foreach ($resident as $res) { ?>
+                                <tr>
+                                    <td class="table-plus"><?= $res->lastname; ?></td>
+                                    <td><?= $res->firstname; ?></td>
+                                    <td><?= $res->middlename; ?></td>
+                                    <td><?= $res->gender; ?></td>
+                                    <td><?= $res->age; ?></td>
+                                    <td><?= $res->mobile; ?></td>
+                                    <td><?= $res->datebirth; ?></td>
+                                    <td><?= $res->purok_desc; ?></td>
+                                    <td> <a href="" data-toggle="modal" data-target="#viewResident<?= $res->uniid; ?>"><i class="dw dw-eye"></i> View</a></td>
+                                </tr>
+                            <?php }; ?>
                         </tbody>
                     </table>
                 </div>
@@ -205,5 +217,9 @@
         </div>
     </div>
 </div>
+
+
+<?= $this->include("dashboard/view_resident") ?>
+
 
 <?= $this->endSection() ?>
