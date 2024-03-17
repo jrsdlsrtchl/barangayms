@@ -57,9 +57,9 @@ class AuthenticationController extends Controller
                 if ($userdata) {
                     if ($password == $userdata['password']) {
                         if ($usertype == 'Resident' && $usertype == $userdata['usertype']) {
-                            echo "Welcome Resident";
-                            // $this->session->set('logged_resident', $userdata['user_uniid']);
-                            // return redirect()->to(base_url() . 'LoggedResidentController/loggedResident');
+                            // echo "Welcome Resident";
+                            $this->session->set('logged_resident', $userdata['resident_id']);
+                            return redirect()->to(base_url() . 'UserController/user');
                         } elseif ($usertype == 'Admin' && $usertype == $userdata['usertype']) {
                             echo "Welcome Admin";
                             // $this->session->set('logged_admin', $userdata['user_uniid']);

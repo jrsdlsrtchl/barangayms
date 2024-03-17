@@ -18,19 +18,25 @@
 
                 <li>
                     <a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-file-earmark-person"></span><span class="mtext">Home</span>
+                        <span class="micon bi bi-house-door"></span><span class="mtext">Home</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-people"></span><span class="mtext">Request Document</span>
+                        <span class="micon bi bi-file-earmark-person"></span><span class="mtext">My Profile</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-building"></span><span class="mtext">Track Request</span>
+                        <span class="micon bi bi-file-earmark-plus"></span><span class="mtext">Request Document</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-search"></span><span class="mtext">Track Request</span>
                     </a>
                 </li>
 

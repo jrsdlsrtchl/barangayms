@@ -6,11 +6,14 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    public function getUser()
+    public function getLoggedInUserData($resident_id)
     {
-        $builder = $this->db->table('tbl_resident');
-        $builder->select('*')->where('resident_id', '20');
-        $result = $builder->get()->getResult();
+
+        $query = $this->db->table('tbl_resident')->select('*');
+        $query->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $query->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $query->where('resident_id', $resident_id);
+        $result = $query->get()->getResult();
 
         return $result;
     }
