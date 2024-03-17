@@ -202,6 +202,10 @@
                 </div>
             </div>
 
+            <div class="footer-wrap pd-20 mb-20 card-box">
+                <div class="col-auto"><span>&copy; Barangay Raw-an Management System - <?php echo date('Y') ?> Version 1.0</span></div>
+            </div>
+
         </div>
     </div>
 </div>

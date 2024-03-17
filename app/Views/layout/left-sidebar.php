@@ -59,6 +59,12 @@
                 </li>
 
                 <li>
+                    <a href="<?= base_url() ?>UserManagementController/user" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-person-workspace"></span><span class="mtext">User Management</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="sitemap.html" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested Docs</span>
                     </a>

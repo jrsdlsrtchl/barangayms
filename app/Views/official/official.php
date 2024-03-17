@@ -108,5 +108,4 @@ $page_session = \CodeIgniter\Config\Services::session();
 <?= $this->include("official/delete_official"); ?>
 <?= $this->include("official/view_official"); ?>
 
-
 <?= $this->endSection() ?>

@@ -13,71 +13,25 @@
             <ul id="accordion-menu">
 
                 <li>
-                    <a href="<?= base_url() ?>dashboardcontroller/dashboard" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-ui-checks-grid"></span><span class="mtext">Dashboard</span>
-                    </a>
-                </li>
-
-                <li>
-                    <div class="dropdown-divider"></div>
-                </li>
-                <li>
                     <div class="sidebar-small-cap">Menu</div>
                 </li>
 
                 <li>
-                    <a href="<?= base_url() ?>officialcontroller/official" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-file-earmark-person"></span><span class="mtext">Barangay Official</span>
+                    <a href="#" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-file-earmark-person"></span><span class="mtext">Home</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="<?= base_url() ?>residentcontroller/resident" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-people"></span><span class="mtext">Residents</span>
+                    <a href="#" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-people"></span><span class="mtext">Request Document</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="<?= base_url() ?>purokcontroller/purok" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-building"></span><span class="mtext">Purok</span>
+                    <a href="#" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-building"></span><span class="mtext">Track Request</span>
                     </a>
-                </li>
-
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-house-door"></span><span class="mtext">Household</span>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="<?= base_url() ?>householdcontroller/household/<?= $puroknum = '1' ?>">Purok 1</a></li>
-                        <li><a href="<?= base_url() ?>householdcontroller/household/<?= $puroknum = '2' ?>">Purok 2</a></li>
-                        <li><a href="<?= base_url() ?>householdcontroller/household/<?= $puroknum = '3' ?>">Purok 3</a></li>
-                        <li><a href="<?= base_url() ?>householdcontroller/household/<?= $puroknum = '4' ?>">Purok 4</a></li>
-                        <li><a href="<?= base_url() ?>householdcontroller/household/<?= $puroknum = '5' ?>">Purok 5</a></li>
-                        <li><a href="<?= base_url() ?>householdcontroller/household/<?= $puroknum = '6' ?>">Purok 6</a></li>
-                        <li><a href="<?= base_url() ?>householdcontroller/household/<?= $puroknum = '7' ?>">Purok 7</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="sitemap.html" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested Docs</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="sitemap.html" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-truck"></span><span class="mtext">Assistance</span>
-                    </a>
-                </li>
-
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-house-door"></span><span class="mtext">Generate Report</span>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="<?= base_url() ?>generatereportcontroller/report">Filter Report</a></li>
-                        <li><a href="<?= base_url() ?>generatereportcontroller/printreport">Print Report</a></li>
-                    </ul>
                 </li>
 
                 <li>

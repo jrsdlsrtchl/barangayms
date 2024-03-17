@@ -1,6 +1,6 @@
 <?= $this->include("layout/header"); ?>
 
-<?= $this->include("layout/topbar"); ?>
+<?= $this->include("layout/topbar-user"); ?>
 
 <?= $this->include("layout/right-sidebar"); ?>
 
