@@ -17,7 +17,7 @@
                 </li>
 
                 <li>
-                    <a href="#" class="dropdown-toggle no-arrow">
+                    <a href="<?= base_url() ?>usercontroller/user" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-house-door"></span><span class="mtext">Home</span>
                     </a>
                 </li>
@@ -28,10 +28,14 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-file-earmark-plus"></span><span class="mtext">Request Document</span>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-envelope-paper"></span><span class="mtext">Request Documents</span>
                     </a>
+                    <ul class="submenu">
+                        <li><a href="<?= base_url() ?>RequestDocumentController/request">Pending Request</a></li>
+                        <li><a href="<?= base_url() ?>RequestDocumentController/getHistory">History Request</a></li>
+                    </ul>
                 </li>
 
                 <li>

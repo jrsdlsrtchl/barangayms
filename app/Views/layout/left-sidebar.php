@@ -64,10 +64,14 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="sitemap.html" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested Docs</span>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested Document</span>
                     </a>
+                    <ul class="submenu">
+                        <li><a href="<?= base_url() ?>RequestedDocController/getRequest">Pending Request</a></li>
+                        <li><a href="<?= base_url() ?>RequestedDocController/getHistory">History Request</a></li>
+                    </ul>
                 </li>
 
                 <li>

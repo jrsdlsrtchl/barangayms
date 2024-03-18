@@ -93,11 +93,11 @@
                         </div>
                         <div class="form-group col-md-4 col-sm-6">
                             <h2 class="h6">Purok</h2>
-                            <h2 class="h4"> <?= $user->purok_id; ?> </h2>
+                            <h2 class="h4"> <?= $user->purok_desc; ?> </h2>
                         </div>
                         <div class="form-group col-md-4 col-sm-6">
                             <h2 class="h6">Household</h2>
-                            <h2 class="h4"> <?= $user->household_id; ?> </h2>
+                            <h2 class="h4"> <?= $user->household_desc; ?> </h2>
                         </div>
 
                     </div>
