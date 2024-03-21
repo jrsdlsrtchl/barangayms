@@ -17,10 +17,10 @@
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Status:</label>
-                                        <select name="status" class="form-control">
+                                        <select name="request_status" class="form-control">
                                             <option value="Pending" selected>Pending</option>
                                             <option value="Processing">Processing</option>
-                                            <option value="Ready to Get">Ready to Get</option>
+                                            <option value="Approved">Approved</option>
                                             <option value="Cancelled">Cancelled</option>
                                         </select>
                                     </div>
@@ -29,10 +29,10 @@
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Release by:</label>
-                                        <select name="official_id" class="form-control">
-                                            <option value="" required>Select Official</option>
+                                        <select name="official" class="form-control" required>
+                                            <option value="">Select Official</option>
                                             <?php foreach ($official as $off) { ?>
-                                                <option value="<?= $off->official_id ?>"> <?= $off->firstname . " " . substr($off->middlename, 0, 1) . ". " . $off->lastname  ?> </option>
+                                                <option value="<?= $off->firstname . " " . substr($off->middlename, 0, 1) . ". " . $off->lastname  ?>"> <?= $off->firstname . " " . substr($off->middlename, 0, 1) . ". " . $off->lastname  ?> </option>
                                             <?php }; ?>
                                         </select>
                                     </div>

@@ -11,7 +11,37 @@ class RequestedDocModel extends Model
         $builder = $this->db->table('tbl_requested_cert');
         $builder->join('tbl_resident', 'tbl_requested_cert.resident_id = tbl_resident.resident_id');
         $builder->join('tbl_certificate', 'tbl_requested_cert.certificate_id = tbl_certificate.certificate_id');
-        $builder->where('status', 'Pending')->orWhere('status', 'Processing');
+        $builder->where('request_status', 'Pending')->orWhere('request_status', 'Processing');
+        $result = $builder->get()->getResult();
+
+        if (count($result) >= 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function getApproved()
+    {
+        $builder = $this->db->table('tbl_requested_cert');
+        $builder->join('tbl_resident', 'tbl_requested_cert.resident_id = tbl_resident.resident_id');
+        $builder->join('tbl_certificate', 'tbl_requested_cert.certificate_id = tbl_certificate.certificate_id');
+        $builder->where('request_status', 'Approved');
+        $result = $builder->get()->getResult();
+
+        if (count($result) >= 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function getCancelled()
+    {
+        $builder = $this->db->table('tbl_requested_cert');
+        $builder->join('tbl_resident', 'tbl_requested_cert.resident_id = tbl_resident.resident_id');
+        $builder->join('tbl_certificate', 'tbl_requested_cert.certificate_id = tbl_certificate.certificate_id');
+        $builder->where('request_status', 'Cancelled');
         $result = $builder->get()->getResult();
 
         if (count($result) >= 0) {
@@ -26,7 +56,6 @@ class RequestedDocModel extends Model
         $builder = $this->db->table('tbl_requested_cert');
         $builder->join('tbl_certificate', 'tbl_requested_cert.certificate_id = tbl_certificate.certificate_id');
         $builder->join('tbl_resident', 'tbl_requested_cert.resident_id = tbl_resident.resident_id');
-        $builder->where('tbl_requested_cert.status', 'Ready to Get')->orWhere('tbl_requested_cert.status', 'Cancelled');
         $result = $builder->get()->getResult();
 
         if (count($result) >= 0) {

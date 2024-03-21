@@ -20,7 +20,32 @@ class RequestDocumentController extends Controller
         $data['request'] = $this->request_model->getRequest($resident_id);
         $data['document'] = $this->request_model->getDocType();
 
-        return view("request_docs/pending", $data);
+        return view("request_docs/active", $data);
+    }
+
+    public function getApproved()
+    {
+        $resident_id = session()->get('logged_resident');
+        $data['request'] = $this->request_model->getApproved($resident_id);
+
+        return view("request_docs/approved", $data);
+    }
+
+    public function getCancelled()
+    {
+        $resident_id = session()->get('logged_resident');
+        $data['request'] = $this->request_model->getCancelled($resident_id);
+
+        return view("request_docs/cancelled", $data);
+    }
+
+
+    public function getHistory()
+    {
+        $resident_id = session()->get('logged_resident');
+        $data['request'] = $this->request_model->getHistory($resident_id);
+
+        return view("request_docs/history", $data);
     }
 
     public function addRequest()
@@ -48,13 +73,5 @@ class RequestDocumentController extends Controller
                 return redirect()->to(base_url() . "RequestDocumentController/request");
             }
         }
-    }
-
-    public function getHistory()
-    {
-        $resident_id = session()->get('logged_resident');
-        $data['request'] = $this->request_model->getHistory($resident_id);
-
-        return view("request_docs/history", $data);
     }
 }

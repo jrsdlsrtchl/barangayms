@@ -2,7 +2,7 @@
 $page_session = \CodeIgniter\Config\Services::session();
 ?>
 
-<?= $this->extend("layout/base_user") ?>
+<?= $this->extend("layout/base") ?>
 
 <?= $this->section("content") ?>
 
@@ -33,24 +33,24 @@ $page_session = \CodeIgniter\Config\Services::session();
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Manage Request Documents</h4>
+                            <h4>Manage Requested Documents</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Request Document</a>
+                                    <a href="#">Requested Document</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Pending Request
+                                    Active Request
                                 </li>
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-md-6 col-sm-12 text-right">
+                    <!-- <div class="col-md-6 col-sm-12 text-right">
                         <button class="btn btn-primary" data-toggle="modal" data-target="#addRequest">
                             Add Request
                         </button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -63,21 +63,31 @@ $page_session = \CodeIgniter\Config\Services::session();
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort">Document Type</th>
+                                <th class="table-plus datatable-nosort">Resident</th>
+                                <th>Document Type</th>
                                 <th>Date</th>
                                 <th>Purpose</th>
                                 <th>Status</th>
-                                <th class="datatable-nosort">Tracking ID</th>
+                                <th>Tracking ID</th>
+                                <th class="datatable-nosort">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($request as $req) { ?>
                                 <tr>
-                                    <td class="table-plus"><?= $req->certificate_type ?></td>
+                                    <td class="table-plus"> <?= $req->firstname . " " . substr($req->middlename, 0, 1) . ". " . $req->lastname  ?> </td>
+                                    <td><?= $req->certificate_type ?></td>
                                     <td><?= $req->date; ?></td>
                                     <td><?= $req->purpose; ?></td>
-                                    <td><?= $req->status; ?></td>
+                                    <td>
+                                        <span class="badge badge-pill" data-bgcolor="#265ed7" data-color="#ffffff"><?= $req->request_status; ?></span>
+                                    </td>
                                     <td><?= $req->tracking_id; ?></td>
+                                    <td>
+                                        <a href="#" data-toggle="modal" data-target="#updateRequest<?= $req->request_id ?>"><i class="dw dw-edit2"></i> Update </a> |
+                                        <a href="#" data-toggle="modal" data-target="#updateRequest"><i class="icon-copy bi bi-printer"></i> Print </a>
+                                    </td>
                                 </tr>
                             <?php }; ?>
                         </tbody>
@@ -88,6 +98,6 @@ $page_session = \CodeIgniter\Config\Services::session();
     </div>
 </div>
 
-<?= $this->include("request_docs/add_request"); ?>
+<?= $this->include("requested/update_request") ?>
 
 <?= $this->endSection("") ?>

@@ -41,7 +41,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <a href="#">Requested Document</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Pending Request
+                                    Approved Request
                                 </li>
                             </ol>
                         </nav>
@@ -68,6 +68,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                 <th>Date</th>
                                 <th>Purpose</th>
                                 <th>Status</th>
+                                <th>Official</th>
                                 <th>Tracking ID</th>
                                 <th class="datatable-nosort">Action</th>
 
@@ -80,11 +81,13 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <td><?= $req->certificate_type ?></td>
                                     <td><?= $req->date; ?></td>
                                     <td><?= $req->purpose; ?></td>
-                                    <td><?= $req->status; ?></td>
+                                    <td>
+                                        <span class="badge badge-pill" data-bgcolor="#26d75b" data-color="#ffffff"><?= $req->request_status; ?></span>
+                                    </td>
+                                    <td><?= $req->official; ?></td>
                                     <td><?= $req->tracking_id; ?></td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#updateRequest<?= $req->request_id ?>"><i class="dw dw-edit2"></i> Update </a> |
-                                        <a href="#" data-toggle="modal" data-target="#updateRequest"><i class="icon-copy bi bi-printer"></i> Print </a>
+                                        <a href="#" data-toggle="modal" data-target="#updateRequest<?= $req->request_id ?>"><i class="dw dw-trash"></i> Delete </a>
                                     </td>
                                 </tr>
                             <?php }; ?>
@@ -95,7 +98,5 @@ $page_session = \CodeIgniter\Config\Services::session();
         </div>
     </div>
 </div>
-
-<?= $this->include("requested/update_request") ?>
 
 <?= $this->endSection("") ?>

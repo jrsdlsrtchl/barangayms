@@ -19,7 +19,28 @@ class RequestedDocController extends Controller
         $data['request'] = $this->requested_model->getRequest();
         $data['official'] = $this->requested_model->getOfficial();
 
-        return view("requested/pending", $data);
+        return view("requested/requested", $data);
+    }
+
+    public function getApproved()
+    {
+        $data['request'] = $this->requested_model->getApproved();
+
+        return view("requested/approved", $data);
+    }
+
+    public function getCancelled()
+    {
+        $data['request'] = $this->requested_model->getCancelled();
+
+        return view("requested/cancelled", $data);
+    }
+
+    public function getHistory()
+    {
+        $data['request'] = $this->requested_model->getHistory();
+
+        return view("requested/history", $data);
     }
 
     public function updateRequest($request_id)
@@ -28,8 +49,8 @@ class RequestedDocController extends Controller
 
         if ($this->request->getMethod() == 'post') {
             $data = [
-                'status' => $this->request->getVar('status'),
-                'official_id' => $this->request->getVar('official_id'),
+                'request_status' => $this->request->getVar('request_status'),
+                'official' => $this->request->getVar('official'),
             ];
 
             $status = $this->requested_model->updateRequest($data, $request_id);
@@ -42,12 +63,5 @@ class RequestedDocController extends Controller
                 return redirect()->to(base_url() . "RequestedDocController/getrequest");
             }
         }
-    }
-
-    public function getHistory()
-    {
-        $data['request'] = $this->requested_model->getHistory();
-
-        return view("requested/history", $data);
     }
 }
