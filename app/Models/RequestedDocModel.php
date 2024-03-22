@@ -89,4 +89,22 @@ class RequestedDocModel extends Model
             return false;
         }
     }
+
+    public function deleteRequest($request_id)
+    {
+        $builder = $this->db->table('tbl_requested_cert');
+        $builder->delete(['request_id' => $request_id]);
+    }
+
+    public function document()
+    {
+        $builder = $this->db->table('tbl_certificate');
+        $result = $builder->get()->getResult();
+
+        if (count($result) >= 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }

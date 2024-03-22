@@ -64,4 +64,53 @@ class RequestedDocController extends Controller
             }
         }
     }
+
+    public function deleteRequestApproved($request_id)
+    {
+        $session = \CodeIgniter\Config\Services::session();
+        $delete = $this->requested_model->deleteRequest($request_id);
+
+        if (!$delete) {
+            $session->setTempdata('success', 'Request deleted successfully!', 3);
+            return redirect()->to(base_url() . "RequestedDocController/getapproved");
+        } else {
+            $session->setTempdata('error', 'Somthing wen wrong!', 3);
+            return redirect()->to(base_url() . "RequestedDocController/getapproved");
+        }
+    }
+
+    public function deleteRequestCancelled($request_id)
+    {
+        $session = \CodeIgniter\Config\Services::session();
+        $delete = $this->requested_model->deleteRequest($request_id);
+
+        if (!$delete) {
+            $session->setTempdata('success', 'Request deleted successfully!', 3);
+            return redirect()->to(base_url() . "RequestedDocController/getcancelled");
+        } else {
+            $session->setTempdata('error', 'Somthing wen wrong!', 3);
+            return redirect()->to(base_url() . "RequestedDocController/getcancelled");
+        }
+    }
+
+    public function deleteRequestHistroy($request_id)
+    {
+        $session = \CodeIgniter\Config\Services::session();
+        $delete = $this->requested_model->deleteRequest($request_id);
+
+        if (!$delete) {
+            $session->setTempdata('success', 'Request deleted successfully!', 3);
+            return redirect()->to(base_url() . "RequestedDocController/getHistory");
+        } else {
+            $session->setTempdata('error', 'Somthing wen wrong!', 3);
+            return redirect()->to(base_url() . "RequestedDocController/getHistory");
+        }
+    }
+
+    public function document()
+    {
+        $data['document'] = $this->requested_model->document();
+
+        return view("requested/document", $data);
+    }
 }

@@ -95,7 +95,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <td><?= $req->official; ?></td>
                                     <td><?= $req->tracking_id; ?></td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#updateRequest<?= $req->request_id ?>"><i class="dw dw-trash"></i> Delete </a>
+                                        <a href="#" data-toggle="modal" data-target="#deleteRequest<?= $req->request_id ?>"><i class="dw dw-trash"></i> Delete </a>
                                     </td>
                                 </tr>
                             <?php }; ?>
@@ -106,5 +106,7 @@ $page_session = \CodeIgniter\Config\Services::session();
         </div>
     </div>
 </div>
+
+<?= $this->include("requested/delete_request_history"); ?>
 
 <?= $this->endSection("") ?>
