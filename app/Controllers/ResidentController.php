@@ -35,7 +35,6 @@ class ResidentController extends Controller
             $uniid = md5(str_shuffle('abcsefghijklmonpqrtuvwxyz' . time()));
             $datebirth = $this->request->getVar('datebirth');
             $date = date('Y-m-d', strtotime($datebirth));
-            $user_id = '1';
             $res_data = [
                 'lastname' => $this->request->getVar('lastname'),
                 'firstname' => $this->request->getVar('firstname'),
@@ -58,7 +57,6 @@ class ResidentController extends Controller
                 'precinct' => $this->request->getVar('precinct'),
                 'purok_id' => $this->request->getVar('purok_id'),
                 'household_id' => $this->request->getVar('household_id'),
-                'user_id' => $user_id,
                 'uniid' => $uniid,
             ];
 

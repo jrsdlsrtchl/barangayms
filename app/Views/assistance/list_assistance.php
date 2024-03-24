@@ -33,22 +33,22 @@ $page_session = \CodeIgniter\Config\Services::session();
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Manage Assistance</h4>
+                            <h4>Manage List of Assistance</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="<?= base_url() ?>officialcontroller/official">Assistance</a>
+                                    <a href="<?= base_url() ?>officialcontroller/official">List of Assistance</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Assistance Table
+                                    Assistance List Table
                                 </li>
                             </ol>
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
                         <a class="btn btn-primary" href="<?= base_url() ?>officialcontroller/addofficial" role="button">
-                            Add Assistance
+                            Add Assistance Type
                         </a>
                     </div>
                 </div>
@@ -71,29 +71,31 @@ $page_session = \CodeIgniter\Config\Services::session();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($official as $off) { ?>
-                                <tr>
-                                    <td class="table-plus"><?= $off->firstname . " " . substr($off->middlename, 0, 1) . ". " . $off->lastname ?></td>
-                                    <td><?= $off->purok_desc; ?></td>
-                                    <td><?= $off->committee; ?></td>
-                                    <td><?= $off->vice_committee; ?></td>
-                                    <td><?= $off->position; ?></td>
-                                    <td><?= $off->term; ?></td>
-                                    <td><?= $off->status; ?></td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                <i class="dw dw-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#viewOfficial<?= $off->off_uniid ?>"><i class=" dw dw-eye"></i> View</a>
-                                                <a class="dropdown-item" href="<?= base_url() ?>officialcontroller/editofficial/<?= $off->off_uniid ?>"><i class="dw dw-edit2"></i> Edit</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteOfficial<?= $off->off_uniid ?>"><i class="dw dw-delete-3"></i> Delete</a>
-                                            </div>
+                            <? //php foreach ($official as $off) { 
+                            ?>
+                            <tr>
+                                <td class="table-plus"> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                            <i class="dw dw-more"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#viewOfficial"><i class=" dw dw-eye"></i> View</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#viewOfficial"><i class="dw dw-edit2"></i> Edit</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteOfficial"><i class="dw dw-delete-3"></i> Delete</a>
                                         </div>
-                                    </td>
-                                </tr>
-                            <?php }; ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <? //php }; 
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -101,8 +103,5 @@ $page_session = \CodeIgniter\Config\Services::session();
         </div>
     </div>
 </div>
-
-<?= $this->include("official/delete_official"); ?>
-<?= $this->include("official/view_official"); ?>
 
 <?= $this->endSection() ?>

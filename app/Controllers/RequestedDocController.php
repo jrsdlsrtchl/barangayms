@@ -74,7 +74,7 @@ class RequestedDocController extends Controller
             $session->setTempdata('success', 'Request deleted successfully!', 3);
             return redirect()->to(base_url() . "RequestedDocController/getapproved");
         } else {
-            $session->setTempdata('error', 'Somthing wen wrong!', 3);
+            $session->setTempdata('error', 'Somthing went wrong!', 3);
             return redirect()->to(base_url() . "RequestedDocController/getapproved");
         }
     }
@@ -88,7 +88,7 @@ class RequestedDocController extends Controller
             $session->setTempdata('success', 'Request deleted successfully!', 3);
             return redirect()->to(base_url() . "RequestedDocController/getcancelled");
         } else {
-            $session->setTempdata('error', 'Somthing wen wrong!', 3);
+            $session->setTempdata('error', 'Somthing went wrong!', 3);
             return redirect()->to(base_url() . "RequestedDocController/getcancelled");
         }
     }
@@ -102,7 +102,7 @@ class RequestedDocController extends Controller
             $session->setTempdata('success', 'Request deleted successfully!', 3);
             return redirect()->to(base_url() . "RequestedDocController/getHistory");
         } else {
-            $session->setTempdata('error', 'Somthing wen wrong!', 3);
+            $session->setTempdata('error', 'Somthing went wrong!', 3);
             return redirect()->to(base_url() . "RequestedDocController/getHistory");
         }
     }
@@ -112,5 +112,40 @@ class RequestedDocController extends Controller
         $data['document'] = $this->requested_model->document();
 
         return view("requested/document", $data);
+    }
+
+    public function addDocument()
+    {
+        $session = \CodeIgniter\Config\Services::session();
+
+        if ($this->request->getMethod() == 'post') {
+            $data = [
+                'certificate_type' => $this->request->getVar('certificate_type'),
+            ];
+
+            $status = $this->requested_model->addDocument($data);
+
+            if ($status) {
+                $session->setTempdata('success', 'Document added uccessfully!', 3);
+                return redirect()->to(base_url() . "RequestedDocController/document");
+            } else {
+                $session->setTempdata('error', 'Something went wrong! Try Again!', 3);
+                return redirect()->to(base_url() . "RequestedDocController/document");
+            }
+        }
+    }
+
+    public function deleteDocument($document_id)
+    {
+        $session = \CodeIgniter\Config\Services::session();
+        $delete = $this->requested_model->deleteDocument($document_id);
+
+        if (!$delete) {
+            $session->setTempdata('success', 'Document deleted successfully!', 3);
+            return redirect()->to(base_url() . "RequestedDocController/document");
+        } else {
+            $session->setTempdata('error', 'Somthing went wrong!', 3);
+            return redirect()->to(base_url() . "RequestedDocController/document");
+        }
     }
 }

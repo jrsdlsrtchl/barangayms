@@ -107,4 +107,20 @@ class RequestedDocModel extends Model
             return false;
         }
     }
+
+    public function addDocument($data)
+    {
+        $this->db->table('tbl_certificate')->insert($data);
+        if ($this->db->affectedRows() >= 1) {
+            return $this->db->insertID();
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteDocument($document_id)
+    {
+        $builder = $this->db->table('tbl_certificate');
+        $builder->delete(['certificate_id' => $document_id]);
+    }
 }
