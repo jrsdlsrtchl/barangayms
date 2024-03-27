@@ -83,7 +83,7 @@
                     </a>
                     <ul class="submenu">
                         <li><a href="<?= base_url() ?>AssistanceController/assistance">Manage Assistance</a></li>
-                        <li><a href="<?= base_url() ?>RequestedDocController/document">List Of Assistance</a></li>
+                        <li><a href="<?= base_url() ?>AssistanceController/listassistance">List Of Assistance</a></li>
                     </ul>
                 </li>
 

@@ -50,7 +50,7 @@ class RequestedDocController extends Controller
         if ($this->request->getMethod() == 'post') {
             $data = [
                 'request_status' => $this->request->getVar('request_status'),
-                'official' => $this->request->getVar('official'),
+                'official_id' => $this->request->getVar('official_id'),
             ];
 
             $status = $this->requested_model->updateRequest($data, $request_id);

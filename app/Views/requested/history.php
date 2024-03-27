@@ -92,7 +92,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                             <span class="badge badge-pill" data-bgcolor="#d4d726" data-color="#ffffff"><?= $req->request_status; ?></span>
                                         <?php } ?>
                                     </td>
-                                    <td><?= $req->official; ?></td>
+                                    <td> <?= $req->official_firstname . " " . substr($req->official_middlename, 0, 1) . ". " . $req->official_lastname  ?> </td>
                                     <td><?= $req->tracking_id; ?></td>
                                     <td>
                                         <a href="#" data-toggle="modal" data-target="#deleteRequest<?= $req->request_id ?>"><i class="dw dw-trash"></i> Delete </a>

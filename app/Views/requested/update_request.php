@@ -29,10 +29,10 @@
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
                                         <label>Release by:</label>
-                                        <select name="official" class="form-control" required>
+                                        <select name="official_id" class="form-control" required>
                                             <option value="">Select Official</option>
                                             <?php foreach ($official as $off) { ?>
-                                                <option value="<?= $off->firstname . " " . substr($off->middlename, 0, 1) . ". " . $off->lastname  ?>"> <?= $off->firstname . " " . substr($off->middlename, 0, 1) . ". " . $off->lastname  ?> </option>
+                                                <option value="<?= $off->official_id ?>"> <?= $off->firstname . " " . substr($off->middlename, 0, 1) . ". " . $off->lastname  ?> </option>
                                             <?php }; ?>
                                         </select>
                                     </div>

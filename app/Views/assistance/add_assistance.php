@@ -49,7 +49,7 @@
                         <div class="col-lg-6col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Date Received</label>
-                                <input type="text" class="form-control date-picker" name="date_receive" placeholder="Select date received">
+                                <input type="text" class="form-control date-picker" name="date_receive" placeholder="Select date received" autocomplete="off">
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@
                         <div class="col-lg-6col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Date Distributed</label>
-                                <input type="text" class="form-control date-picker" name="distribute_date" placeholder="Select date distributed">
+                                <input type="text" class="form-control date-picker" name="distribute_date" placeholder="Select date distributed" autocomplete="off">
                             </div>
                         </div>
 

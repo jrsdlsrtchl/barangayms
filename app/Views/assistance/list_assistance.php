@@ -41,15 +41,15 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <a href="<?= base_url() ?>officialcontroller/official">List of Assistance</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Assistance List Table
+                                    Assistance Type List Table
                                 </li>
                             </ol>
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
-                        <a class="btn btn-primary" href="<?= base_url() ?>officialcontroller/addofficial" role="button">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addType">
                             Add Assistance Type
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -57,45 +57,27 @@ $page_session = \CodeIgniter\Config\Services::session();
             <!-- Data Table -->
             <div class="card-box mb-30">
                 <div class="card-header">
-                    <h4 class="text-blue mt-2 h4">Assistance Information Table</h4>
+                    <h4 class="text-blue mt-2 h4">Assistance Type Table</h4>
                 </div>
                 <div class="pb-20 mt-3 mx-3">
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort">Assistance</th>
-                                <th>Date Receive</th>
-                                <th>Official</th>
-                                <th>Distribute Date</th>
+                                <th class="table-plus datatable-nosort">Assistance Type</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <? //php foreach ($official as $off) { 
+                            <?php foreach ($assistance as $ass) {
                             ?>
-                            <tr>
-                                <td class="table-plus"> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td> </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                            <i class="dw dw-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#viewOfficial"><i class=" dw dw-eye"></i> View</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#viewOfficial"><i class="dw dw-edit2"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteOfficial"><i class="dw dw-delete-3"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <? //php }; 
-                            ?>
+                                <tr>
+                                    <td class="table-plus"> <?= $ass->type_assistance ?> </td>
+                                    <td>
+                                        <a href="#" data-toggle="modal" data-target="#editType<?= $ass->type_assistance_id ?>"><i class="dw dw-edit2"></i> Edit</a> |
+                                        <a href="#" data-toggle="modal" data-target="#deleteAssistance<?= $ass->type_assistance_id ?>"><i class="dw dw-delete-3"></i> Delete</a>
+                                    </td>
+                                </tr>
+                            <?php }; ?>
                         </tbody>
                     </table>
                 </div>
@@ -103,5 +85,11 @@ $page_session = \CodeIgniter\Config\Services::session();
         </div>
     </div>
 </div>
+
+<?= $this->include("assistance/add_type") ?>
+
+<?= $this->include("assistance/edit_type") ?>
+
+<?= $this->include("assistance/delete_assistance") ?>
 
 <?= $this->endSection() ?>

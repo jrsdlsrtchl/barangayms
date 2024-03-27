@@ -81,7 +81,11 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <td><?= $req->date; ?></td>
                                     <td><?= $req->purpose; ?></td>
                                     <td>
-                                        <span class="badge badge-pill" data-bgcolor="#265ed7" data-color="#ffffff"><?= $req->request_status; ?></span>
+                                        <?php if ($req->request_status == "Pending") { ?>
+                                            <span class="badge badge-pill" data-bgcolor="#265ed7" data-color="#ffffff"><?= $req->request_status; ?></span>
+                                        <?php } else { ?>
+                                            <span class="badge badge-pill" data-bgcolor="#d4d726" data-color="#ffffff"><?= $req->request_status; ?></span>
+                                        <?php } ?>
                                     </td>
                                     <td><?= $req->tracking_id; ?></td>
                                     <td>

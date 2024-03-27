@@ -2,7 +2,7 @@
 $page_session = \CodeIgniter\Config\Services::session();
 ?>
 
-<?= $this->extend("layout/base") ?>
+<?= $this->extend("layout/base"); ?>
 
 <?= $this->section("content") ?>
 
@@ -33,61 +33,59 @@ $page_session = \CodeIgniter\Config\Services::session();
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Manage Requested Documents</h4>
+                            <h4>Manage Assistance</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Requested Document</a>
+                                    <a href="<?= base_url() ?>purokcontroller/purok">Assistance</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Approved Request
+                                    View Assistance Table
                                 </li>
                             </ol>
                         </nav>
                     </div>
-                    <!-- <div class="col-md-6 col-sm-12 text-right">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#addRequest">
-                            Add Request
-                        </button>
-                    </div> -->
                 </div>
             </div>
 
             <!-- Data Table -->
             <div class="card-box mb-30">
                 <div class="card-header">
-                    <h4 class="text-blue mt-2 h4">Requested Documents Table</h4>
+                    <?php if (!empty($assistance)) { ?>
+                        <h4 class="text-blue mt-2 h4"><?= $assistance['0']->type_assistance; ?> Assistance Table</h4>
+                    <?php } ?>
                 </div>
                 <div class="pb-20 mt-3 mx-3">
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort">Resident</th>
-                                <th>Document Type</th>
-                                <th>Date</th>
-                                <th>Purpose</th>
-                                <th>Status</th>
-                                <th>Official</th>
-                                <th>Tracking ID</th>
+                                <th class="table-plus datatable-nosort">Last Name</th>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                                <th>Contact No.</th>
+                                <th>Date of Birth</th>
+                                <th>Household</th>
+                                <th>Purok</th>
                                 <th class="datatable-nosort">Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($request as $req) { ?>
+                            <?php foreach ($resident as $res) { ?>
                                 <tr>
-                                    <td class="table-plus"> <?= $req->firstname . " " . substr($req->middlename, 0, 1) . ". " . $req->lastname  ?> </td>
-                                    <td><?= $req->certificate_type ?></td>
-                                    <td><?= $req->date; ?></td>
-                                    <td><?= $req->purpose; ?></td>
+                                    <td class="table-plus"><?= $res->lastname; ?></td>
+                                    <td><?= $res->firstname; ?></td>
+                                    <td><?= $res->middlename; ?></td>
+                                    <td><?= $res->gender; ?></td>
+                                    <td><?= $res->age; ?></td>
+                                    <td><?= $res->mobile; ?></td>
+                                    <td><?= strftime("%B %d, %Y", strtotime($res->datebirth)) ?></td>
+                                    <td><?= $res->household_desc; ?></td>
+                                    <td><?= $res->purok_desc; ?></td>
                                     <td>
-                                        <span class="badge badge-pill" data-bgcolor="#26d75b" data-color="#ffffff"><?= $req->request_status; ?></span>
-                                    </td>
-                                    <td> <?= $req->official_firstname . " " . substr($req->official_middlename, 0, 1) . ". " . $req->official_lastname  ?> </td>
-                                    <td><?= $req->tracking_id; ?></td>
-                                    <td>
-                                        <a href="#" data-toggle="modal" data-target="#deleteRequest<?= $req->request_id ?>"><i class="dw dw-trash"></i> Delete </a>
+                                        <a href="#" data-toggle="modal" data-target="#deleteResident"><i class="dw dw-delete-3"></i> Delete</a>
                                     </td>
                                 </tr>
                             <?php }; ?>
@@ -99,6 +97,4 @@ $page_session = \CodeIgniter\Config\Services::session();
     </div>
 </div>
 
-<?= $this->include("requested/delete_request_approved"); ?>
-
-<?= $this->endSection("") ?>
+<?= $this->endSection() ?>

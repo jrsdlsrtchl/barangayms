@@ -63,7 +63,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort">Assistance</th>
+                                <th class="table-plus datatable-nosort">Assistance Type</th>
                                 <th>Date Receive</th>
                                 <th>Official</th>
                                 <th>Distribute Date</th>
@@ -74,24 +74,13 @@ $page_session = \CodeIgniter\Config\Services::session();
                             <?php foreach ($assistance as $ass) {
                             ?>
                                 <tr>
-                                    <td class="table-plus"> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
+                                    <td class="table-plus"> <?= $ass->type_assistance ?> </td>
+                                    <td> <?= strftime("%B %d, %Y", strtotime($ass->date_receive)) ?> </td>
+                                    <td> <?= $ass->official_id ?> </td>
+                                    <td> <?= strftime("%B %d, %Y", strtotime($ass->distribute_date)) ?> </td>
                                     <td>
-                                        <div class="dropdown">
-                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                <i class="dw dw-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#viewOfficial"><i class=" dw dw-eye"></i> View</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#viewOfficial"><i class="dw dw-edit2"></i> Edit</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteOfficial"><i class="dw dw-delete-3"></i> Delete</a>
-                                            </div>
-                                        </div>
+                                        <a href="<?= base_url() ?>assistancecontroller/getAssResidents/<?= $ass->type_assistance_id ?>"><i class=" dw dw-eye"></i> View</a> |
+                                        <a href="#" data-toggle="modal" data-target="#deleteAssistance<?= $ass->type_assistance_id  ?>"><i class="dw dw-delete-3"></i> Delete</a>
                                     </td>
                                 </tr>
                             <?php };
@@ -103,5 +92,7 @@ $page_session = \CodeIgniter\Config\Services::session();
         </div>
     </div>
 </div>
+
+<?= $this->include("assistance/delete_assistance_ass") ?>
 
 <?= $this->endSection() ?>
