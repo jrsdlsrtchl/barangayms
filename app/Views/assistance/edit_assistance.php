@@ -18,7 +18,7 @@
                                     <a href="<?= base_url() ?>officialcontroller/official">Asisstance</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Add Assistance
+                                    Edit Assistance
                                 </li>
                             </ol>
                         </nav>
@@ -33,58 +33,53 @@
 
             <div class="card-box mb-30">
                 <div class="card-header">
-                    <h4 class="text-blue mt-2 h4">Add New Assistance</h4>
+                    <h4 class="text-blue mt-2 h4">Edit Assistance</h4>
                 </div>
-                <form class="m-4" method="post" action="<?= base_url() ?>AssistanceController/addAssistance">
+                <form class="m-4" method="post" action="<?= base_url() ?>AssistanceController/updateAssistance/<?= $assistance_data['0']->type_assistance_id ?>">
                     <?= csrf_field(); ?>
                     <div class="row">
 
-                        <div class="col-lg-6col-md-4 col-sm-6">
+                        <div class="col-lg-6 col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Assistance Type</label>
                                 <select class="custom-select2 form-control" name="type_assistance_id" style="width: 100%; height: 38px">
                                     <option value="">Select Assistance</option>
-                                    <?php foreach ($assistance as $ass) { ?>
-                                        <option value="<?= $ass->type_assistance_id ?>"> <?= $ass->type_assistance; ?> </option>
+                                    <?php foreach ($assistance as $ass) {
+                                        $userID = $ass->type_assistance_id;
+                                        $isSelected = !empty($assistance_data) && $assistance_data[0]->type_assistance_id === $userID ? 'selected' : '';
+                                    ?>
+                                        <option value="<?= $ass->type_assistance_id ?>" <?= $isSelected ?>> <?= $ass->type_assistance; ?> </option>
                                     <?php }; ?>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="col-lg-6col-md-4 col-sm-6">
+                        <div class="col-lg-6 col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Date Received</label>
-                                <input type="text" class="form-control date-picker" name="date_receive" placeholder="Select date received" autocomplete="off">
+                                <input type="text" class="form-control date-picker" name="date_receive" placeholder="Select date received" autocomplete="off" value="<?= $assistance_data['0']->date_receive ?>">
                             </div>
                         </div>
 
-                        <div class="col-lg-6col-md-4 col-sm-6">
+                        <div class="col-lg-6 col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Received by:</label>
                                 <select class="custom-select2 form-control" name="official_id" style="width: 100%; height: 38px">
                                     <option value="">Select Official</option>
-                                    <?php foreach ($official as $off) { ?>
-                                        <option value="<?= $off->official_id  ?>"> <?= $off->firstname . " " . substr($off->middlename, 0, 1) . ". " . $off->lastname  ?> </option>
+                                    <?php foreach ($official as $off) {
+                                        $userID = $off->official_id;
+                                        $isSelected = !empty($assistance_data) && $assistance_data[0]->official_id === $userID ? 'selected' : '';
+                                    ?>
+                                        <option value="<?= $off->official_id ?>" <?= $isSelected ?>> <?= $off->firstname . " " . substr($off->middlename, 0, 1) . ". " . $off->lastname  ?> </option>
                                     <?php }; ?>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="col-lg-6col-md-4 col-sm-6">
+                        <div class="col-lg-6 col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Date Distributed</label>
-                                <input type="text" class="form-control date-picker" name="distribute_date" placeholder="Select date distributed" autocomplete="off">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Recipients</label>
-                                <select class="custom-select2 form-control" name="resident_id[]" multiple="multiple" style="width: 100%">
-                                    <?php foreach ($resident as $res) { ?>
-                                        <option value="<?= $res->resident_id ?>"> <?= $res->firstname . " " . substr($res->middlename, 0, 1) . ". " . $res->lastname  ?> </option>
-                                    <?php }; ?>
-                                </select>
+                                <input type="text" class="form-control date-picker" name="distribute_date" placeholder="Select date distributed" autocomplete="off" value="<?= $assistance_data['0']->distribute_date ?>">
                             </div>
                         </div>
 

@@ -23,6 +23,14 @@ class UserController extends Controller
         return view("user/user_home", $data);
     }
 
+    public function manageProfile()
+    {
+        $resident_id = session()->get('logged_resident');
+        $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
+
+        return view("user/manage_profile", $data);
+    }
+
     public function logoutUser()
     {
         session()->remove('logged_resident');

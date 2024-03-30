@@ -92,7 +92,7 @@
                         <span class="micon bi bi-house-door"></span><span class="mtext">Generate Report</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="<?= base_url() ?>generatereportcontroller/report">Filter Report</a></li>
+                        <li><a href="<?= base_url() ?>generatereportcontroller/report">View Report</a></li>
                         <li><a href="<?= base_url() ?>generatereportcontroller/printreport">Print Report</a></li>
                     </ul>
                 </li>

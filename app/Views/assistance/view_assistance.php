@@ -46,6 +46,11 @@ $page_session = \CodeIgniter\Config\Services::session();
                             </ol>
                         </nav>
                     </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addRecepient">
+                            Add Recepient
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -96,5 +101,7 @@ $page_session = \CodeIgniter\Config\Services::session();
         </div>
     </div>
 </div>
+
+<?= $this->include("assistance/add_recepient") ?>
 
 <?= $this->endSection() ?>

@@ -18,13 +18,19 @@
 
                 <li>
                     <a href="<?= base_url() ?>usercontroller/user" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-house-door"></span><span class="mtext">Home</span>
+                        <span class="micon bi bi-house-door"></span><span class="mtext">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= base_url() ?>usercontroller/manageProfile" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-file-earmark-person"></span><span class="mtext">Manage Profile</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-file-earmark-person"></span><span class="mtext">My Profile</span>
+                        <span class="micon bi bi-key"></span><span class="mtext">Reset Password</span>
                     </a>
                 </li>
 
@@ -37,12 +43,6 @@
                         <li><a href="<?= base_url() ?>RequestDocumentController/getApproved">Approved Request</a></li>
                         <li><a href="<?= base_url() ?>RequestDocumentController/getCancelled">Cancelled Request</a></li>
                     </ul>
-                </li>
-
-                <li>
-                    <a href="#" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-search"></span><span class="mtext">Track Request</span>
-                    </a>
                 </li>
 
                 <li>

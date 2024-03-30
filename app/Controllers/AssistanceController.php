@@ -131,6 +131,7 @@ class AssistanceController extends Controller
     {
         $data['resident'] = $this->assistance_model->getAssResidents($id);
         $data['assistance'] = $this->assistance_model->getAssName($id);
+        $data['getresident'] = $this->assistance_model->getResidents();
 
         return view("assistance/view_assistance", $data);
     }
@@ -146,6 +147,50 @@ class AssistanceController extends Controller
         } else {
             $session->setTempdata('error', 'Something went wrong!', 3);
             return redirect()->to(base_url() . "assistancecontroller/assistance");
+        }
+    }
+
+    public function editAssistance($id)
+    {
+        $data['assistance'] = $this->assistance_model->getCertType();
+        $data['official'] = $this->assistance_model->getOfficial();
+        $data['resident'] = $this->assistance_model->getResidents();
+        $data['assistance_data'] = $this->assistance_model->editAssistance($id);
+
+        return view("assistance/edit_assistance", $data);
+    }
+
+    public function updateAssistance($id)
+    {
+
+        $session = \CodeIgniter\Config\Services::session();
+
+        if ($this->request->getMethod() == 'post') {
+
+            $type_assistance_id = $this->request->getVar('type_assistance_id');
+            $official_id = $this->request->getVar('official_id');
+            $distributedate =  $this->request->getVar('distribute_date');
+            $distribute = date('Y-m-d', strtotime($distributedate));
+            $datareceive = $this->request->getVar('date_receive');
+            $receive = date('Y-m-d', strtotime($datareceive));
+
+            $ass_data = [
+                'type_assistance_id' => $type_assistance_id,
+                'official_id' => $official_id,
+                'distribute_date' => $distribute,
+                'date_receive' => $receive,
+            ];
+
+            $status = $this->assistance_model->updateAssistance($ass_data, $id);
+
+
+            if ($status) {
+                $session->setTempdata('success', 'Assistance updated successfully!', 3);
+                return redirect()->to(base_url() . "AssistanceController/assistance");
+            } else {
+                $session->setTempdata('error', 'Something went wrong!', 3);
+                return redirect()->to(base_url() . "AssistanceController/assistance");
+            }
         }
     }
 }

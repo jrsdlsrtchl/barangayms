@@ -87,8 +87,8 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                     <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-bi bi-recycle"></i> Reset Passowrd</a>
                     <a class="dropdown-item" class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar" href="faq.html"><i class="dw dw-settings2"></i> Settings</a>
+                    <a class="dropdown-item" href="#"><i class="dw dw-help"></i> Help</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutUserModal"><i class="dw dw-logout"></i> Log Out</a>
                 </div>
             </div>

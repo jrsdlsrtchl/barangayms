@@ -76,10 +76,11 @@ $page_session = \CodeIgniter\Config\Services::session();
                                 <tr>
                                     <td class="table-plus"> <?= $ass->type_assistance ?> </td>
                                     <td> <?= strftime("%B %d, %Y", strtotime($ass->date_receive)) ?> </td>
-                                    <td> <?= $ass->official_id ?> </td>
+                                    <td> <?= $ass->firstname . " " . substr($ass->middlename, 0, 1) . ". " . $ass->lastname  ?> </td>
                                     <td> <?= strftime("%B %d, %Y", strtotime($ass->distribute_date)) ?> </td>
                                     <td>
                                         <a href="<?= base_url() ?>assistancecontroller/getAssResidents/<?= $ass->type_assistance_id ?>"><i class=" dw dw-eye"></i> View</a> |
+                                        <a href="<?= base_url() ?>assistancecontroller/editAssistance/<?= $ass->type_assistance_id ?>"><i class=" dw dw-edit2"></i> Edit</a> |
                                         <a href="#" data-toggle="modal" data-target="#deleteAssistance<?= $ass->type_assistance_id  ?>"><i class="dw dw-delete-3"></i> Delete</a>
                                     </td>
                                 </tr>

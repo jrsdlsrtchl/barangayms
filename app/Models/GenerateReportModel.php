@@ -45,6 +45,10 @@ class GenerateReportModel extends Model
             $builder->where('senior', $filter['senior']);
         }
 
+        if (!empty($filter['precinct'])) {
+            $builder->where('precinct', $filter['precinct']);
+        }
+
         if (!empty($filter['purok_id'])) {
             $builder->where('tbl_resident.purok_id', $filter['purok_id']);
         }

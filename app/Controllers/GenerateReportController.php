@@ -38,6 +38,7 @@ class GenerateReportController extends Controller
                 'for4ps' => $this->request->getVar('for4ps'),
                 'pwd' => $this->request->getVar('pwd'),
                 'senior' => $this->request->getVar('senior'),
+                'precinct' => $this->request->getVar('precinct'),
                 'purok_id' => $this->request->getVar('purok_id'),
                 'household_id' => $this->request->getVar('household_id'),
 
@@ -50,7 +51,6 @@ class GenerateReportController extends Controller
 
         return view("generate_report/filtered", $data);
     }
-
 
     public function printReport()
     {
@@ -75,6 +75,7 @@ class GenerateReportController extends Controller
                 'for4ps' => $this->request->getVar('for4ps'),
                 'pwd' => $this->request->getVar('pwd'),
                 'senior' => $this->request->getVar('senior'),
+                'precinct' => $this->request->getVar('precinct'),
                 'purok_id' => $this->request->getVar('purok_id'),
                 'household_id' => $this->request->getVar('household_id'),
 

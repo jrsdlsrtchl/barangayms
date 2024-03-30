@@ -93,10 +93,9 @@ $page_session = \CodeIgniter\Config\Services::session();
                                                 <i class="dw dw-more"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#viewResident<?= $res->uniid; ?>"><i class=" dw dw-eye"></i> View</a>
+                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#viewResident<?= $res->uniid; ?>"><i class="dw dw-eye"></i> View</a>
                                                 <a class="dropdown-item" href="<?= base_url() ?>residentcontroller/editResident/<?= $res->uniid ?>"><i class="dw dw-edit2"></i> Edit</a>
                                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteResident<?= $res->uniid; ?>"><i class="dw dw-delete-3"></i> Delete</a>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#accountResident<?= $res->uniid; ?>"><i class=" dw dw-user1"></i> Account</a>
                                             </div>
                                         </div>
                                     </td>
@@ -114,8 +113,5 @@ $page_session = \CodeIgniter\Config\Services::session();
 <?= $this->include("resident/view_resident") ?>
 
 <?= $this->include("resident/delete_resident") ?>
-
-<?= $this->include("resident/account_resident") ?>
-
 
 <?= $this->endSection() ?>
