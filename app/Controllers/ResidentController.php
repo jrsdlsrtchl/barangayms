@@ -32,7 +32,7 @@ class ResidentController extends Controller
         $session = \CodeIgniter\Config\Services::session();
 
         if ($this->request->getMethod() == 'post') {
-            $uniid = md5(str_shuffle('abcsefghijklmonpqrtuvwxyz' . time()));
+
             $datebirth = $this->request->getVar('datebirth');
             $date = date('Y-m-d', strtotime($datebirth));
             $res_data = [
@@ -57,7 +57,7 @@ class ResidentController extends Controller
                 'precinct' => $this->request->getVar('precinct'),
                 'purok_id' => $this->request->getVar('purok_id'),
                 'household_id' => $this->request->getVar('household_id'),
-                'uniid' => $uniid,
+
             ];
 
             $status = $this->resident_model->addResident($res_data);

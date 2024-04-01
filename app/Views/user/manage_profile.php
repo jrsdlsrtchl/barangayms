@@ -1,10 +1,32 @@
+<?php
+$page_session = \CodeIgniter\Config\Services::session();
+?>
+
 <?= $this->extend("layout/base_user") ?>
 
 <?= $this->section("content") ?>
 
+<script>
+    setTimeout(function() {
+        $("#hidemessage").hide();
+    }, 5000);
+</script>
+
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
+
+            <!-- Prompt Message -->
+            <?php if ($page_session->getTempdata('success')) : ?>
+                <div id="hidemessage" class="alert alert-success" role="alert">
+                    <?= $page_session->getTempdata('success'); ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($page_session->getTempdata('error')) : ?>
+                <div id="hidemessage" class="alert alert-danger" role="alert">
+                    <?= $page_session->getTempdata('error'); ?>
+                </div>
+            <?php endif; ?>
 
             <div class="page-header">
                 <div class="row">
@@ -18,7 +40,7 @@
                                     <a href="index.html">Profile</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    View Profile
+                                    View Profiled
                                 </li>
                             </ol>
                         </nav>
@@ -108,24 +130,51 @@
                         </div>
 
                         <div class="profile-info">
-                            <h5 class="mb-20 h5 text-blue">Education</h5>
+                            <h5 class="mb-20 h5 text-blue">Occupation:</h5>
                             <ul>
                                 <li>
-                                    <span>Educational Attainment:</span>
-                                    FerdinandMChilds@test.com
+                                    <?= $userdata['0']->occupation ?>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="profile-info">
+                            <h5 class="mb-20 h5 text-blue">Educational Attainment:</h5>
+                            <ul>
+                                <li>
+                                    <?= $userdata['0']->education ?>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="profile-info">
+                            <h5 class="mb-20 h5 text-blue">Social Group</h5>
+                            <ul>
+                                <li>
+                                    <span>Religion:</span>
+                                    <?= $userdata['0']->religion ?>
                                 </li>
                                 <li>
-                                    <span>Phone Number:</span>
-                                    619-229-0054
+                                    <span>Ethnicity:</span>
+                                    <?= $userdata['0']->ethnicity ?>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="profile-info">
+                            <h5 class="mb-20 h5 text-blue"> Assistance </h5>
+                            <ul>
+                                <li>
+                                    <span>Persons with Disability:</span>
+                                    <?= $userdata['0']->pwd ?>
                                 </li>
                                 <li>
-                                    <span>Country:</span>
-                                    America
+                                    <span>4P'S:</span>
+                                    <?= $userdata['0']->for4ps ?>
                                 </li>
                                 <li>
-                                    <span>Address:</span>
-                                    1807 Holden Street<br />
-                                    San Diego, CA 92115
+                                    <span>Senior:</span>
+                                    <?= $userdata['0']->senior ?>
                                 </li>
                             </ul>
                         </div>
@@ -134,51 +183,33 @@
                             <h5 class="mb-20 h5 text-blue">Contact Information</h5>
                             <ul>
                                 <li>
-                                    <span>Email Address:</span>
-                                    FerdinandMChilds@test.com
+                                    <span>Mobile:</span>
+                                    <?= $userdata['0']->mobile ?>
                                 </li>
                                 <li>
-                                    <span>Phone Number:</span>
-                                    619-229-0054
+                                    <span>Purok:</span>
+                                    <?= $userdata['0']->purok_desc ?>
                                 </li>
                                 <li>
-                                    <span>Country:</span>
-                                    America
-                                </li>
-                                <li>
-                                    <span>Address:</span>
-                                    1807 Holden Street<br />
-                                    San Diego, CA 92115
+                                    <span>Household:</span>
+                                    <?= $userdata['0']->household_desc ?>
                                 </li>
                             </ul>
                         </div>
 
                         <div class="profile-info">
-                            <h5 class="mb-20 h5 text-blue">Contact Information</h5>
+                            <h5 class="mb-20 h5 text-blue">Precinct</h5>
                             <ul>
                                 <li>
-                                    <span>Email Address:</span>
-                                    FerdinandMChilds@test.com
-                                </li>
-                                <li>
-                                    <span>Phone Number:</span>
-                                    619-229-0054
-                                </li>
-                                <li>
-                                    <span>Country:</span>
-                                    America
-                                </li>
-                                <li>
-                                    <span>Address:</span>
-                                    1807 Holden Street<br />
-                                    San Diego, CA 92115
+
+                                    <?= $userdata['0']->precinct ?>
                                 </li>
                             </ul>
                         </div>
-
                     </div>
                 </div>
-                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-3">
+
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
                     <div class="card-box height-100-p overflow-hidden">
                         <div class="profile-tab height-100-p">
                             <div class="tab height-100-p">
@@ -191,7 +222,7 @@
                                     <!-- Setting Tab start -->
                                     <div class="tab-pane fade show active" id="setting" role="tabpanel">
                                         <div class="profile-setting">
-                                            <form>
+                                            <form method="post" action="<?= base_url() ?>usercontroller/updateprofile/<?= $userdata['0']->resident_id ?>">
                                                 <ul class="profile-edit-list row">
                                                     <li class="weight-500 col-md-6">
 
@@ -231,7 +262,7 @@
 
                                                         <div class="form-group">
                                                             <label>Date of Birth</label>
-                                                            <input type="text" class="form-control date-picker" name="datebirth" placeholder="Select date of birth">
+                                                            <input type="text" class="form-control date-picker" name="datebirth" placeholder="Select date of birth" value="<?= $userdata['0']->datebirth ?>">
                                                         </div>
 
                                                         <div class="form-group">
@@ -260,9 +291,7 @@
                                                             <label>Contact No.</label>
                                                             <input type="text" class="form-control" name="mobile" placeholder="Enter contact no.">
                                                         </div>
-                                                    </li>
 
-                                                    <li class="weight-500 col-md-6">
                                                         <div class="form-group">
                                                             <label>Religion</label>
                                                             <select name="religion" class="form-control">
@@ -336,6 +365,9 @@
                                                                 <option value="No">No</option>
                                                             </select>
                                                         </div>
+                                                    </li>
+
+                                                    <li class="weight-500 col-md-6">
 
                                                         <div class="form-group">
                                                             <label>PWD</label>
@@ -364,6 +396,26 @@
                                                                 <option value="0017C">0017C</option>
                                                                 <option value="0021A">0021A</option>
                                                                 <option value="0019B">0019B</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Purok</label>
+                                                            <select name="purok_id" class="form-control">
+                                                                <option value="">Select Purok</option>
+                                                                <?php foreach ($purok as $pur) { ?>
+                                                                    <option value="<?= $pur->purok_id; ?>"> <?= $pur->purok_desc; ?> </option>
+                                                                <?php }; ?>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Household</label>
+                                                            <select class="custom-select2 form-control" name="household_id" style="width: 100%; height: 38px">
+                                                                <option value="">Select Household</option>
+                                                                <?php foreach ($household as $house) { ?>
+                                                                    <option value="<?= $house->household_id ?>"> <?= $house->household_desc ?> Residence </option>
+                                                                <?php }; ?>
                                                             </select>
                                                         </div>
 

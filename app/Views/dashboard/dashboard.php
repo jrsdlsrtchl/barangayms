@@ -1,12 +1,34 @@
+<?php
+$page_session = \CodeIgniter\Config\Services::session();
+?>
+
 <?= $this->extend("layout/base"); ?>
 
 <?= $this->section("content") ?>
+
+<script>
+    setTimeout(function() {
+        $("#hidemessage").hide();
+    }, 5000);
+</script>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
+
+            <!-- Prompt Message -->
+            <?php if ($page_session->getTempdata('success')) : ?>
+                <div id="hidemessage" class="alert alert-success" role="alert">
+                    <?= $page_session->getTempdata('success'); ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($page_session->getTempdata('error')) : ?>
+                <div id="hidemessage" class="alert alert-danger" role="alert">
+                    <?= $page_session->getTempdata('error'); ?>
+                </div>
+            <?php endif; ?>
 
             <div class="title pb-20">
                 <h2 class="h3 mb-0">Dashboard</h2>

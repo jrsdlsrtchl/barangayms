@@ -3,55 +3,41 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\UserModel;
+use App\Models\ProfileRequestModel;
 
-class UserController extends Controller
+class ProfileRequestController extends Controller
 {
-    public $user_model;
-    public $session;
+    public $profile_model;
     public function __construct()
     {
         helper('form');
-        $this->user_model = new UserModel();
-        $this->session = \Config\Services::session();
+        $this->profile_model = new ProfileRequestModel();
     }
 
-    public function user()
+    public function getRequest()
     {
-        $resident_id = session()->get('logged_resident');
-        $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
+        $data['userdata'] = $this->profile_model->getRequest();
 
-        return view("user/user_home", $data);
+        return view("profile_request/profile_request", $data);
     }
 
-    public function manageProfile()
+    public function editProfile($id)
     {
-        $resident_id = session()->get('logged_resident');
-        $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
-        $data['purok'] = $this->user_model->getPurok();
-        $data['household'] = $this->user_model->getHousehold();
+        $data['resident'] = $this->profile_model->editProfile($id);
+        $data['purok'] = $this->profile_model->getPurok();
+        $data['household'] = $this->profile_model->getHousehold();
 
-        return view("user/manage_profile", $data);
+        return view("profile_request/edit_profile", $data);
     }
 
-    public function logoutUser()
+    public function updateProfile($id, $store_id)
     {
-        session()->remove('logged_resident');
-        session()->destroy();
-
-        return redirect()->to(base_url() . 'AuthenticationController/login');
-    }
-
-    public function updateProfile($id)
-    {
-
         $session = \CodeIgniter\Config\Services::session();
 
         if ($this->request->getMethod() == 'post') {
             $datebirth = $this->request->getVar('datebirth');
             $date = date('Y-m-d', strtotime($datebirth));
             $res_data = [
-                'resident_id' => $id,
                 'lastname' => $this->request->getVar('lastname'),
                 'firstname' => $this->request->getVar('firstname'),
                 'middlename' => $this->request->getVar('middlename'),
@@ -75,17 +61,20 @@ class UserController extends Controller
                 'household_id' => $this->request->getVar('household_id'),
             ];
 
-            $status = $this->user_model->updateProfile($res_data);
+            $resident_status = 'Approved';
+            $data_status = ['resident_status' => $resident_status];
 
-            if ($status) {
-                $session->setTempdata('success', 'Update profile has been sent. The staff will review your inputted information!', 3);
-                return redirect()->to(base_url() . "UserController/manageprofile");
+            $chel = $this->profile_model->updateStatus($data_status, $store_id);
+
+            $status = $this->profile_model->updateProfile($res_data, $id);
+
+            if ($status || $chel) {
+                $session->setTempdata('success', 'Profile udpated successfully!', 3);
+                return redirect()->to(base_url() . "ProfileRequestController/getrequest");
             } else {
                 $session->setTempdata('error', 'Something went wrong!', 3);
-                return redirect()->to(base_url() . "UserController/manageprofile");
+                return redirect()->to(base_url() . "ProfileRequestController/getrequest");
             }
         }
-
-        return view("resident/add_resident");
     }
 }

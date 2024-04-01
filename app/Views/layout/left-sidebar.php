@@ -64,6 +64,12 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="<?= base_url() ?>ProfileRequestController/getRequest" class="dropdown-toggle no-arrow">
+                        <span class="micon icon-copy dw dw-user-2"></span><span class="mtext">Profile Request</span>
+                    </a>
+                </li>
+
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested Document</span>
@@ -103,6 +109,12 @@
 
                 <li>
                     <div class="sidebar-small-cap">Extra</div>
+                </li>
+
+                <li>
+                    <a href="<?= base_url() ?>BackupController/backupDatabase" class="dropdown-toggle no-arrow">
+                        <span class="micon icon-copy dw dw-inbox"></span><span class="mtext">Backup</span>
+                    </a>
                 </li>
 
                 <li>

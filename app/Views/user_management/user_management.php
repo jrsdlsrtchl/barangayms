@@ -41,7 +41,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <a href="#">User Management</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    User Account Table
+                                    User Account
                                 </li>
                             </ol>
                         </nav>

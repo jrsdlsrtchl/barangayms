@@ -193,4 +193,18 @@ class AssistanceController extends Controller
             }
         }
     }
+
+    public function deleteRecipient($id)
+    {
+        $session = \CodeIgniter\Config\Services::session();
+        $delete = $this->assistance_model->deleteRecipient($id);
+
+        if (!$delete) {
+            $session->setTempdata('success', 'Recepient Deleted Successfully!', 3);
+            return redirect()->to(base_url() . "assistancecontroller/assistance");
+        } else {
+            $session->setTempdata('error', 'Something went wrong!', 3);
+            return redirect()->to(base_url() . "assistancecontroller/assistance");
+        }
+    }
 }

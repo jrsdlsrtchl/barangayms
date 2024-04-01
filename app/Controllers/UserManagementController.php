@@ -75,4 +75,10 @@ class UserManagementController extends Controller
             return redirect()->to(base_url() . "UserManagementController/user");
         }
     }
+
+    public function getRequestProfile()
+    {
+
+        return view("user_management/profile_table");
+    }
 }
