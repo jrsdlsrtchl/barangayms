@@ -24,34 +24,4 @@ class BackupController extends Controller
             return redirect()->to(base_url() . "DashboardController/dashboard");
         }
     }
-
-    // public function backupDatabase()
-    // {
-    //     $session = \CodeIgniter\Config\Services::session();
-
-
-    //     $dbHost = 'localhost';
-    //     $dbUser = 'root';
-    //     $dbPass = '';
-    //     $dbName = 'brmsdb';
-
-    //     $backupDir = WRITEPATH . 'D:/BRMS/';
-    //     $backupFile = $backupDir . 'backup_' . date('Y-m-d_H-i-s') . '.sql';
-
-    //     if (!is_dir($backupDir)) {
-    //         mkdir($backupDir, 0777, true);
-    //     }
-
-    //     $command = "mysqldump -h $dbHost -u $dbUser -p$dbPass $dbName > $backupFile";
-
-    //     exec($command, $output, $returnValue);
-
-    //     if ($returnValue === 0) {
-    //         $session->setTempdata('success', 'Database backup completed successfully!', 3);
-    //         return redirect()->to(base_url() . "DashboardController/dashboard");
-    //     } else {
-    //         $session->setTempdata('success', 'Failed to backup the database!', 3);
-    //         return redirect()->to(base_url() . "DashboardController/dashboard");
-    //     }
-    // }
 }

@@ -164,4 +164,10 @@ class ProfileRequestModel extends Model
             return false;
         }
     }
+
+    public function deleteRequest($id)
+    {
+        $builder = $this->db->table('tbl_resident_store');
+        $builder->delete(['resident_id_store' => $id]);
+    }
 }

@@ -6,6 +6,7 @@ use CodeIgniter\Model;
 
 class PurokModel extends Model
 {
+
     public function purokUno()
     {
         $query = $this->db->table('tbl_resident');

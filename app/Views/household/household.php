@@ -75,7 +75,11 @@ $page_session = \CodeIgniter\Config\Services::session();
                             <?php foreach ($household as $house) { ?>
                                 <tr>
                                     <td><?= $house->household_desc ?></td>
-                                    <td> <a href="<?= base_url() ?>householdcontroller/gethouseholdmembers/<?= $house->household_id ?>"><i class=" dw dw-eye"></i> View</a></td>
+                                    <td>
+                                        <a href="<?= base_url() ?>householdcontroller/gethouseholdmembers/<?= $house->household_id ?>"><i class=" dw dw-eye"></i> View</a> |
+                                        <a href="#" data-toggle="modal" data-target="#deleteHousehold<?= $house->household_id ?>"><i class="dw dw-delete-3"></i> Delete</a>
+                                    </td>
+
                                 </tr>
                             <?php } ?>
                         </tbody>
@@ -87,5 +91,6 @@ $page_session = \CodeIgniter\Config\Services::session();
 </div>
 
 <?= $this->include("household/add_household") ?>
+<?= $this->include("household/delete_household") ?>
 
 <?= $this->endSection() ?>

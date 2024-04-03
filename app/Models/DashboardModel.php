@@ -6,6 +6,7 @@ use CodeIgniter\Model;
 
 class DashboardModel extends Model
 {
+
     public function population()
     {
         $builder = $this->db->table('tbl_resident');

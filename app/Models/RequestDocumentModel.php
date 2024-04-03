@@ -8,10 +8,13 @@ class RequestDocumentModel extends Model
 {
     public function getRequest($resident_id)
     {
-        $builder = $this->db->table('tbl_requested_cert');
-        $builder->join('tbl_certificate', 'tbl_requested_cert.certificate_id = tbl_certificate.certificate_id');
-        $builder->where('resident_id', $resident_id)->where('request_status', 'Pending')->orWhere('request_status', 'Processing');
-        $result = $builder->get()->getResult();
+        $builder = $this->db->query("SELECT c.certificate_type, rc.date, rc.purpose, rc.request_status, rc.tracking_id
+        FROM tbl_requested_cert rc
+        JOIN tbl_certificate c
+            ON rc.certificate_id = c.certificate_id
+        WHERE (rc.request_status = 'Processing' OR rc.request_status = 'Pending')
+        AND resident_id = '$resident_id';");
+        $result = $builder->getResult();
 
         if (count($result) >= 0) {
             return $result;

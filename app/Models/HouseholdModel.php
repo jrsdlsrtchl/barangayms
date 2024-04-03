@@ -63,9 +63,10 @@ class HouseholdModel extends Model
         if ($result) {
             return $result;
         } else {
-            return false;
+            return [];
         }
     }
+
 
     public function getHouseholdheadName($id)
     {
@@ -77,5 +78,11 @@ class HouseholdModel extends Model
         } else {
             return false;
         }
+    }
+
+    public function deleteHousehold($id)
+    {
+        $builder = $this->db->table('tbl_household');
+        $builder->delete(['household_id' => $id]);
     }
 }

@@ -77,4 +77,18 @@ class ProfileRequestController extends Controller
             }
         }
     }
+
+    public function deleteRequest($id)
+    {
+        $session = \CodeIgniter\Config\Services::session();
+        $delete = $this->profile_model->deleteRequest($id);
+
+        if (!$delete) {
+            $session->setTempdata('success', 'Request Deleted Successfully!', 3);
+            return redirect()->to(base_url() . "ProfileRequestController/getrequest");
+        } else {
+            $session->setTempdata('error', 'Something went wrong!', 3);
+            return redirect()->to(base_url() . "ProfileRequestController/getrequest");
+        }
+    }
 }

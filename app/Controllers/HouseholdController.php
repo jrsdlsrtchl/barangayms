@@ -20,7 +20,6 @@ class HouseholdController extends Controller
         $data['purok'] = $this->household_model->getPurok($puroknum);
         $data['selectpurok'] = $this->household_model->selectPurok();
 
-
         return view("household/household", $data);
     }
 
@@ -54,5 +53,19 @@ class HouseholdController extends Controller
         $data['householdhead'] = $this->household_model->getHouseholdheadName($id);
 
         return view("household/view_household", $data);
+    }
+
+    public function deleteHousehold($id)
+    {
+        $session = \CodeIgniter\Config\Services::session();
+        $delete = $this->household_model->deleteHousehold($id);
+
+        if (!$delete) {
+            $session->setTempdata('success', 'Household Deleted Successfully!', 3);
+            return redirect()->to(base_url() . "HouseholdController/household/1");
+        } else {
+            $session->setTempdata('error', 'Something went wrong!', 3);
+            return redirect()->to(base_url() . "HouseholdController/household/1");
+        }
     }
 }

@@ -82,7 +82,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     </td>
                                     <td>
                                         <a href="<?= base_url() ?>profilerequestcontroller/editprofile/<?= $user->resident_id_store ?>"><i class="dw dw-edit2"></i> Edit</a> |
-                                        <a href="#" data-toggle="modal" data-target="#deleteUser"><i class="dw dw-delete-3"></i> Delete</a>
+                                        <a href="#" data-toggle="modal" data-target="#deleteRequest<?= $user->resident_id_store ?>"><i class="dw dw-delete-3"></i> Delete</a>
                                     </td>
                                 </tr>
                             <?php }; ?>
@@ -93,5 +93,7 @@ $page_session = \CodeIgniter\Config\Services::session();
         </div>
     </div>
 </div>
+
+<?= $this->include("profile_request/delete_request") ?>
 
 <?= $this->endSection("") ?>
