@@ -23,6 +23,13 @@ class DashboardController extends Controller
         $data['pwd'] = $this->dashboard_model->pwd();
         $data['fourPs'] = $this->dashboard_model->for4ps();
         $data['voter'] = $this->dashboard_model->voter();
+        $data['pending'] = $this->dashboard_model->countPending();
+        $data['approved'] = $this->dashboard_model->countApproved();
+        $data['cancelled'] = $this->dashboard_model->countCancelled();
+        $data['profile'] = $this->dashboard_model->countUpdateProfile();
+        $data['documents'] = $this->dashboard_model->countDocuments();
+        $data['assistance'] = $this->dashboard_model->countAssistance();
+        $data['active'] = $this->dashboard_model->countActiveAssistance();
 
         return view("dashboard/dashboard", $data);
     }
@@ -40,6 +47,13 @@ class DashboardController extends Controller
         $data['pwd'] = $this->dashboard_model->pwd();
         $data['fourPs'] = $this->dashboard_model->for4ps();
         $data['voter'] = $this->dashboard_model->voter();
+        $data['pending'] = $this->dashboard_model->countPending();
+        $data['approved'] = $this->dashboard_model->countApproved();
+        $data['cancelled'] = $this->dashboard_model->countCancelled();
+        $data['profile'] = $this->dashboard_model->countUpdateProfile();
+        $data['documents'] = $this->dashboard_model->countDocuments();
+        $data['assistance'] = $this->dashboard_model->countAssistance();
+        $data['active'] = $this->dashboard_model->countActiveAssistance();
 
         return view("dashboard/table_dashboard", $data);
     }
@@ -57,6 +71,13 @@ class DashboardController extends Controller
         $data['pwd'] = $this->dashboard_model->pwd();
         $data['fourPs'] = $this->dashboard_model->for4ps();
         $data['voter'] = $this->dashboard_model->voter();
+        $data['pending'] = $this->dashboard_model->countPending();
+        $data['approved'] = $this->dashboard_model->countApproved();
+        $data['cancelled'] = $this->dashboard_model->countCancelled();
+        $data['profile'] = $this->dashboard_model->countUpdateProfile();
+        $data['documents'] = $this->dashboard_model->countDocuments();
+        $data['assistance'] = $this->dashboard_model->countAssistance();
+        $data['active'] = $this->dashboard_model->countActiveAssistance();
 
         return view("dashboard/table_dashboard", $data);
     }
@@ -74,6 +95,13 @@ class DashboardController extends Controller
         $data['pwd'] = $this->dashboard_model->pwd();
         $data['fourPs'] = $this->dashboard_model->for4ps();
         $data['voter'] = $this->dashboard_model->voter();
+        $data['pending'] = $this->dashboard_model->countPending();
+        $data['approved'] = $this->dashboard_model->countApproved();
+        $data['cancelled'] = $this->dashboard_model->countCancelled();
+        $data['profile'] = $this->dashboard_model->countUpdateProfile();
+        $data['documents'] = $this->dashboard_model->countDocuments();
+        $data['assistance'] = $this->dashboard_model->countAssistance();
+        $data['active'] = $this->dashboard_model->countActiveAssistance();
 
         return view("dashboard/table_dashboard", $data);
     }
@@ -91,6 +119,13 @@ class DashboardController extends Controller
         $data['pwd'] = $this->dashboard_model->pwd();
         $data['fourPs'] = $this->dashboard_model->for4ps();
         $data['voter'] = $this->dashboard_model->voter();
+        $data['pending'] = $this->dashboard_model->countPending();
+        $data['approved'] = $this->dashboard_model->countApproved();
+        $data['cancelled'] = $this->dashboard_model->countCancelled();
+        $data['profile'] = $this->dashboard_model->countUpdateProfile();
+        $data['documents'] = $this->dashboard_model->countDocuments();
+        $data['assistance'] = $this->dashboard_model->countAssistance();
+        $data['active'] = $this->dashboard_model->countActiveAssistance();
 
         return view("dashboard/table_dashboard", $data);
     }
@@ -108,6 +143,13 @@ class DashboardController extends Controller
         $data['pwd'] = $this->dashboard_model->pwd();
         $data['fourPs'] = $this->dashboard_model->for4ps();
         $data['voter'] = $this->dashboard_model->voter();
+        $data['pending'] = $this->dashboard_model->countPending();
+        $data['approved'] = $this->dashboard_model->countApproved();
+        $data['cancelled'] = $this->dashboard_model->countCancelled();
+        $data['profile'] = $this->dashboard_model->countUpdateProfile();
+        $data['documents'] = $this->dashboard_model->countDocuments();
+        $data['assistance'] = $this->dashboard_model->countAssistance();
+        $data['active'] = $this->dashboard_model->countActiveAssistance();
 
         return view("dashboard/table_dashboard", $data);
     }
@@ -125,6 +167,13 @@ class DashboardController extends Controller
         $data['pwd'] = $this->dashboard_model->pwd();
         $data['fourPs'] = $this->dashboard_model->for4ps();
         $data['voter'] = $this->dashboard_model->voter();
+        $data['pending'] = $this->dashboard_model->countPending();
+        $data['approved'] = $this->dashboard_model->countApproved();
+        $data['cancelled'] = $this->dashboard_model->countCancelled();
+        $data['profile'] = $this->dashboard_model->countUpdateProfile();
+        $data['documents'] = $this->dashboard_model->countDocuments();
+        $data['assistance'] = $this->dashboard_model->countAssistance();
+        $data['active'] = $this->dashboard_model->countActiveAssistance();
 
         return view("dashboard/table_dashboard", $data);
     }
@@ -142,6 +191,13 @@ class DashboardController extends Controller
         $data['pwd'] = $this->dashboard_model->pwd();
         $data['fourPs'] = $this->dashboard_model->for4ps();
         $data['voter'] = $this->dashboard_model->voter();
+        $data['pending'] = $this->dashboard_model->countPending();
+        $data['approved'] = $this->dashboard_model->countApproved();
+        $data['cancelled'] = $this->dashboard_model->countCancelled();
+        $data['profile'] = $this->dashboard_model->countUpdateProfile();
+        $data['documents'] = $this->dashboard_model->countDocuments();
+        $data['assistance'] = $this->dashboard_model->countAssistance();
+        $data['active'] = $this->dashboard_model->countActiveAssistance();
 
         return view("dashboard/table_dashboard", $data);
     }

@@ -91,7 +91,7 @@ $page_session = \CodeIgniter\Config\Services::session();
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
                 <a href="login.html">
-                    <img src="<?= base_url() ?>public/vendors/images/deskapp-logo.svg" alt="" />
+                    <img src="<?= base_url() ?>public/vendors/images/rawan-logo-white.png" alt="" />
                 </a>
             </div>
             <div class="login-menu">
@@ -104,8 +104,8 @@ $page_session = \CodeIgniter\Config\Services::session();
     <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6 col-lg-7">
-                    <img src="<?= base_url() ?>public/vendors/images/login-page-img.png" alt="" />
+                <div class="col-lg-7 d-none d-lg-inline">
+                    <img src="<?= base_url() ?>public/vendors/images/rawan-login-page-img.png" alt="" />
                 </div>
                 <div class="col-md-6 col-lg-5">
                     <div class="login-box bg-white box-shadow border-radius-10">

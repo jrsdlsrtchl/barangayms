@@ -16,7 +16,7 @@ class DashboardModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -30,7 +30,7 @@ class DashboardModel extends Model
         if (count($result) >= 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -43,7 +43,7 @@ class DashboardModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -71,7 +71,7 @@ class DashboardModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -99,7 +99,7 @@ class DashboardModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -112,7 +112,7 @@ class DashboardModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -140,7 +140,7 @@ class DashboardModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -168,7 +168,7 @@ class DashboardModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -197,7 +197,7 @@ class DashboardModel extends Model
         if ($result) {
             return $result->{'COUNT(*)'};
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -210,5 +210,101 @@ class DashboardModel extends Model
         $result = $builder->get()->getResult();
 
         return $result;
+    }
+
+    public function countPending()
+    {
+        $builder = $this->db->table('tbl_requested_cert');
+        $builder->selectCount('tbl_requested_cert');
+        $builder->where('request_status', 'Pending');
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countApproved()
+    {
+        $builder = $this->db->table('tbl_requested_cert');
+        $builder->selectCount('tbl_requested_cert');
+        $builder->where('request_status', 'Approved');
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countCancelled()
+    {
+        $builder = $this->db->table('tbl_requested_cert');
+        $builder->selectCount('tbl_requested_cert');
+        $builder->where('request_status', 'Cancelled');
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countUpdateProfile()
+    {
+        $builder = $this->db->table('tbl_resident_store');
+        $builder->selectCount('tbl_resident_store');
+        $builder->where('resident_status', 'Pending');
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countDocuments()
+    {
+        $builder = $this->db->table('tbl_certificate');
+        $builder->selectCount('tbl_certificate');
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countAssistance()
+    {
+        $builder = $this->db->table('tbl_type_assistance');
+        $builder->selectCount('tbl_type_assistance');
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countActiveAssistance()
+    {
+        $builder = $this->db->table('tbl_assistance');
+        $builder->distinct();
+        $builder->select('type_assistance_id');
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
     }
 }

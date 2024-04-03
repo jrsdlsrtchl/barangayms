@@ -36,13 +36,6 @@ class RequestedDocController extends Controller
         return view("requested/cancelled", $data);
     }
 
-    public function getHistory()
-    {
-        $data['request'] = $this->requested_model->getHistory();
-
-        return view("requested/history", $data);
-    }
-
     public function updateRequest($request_id)
     {
         $session = \CodeIgniter\Config\Services::session();
@@ -90,20 +83,6 @@ class RequestedDocController extends Controller
         } else {
             $session->setTempdata('error', 'Somthing went wrong!', 3);
             return redirect()->to(base_url() . "RequestedDocController/getcancelled");
-        }
-    }
-
-    public function deleteRequestHistroy($request_id)
-    {
-        $session = \CodeIgniter\Config\Services::session();
-        $delete = $this->requested_model->deleteRequest($request_id);
-
-        if (!$delete) {
-            $session->setTempdata('success', 'Request deleted successfully!', 3);
-            return redirect()->to(base_url() . "RequestedDocController/getHistory");
-        } else {
-            $session->setTempdata('error', 'Somthing went wrong!', 3);
-            return redirect()->to(base_url() . "RequestedDocController/getHistory");
         }
     }
 

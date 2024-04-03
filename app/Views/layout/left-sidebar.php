@@ -75,10 +75,9 @@
                         <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested Document</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="<?= base_url() ?>RequestedDocController/getRequest">Active Request</a></li>
+                        <li><a href="<?= base_url() ?>RequestedDocController/getRequest">Pending Request</a></li>
                         <li><a href="<?= base_url() ?>RequestedDocController/getApproved">Approved Request</a></li>
                         <li><a href="<?= base_url() ?>RequestedDocController/getCancelled">Cancelled Request</a></li>
-                        <li><a href="<?= base_url() ?>RequestedDocController/getHistory">History Request</a></li>
                         <li><a href="<?= base_url() ?>RequestedDocController/document">List Documents</a></li>
                     </ul>
                 </li>

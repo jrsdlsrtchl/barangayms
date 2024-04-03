@@ -39,7 +39,7 @@
                         <span class="micon bi bi-envelope-paper"></span><span class="mtext">Request Documents</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="<?= base_url() ?>RequestDocumentController/request">Active Request</a></li>
+                        <li><a href="<?= base_url() ?>RequestDocumentController/request">Pending Request</a></li>
                         <li><a href="<?= base_url() ?>RequestDocumentController/getApproved">Approved Request</a></li>
                         <li><a href="<?= base_url() ?>RequestDocumentController/getCancelled">Cancelled Request</a></li>
                     </ul>

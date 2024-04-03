@@ -61,25 +61,6 @@ class RequestedDocModel extends Model
         }
     }
 
-    public function getHistory()
-    {
-        $builder = $this->db->table('tbl_requested_cert req');
-        $builder->select('req.date, req.purpose, req.request_status, req.tracking_id, req.request_id, cert.certificate_type, 
-              res.firstname, res.middlename, res.lastname, 
-              res2.firstname as official_firstname, res2.middlename as official_middlename, res2.lastname as official_lastname');
-        $builder->join('tbl_certificate cert', 'req.certificate_id = cert.certificate_id');
-        $builder->join('tbl_resident res', 'req.resident_id = res.resident_id');
-        $builder->join('tbl_official offi', 'req.official_id = offi.official_id');
-        $builder->join('tbl_resident res2', 'offi.resident_id = res2.resident_id');
-        $result = $builder->get()->getResult();
-
-        if (count($result) >= 0) {
-            return $result;
-        } else {
-            return false;
-        }
-    }
-
     public function getOfficial()
     {
         $builder = $this->db->table('tbl_official');
@@ -103,12 +84,6 @@ class RequestedDocModel extends Model
         } else {
             return false;
         }
-    }
-
-    public function deleteRequest($request_id)
-    {
-        $builder = $this->db->table('tbl_requested_cert');
-        $builder->delete(['request_id' => $request_id]);
     }
 
     public function document()

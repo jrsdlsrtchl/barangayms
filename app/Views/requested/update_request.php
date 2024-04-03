@@ -19,7 +19,6 @@
                                         <label>Status:</label>
                                         <select name="request_status" class="form-control">
                                             <option value="Pending" selected>Pending</option>
-                                            <option value="Processing">Processing</option>
                                             <option value="Approved">Approved</option>
                                             <option value="Cancelled">Cancelled</option>
                                         </select>

@@ -14,32 +14,12 @@
 
                 <div class="row">
 
-                    <div class="col-lg-4 col-md-6 mb-20">
+                    <div class="col-lg-3 col-md-6 mb-20">
                         <div class="card-box height-100-p widget-style3">
-                            <a href="#">
+                            <a href="<?= base_url() ?>RequestDocumentController/getApproved">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark"> 3 </div>
-                                        <div class="font-14 text-secondary weight-500">
-                                            Pending Request
-                                        </div>
-                                    </div>
-                                    <div class="widget-icon">
-                                        <div class="icon">
-                                            <i class="icon-copy bi bi-arrow-up-circle"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-20">
-                        <div class="card-box height-100-p widget-style3">
-                            <a href="#">
-                                <div class="d-flex flex-wrap">
-                                    <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark"> 3 </div>
+                                        <div class="weight-700 font-24 text-dark"> <?= $approved ?> </div>
                                         <div class="font-14 text-secondary weight-500">
                                             Approved Request
                                         </div>
@@ -54,12 +34,32 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 mb-20">
+                    <div class="col-lg-3 col-md-6 mb-20">
                         <div class="card-box height-100-p widget-style3">
-                            <a href="#">
+                            <a href="<?= base_url() ?>RequestDocumentController/request">
                                 <div class="d-flex flex-wrap">
                                     <div class="widget-data">
-                                        <div class="weight-700 font-24 text-dark"> 3 </div>
+                                        <div class="weight-700 font-24 text-dark"> <?= $pending ?> </div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Pending Request
+                                        </div>
+                                    </div>
+                                    <div class="widget-icon">
+                                        <div class="icon">
+                                            <i class="icon-copy bi bi-arrow-up-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <a href="<?= base_url() ?>RequestDocumentController/getCancelled">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark"> <?= $cancelled ?> </div>
                                         <div class="font-14 text-secondary weight-500">
                                             Cancelled Request
                                         </div>
@@ -67,6 +67,26 @@
                                     <div class="widget-icon">
                                         <div class="icon">
                                             <i class="icon-copy bi bi-x-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-20">
+                        <div class="card-box height-100-p widget-style3">
+                            <a href="#">
+                                <div class="d-flex flex-wrap">
+                                    <div class="widget-data">
+                                        <div class="weight-700 font-24 text-dark"> <?= $profile ?> </div>
+                                        <div class="font-14 text-secondary weight-500">
+                                            Profile Request
+                                        </div>
+                                    </div>
+                                    <div class="widget-icon">
+                                        <div class="icon">
+                                            <i class="icon-copy fa fa-user-o"></i>
                                         </div>
                                     </div>
                                 </div>

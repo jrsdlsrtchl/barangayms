@@ -16,7 +16,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -29,7 +29,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -42,7 +42,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -55,7 +55,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -68,7 +68,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -81,7 +81,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -94,7 +94,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -107,7 +107,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -120,7 +120,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -133,7 +133,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -146,7 +146,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -159,7 +159,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -172,7 +172,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 
@@ -185,7 +185,7 @@ class PurokModel extends Model
         if ($result > 0) {
             return $result;
         } else {
-            return false;
+            return 0;
         }
     }
 

@@ -57,7 +57,15 @@ class AuthenticationController extends Controller
                 if ($userdata) {
                     if ($password == $userdata['password']) {
                         if ($usertype == 'Resident' && $usertype == $userdata['usertype']) {
-                            // echo "Welcome Resident";
+                            
+                            $loginInfo = [
+                                'resident_id' =>  $userdata['resident_id'],
+                                'browser' => $this->getUserAgentInfo(),
+                                'ip_address' => $this->request->getIPAddress(),
+                                'login_time' =>
+                            ];
+
+
                             $this->session->set('logged_resident', $userdata['resident_id']);
                             return redirect()->to(base_url() . 'UserController/user');
                         } elseif ($usertype == 'Admin' && $usertype == $userdata['usertype']) {
@@ -83,5 +91,20 @@ class AuthenticationController extends Controller
         }
 
         return view("authentication/login", $data);
+    }
+
+    public function getUserAgentInfo()
+    {
+        $agent = $this->request->getUserAgent();
+        if ($agent->isBrowser()) {
+            $currentAgent = $agent->getBrowser();
+        } elseif ($agent->isRobot()) {
+            $currentAgent = $this->agent->robot();
+        } elseif ($agent->isMobile()) {
+            $currentAgent = $agent->getMobile();
+        } else {
+            $currentAgent = 'Unidentified User Browser!';
+        }
+        return $currentAgent;
     }
 }

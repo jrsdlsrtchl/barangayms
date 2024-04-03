@@ -20,6 +20,10 @@ class UserController extends Controller
     {
         $resident_id = session()->get('logged_resident');
         $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
+        $data['pending'] = $this->user_model->countPending($resident_id);
+        $data['approved'] = $this->user_model->countApproved($resident_id);
+        $data['cancelled'] = $this->user_model->countCancelled($resident_id);
+        $data['profile'] = $this->user_model->countUpdateProfile($resident_id);
 
         return view("user/user_home", $data);
     }

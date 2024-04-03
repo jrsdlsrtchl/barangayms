@@ -18,6 +18,66 @@ class UserModel extends Model
         return $result;
     }
 
+    public function countPending($resident_id)
+    {
+        $builder = $this->db->table('tbl_requested_cert');
+        $builder->selectCount('tbl_requested_cert');
+        $builder->where('request_status', 'Pending');
+        $builder->where('resident_id', $resident_id);
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countApproved($resident_id)
+    {
+        $builder = $this->db->table('tbl_requested_cert');
+        $builder->selectCount('tbl_requested_cert');
+        $builder->where('request_status', 'Approved');
+        $builder->where('resident_id', $resident_id);
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countCancelled($resident_id)
+    {
+        $builder = $this->db->table('tbl_requested_cert');
+        $builder->selectCount('tbl_requested_cert');
+        $builder->where('request_status', 'Cancelled');
+        $builder->where('resident_id', $resident_id);
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countUpdateProfile($resident_id)
+    {
+        $builder = $this->db->table('tbl_resident_store');
+        $builder->selectCount('tbl_resident_store');
+        $builder->where('resident_status', 'Pending');
+        $builder->where('resident_id', $resident_id);
+        $result = $builder->countAllResults();
+
+        if ($result > 0) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
     public function updateProfile($data)
     {
         $this->db->table('tbl_resident_store')->insert($data);
