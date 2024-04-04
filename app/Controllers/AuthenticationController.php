@@ -57,14 +57,18 @@ class AuthenticationController extends Controller
                 if ($userdata) {
                     if ($password == $userdata['password']) {
                         if ($usertype == 'Resident' && $usertype == $userdata['usertype']) {
-                            
+
                             $loginInfo = [
                                 'resident_id' =>  $userdata['resident_id'],
                                 'browser' => $this->getUserAgentInfo(),
                                 'ip_address' => $this->request->getIPAddress(),
-                                'login_time' =>
+                                'login_time' => date('Y-m-d h:i:s'),
                             ];
+                            $login_id = $this->authenticate_model->saveLoginInfo($loginInfo);
 
+                            if ($login_id) {
+                                $this->session->set('logged_info', $login_id);
+                            }
 
                             $this->session->set('logged_resident', $userdata['resident_id']);
                             return redirect()->to(base_url() . 'UserController/user');
@@ -99,12 +103,26 @@ class AuthenticationController extends Controller
         if ($agent->isBrowser()) {
             $currentAgent = $agent->getBrowser();
         } elseif ($agent->isRobot()) {
-            $currentAgent = $this->agent->robot();
+            $currentAgent = $agent->robot();
         } elseif ($agent->isMobile()) {
             $currentAgent = $agent->getMobile();
         } else {
             $currentAgent = 'Unidentified User Browser!';
         }
         return $currentAgent;
+    }
+
+
+    public function logoutUser()
+    {
+        if (session()->has('logged_info')) {
+            $login_id = session()->get('logged_info');
+            $this->authenticate_model->updateLogoutTime($login_id);
+        }
+
+        session()->remove('logged_resident');
+        session()->destroy();
+
+        return redirect()->to(base_url() . 'AuthenticationController/login');
     }
 }

@@ -110,7 +110,7 @@
             <div class="modal-footer">
                 <div class="text-center">
                     <button class="flex-fill btn btn-secondary p-2" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="flex-fill btn btn-danger p-2" href="<?= base_url(); ?>UserController/logoutUser">Logout</a>
+                    <a class="flex-fill btn btn-danger p-2" href="<?= base_url(); ?>AuthenticationController/logoutUser">Logout</a>
                 </div>
             </div>
         </div>

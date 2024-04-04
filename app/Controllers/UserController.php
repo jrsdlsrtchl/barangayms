@@ -25,6 +25,8 @@ class UserController extends Controller
         $data['cancelled'] = $this->user_model->countCancelled($resident_id);
         $data['profile'] = $this->user_model->countUpdateProfile($resident_id);
 
+        $data['activity'] = $this->user_model->getLoginActivity($resident_id);
+
         return view("user/user_home", $data);
     }
 
@@ -36,14 +38,6 @@ class UserController extends Controller
         $data['household'] = $this->user_model->getHousehold();
 
         return view("user/manage_profile", $data);
-    }
-
-    public function logoutUser()
-    {
-        session()->remove('logged_resident');
-        session()->destroy();
-
-        return redirect()->to(base_url() . 'AuthenticationController/login');
     }
 
     public function updateProfile($id)

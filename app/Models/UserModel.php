@@ -111,4 +111,19 @@ class UserModel extends Model
             return false;
         }
     }
+
+    public function getLoginActivity($id)
+    {
+        $builder = $this->db->table('tbl_activity');
+        $builder->where('resident_id', $id);
+        $builder->orderBy('activity_id', 'DESC');
+        $builder->limit(10);
+        $result = $builder->get()->getResult();
+
+        if (count($result) > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }
