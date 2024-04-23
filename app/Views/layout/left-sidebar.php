@@ -84,6 +84,18 @@
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested</span>
+                    </a>
+                    <ul class="submenu">
+                        <?php foreach ($document as $doc) { ?>
+                            <li><a href="<?= base_url() ?>RequestedDocController/getRequest/<?= $doc->certificate_id ?>"> <?= $doc->certificate_type ?> </a></li>
+                        <?php } ?>
+                        <li><a href="<?= base_url() ?>RequestedDocController/document">List Documents</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon bi bi-truck"></span><span class="mtext">Assistance</span>
                     </a>
                     <ul class="submenu">

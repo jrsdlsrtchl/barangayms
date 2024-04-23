@@ -16,6 +16,9 @@ class GenerateReportController extends Controller
 
     public function report()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['purok'] = $this->report_model->getPurok();
         $data['household'] = $this->report_model->getHousehold();
 
@@ -24,6 +27,9 @@ class GenerateReportController extends Controller
 
     public function generateReport()
     {
+
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
 
         $data['purok'] = $this->report_model->getPurok();
         $data['household'] = $this->report_model->getHousehold();
@@ -39,9 +45,10 @@ class GenerateReportController extends Controller
                 'pwd' => $this->request->getVar('pwd'),
                 'senior' => $this->request->getVar('senior'),
                 'precinct' => $this->request->getVar('precinct'),
+                'min_age' => $this->request->getVar('min_age'),
+                'max_age' => $this->request->getVar('max_age'),
                 'purok_id' => $this->request->getVar('purok_id'),
                 'household_id' => $this->request->getVar('household_id'),
-
             ];
 
             $status = $this->report_model->report($filter);
@@ -54,6 +61,9 @@ class GenerateReportController extends Controller
 
     public function printReport()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['purok'] = $this->report_model->getPurok();
         $data['household'] = $this->report_model->getHousehold();
 
@@ -62,6 +72,9 @@ class GenerateReportController extends Controller
 
     public function print()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['purok'] = $this->report_model->getPurok();
         $data['household'] = $this->report_model->getHousehold();
 
@@ -76,6 +89,8 @@ class GenerateReportController extends Controller
                 'pwd' => $this->request->getVar('pwd'),
                 'senior' => $this->request->getVar('senior'),
                 'precinct' => $this->request->getVar('precinct'),
+                'min_age' => $this->request->getVar('min_age'),
+                'max_age' => $this->request->getVar('max_age'),
                 'purok_id' => $this->request->getVar('purok_id'),
                 'household_id' => $this->request->getVar('household_id'),
 
@@ -86,6 +101,11 @@ class GenerateReportController extends Controller
             $data['resident'] = $status;
         }
 
-        return view("print/print_resident", $data);
+        return view("print/print_report", $data);
+    }
+
+    public function modal()
+    {
+        return view("modal");
     }
 }

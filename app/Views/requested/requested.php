@@ -6,12 +6,6 @@ $page_session = \CodeIgniter\Config\Services::session();
 
 <?= $this->section("content") ?>
 
-<script>
-    setTimeout(function() {
-        $("#hidemessage").hide();
-    }, 5000);
-</script>
-
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
@@ -41,7 +35,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <a href="#">Requested Document</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Active Request
+                                    <?= $certificate['0']->certificate_type ?>
                                 </li>
                             </ol>
                         </nav>
@@ -57,40 +51,43 @@ $page_session = \CodeIgniter\Config\Services::session();
             <!-- Data Table -->
             <div class="card-box mb-30">
                 <div class="card-header">
-                    <h4 class="text-blue mt-2 h4">Requested Documents Table</h4>
+                    <h4 class="text-blue mt-2 h4"> <?= $certificate['0']->certificate_type ?> Table</h4>
                 </div>
                 <div class="pb-20 mt-3 mx-3">
                     <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Resident</th>
-                                <th>Document Type</th>
-                                <th>Date</th>
+                                <th>Date & Time</th>
                                 <th>Purpose</th>
                                 <th>Status</th>
                                 <th>Tracking ID</th>
                                 <th class="datatable-nosort">Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($request as $req) { ?>
                                 <tr>
                                     <td class="table-plus"> <?= $req->firstname . " " . substr($req->middlename, 0, 1) . ". " . $req->lastname  ?> </td>
-                                    <td><?= $req->certificate_type ?></td>
-                                    <td><?= $req->date; ?></td>
+                                    <td><?= strftime("%B %d, %Y %I:%M:%S %p", strtotime($req->date)) ?></td>
                                     <td><?= $req->purpose; ?></td>
                                     <td>
                                         <?php if ($req->request_status == "Pending") { ?>
                                             <span class="badge badge-pill" data-bgcolor="#265ed7" data-color="#ffffff"><?= $req->request_status; ?></span>
+                                        <?php } elseif ($req->request_status == "Approved") { ?>
+                                            <span class="badge badge-pill" data-bgcolor="#26d75b" data-color="#ffffff"><?= $req->request_status; ?></span>
                                         <?php } else { ?>
-                                            <span class="badge badge-pill" data-bgcolor="#d4d726" data-color="#ffffff"><?= $req->request_status; ?></span>
+                                            <span class="badge badge-pill" data-bgcolor="#d7264c" data-color="#ffffff"><?= $req->request_status; ?></span>
                                         <?php } ?>
                                     </td>
                                     <td><?= $req->tracking_id; ?></td>
                                     <td>
-                                        <a href="#" data-toggle="modal" data-target="#updateRequest<?= $req->request_id ?>"><i class="dw dw-edit2"></i> Update </a> |
-                                        <a href="#" data-toggle="modal" data-target="#updateRequest"><i class="icon-copy bi bi-printer"></i> Print </a>
+                                        <?php if ($req->request_status == "Pending") { ?>
+                                            <a href="#" data-toggle="modal" data-target="#updateRequest<?= $req->request_id ?>"><i class="dw dw-edit2"></i> Update </a> |
+                                            <a href="<?= base_url() ?>RequestedDocController/routecertid/<?= $req->request_id ?>/<?= $req->certificate_id ?>" target="_blank"><i class="icon-copy bi bi-printer"></i> Print </a>
+                                        <?php } else { ?>
+                                            <a href="#" data-toggle="modal" data-target="#deleteRequest<?= $req->request_id ?>"><i class="dw dw-trash"></i> Delete </a>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                             <?php }; ?>
@@ -102,6 +99,7 @@ $page_session = \CodeIgniter\Config\Services::session();
     </div>
 </div>
 
-<?= $this->include("requested/update_request") ?>
+<?= $this->include("requested/update_modal") ?>
+<?= $this->include("requested/delete_modal") ?>
 
 <?= $this->endSection("") ?>

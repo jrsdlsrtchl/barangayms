@@ -68,18 +68,4 @@ class RequestDocumentModel extends Model
             return false;
         }
     }
-
-    public function gethistory($resident_id)
-    {
-        $builder = $this->db->table('tbl_requested_cert');
-        $builder->join('tbl_certificate', 'tbl_requested_cert.certificate_id = tbl_certificate.certificate_id');
-        $builder->where('resident_id', $resident_id)->where('status', 'Approved')->orWhere('status', 'Cancelled');
-        $result = $builder->get()->getResult();
-
-        if (count($result) >= 0) {
-            return $result;
-        } else {
-            return false;
-        }
-    }
 }

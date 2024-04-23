@@ -4,6 +4,12 @@
                                                                             ?> Version 1.0</span></div>
 </div> -->
 
+<script>
+    setTimeout(function() {
+        $('#hidemessage').slideUp('slow');
+    }, 3000);
+</script>
+
 <!-- Javascript -->
 <script src="<?= base_url() ?>public/vendors/scripts/core.js"></script>
 <script src="<?= base_url() ?>public/vendors/scripts/script.min.js"></script>

@@ -27,6 +27,7 @@ class RequestDocumentController extends Controller
     {
         $resident_id = session()->get('logged_resident');
         $data['request'] = $this->request_model->getApproved($resident_id);
+        $data['document'] = $this->request_model->getDocType();
 
         return view("request_docs/approved", $data);
     }
@@ -35,17 +36,9 @@ class RequestDocumentController extends Controller
     {
         $resident_id = session()->get('logged_resident');
         $data['request'] = $this->request_model->getCancelled($resident_id);
+        $data['document'] = $this->request_model->getDocType();
 
         return view("request_docs/cancelled", $data);
-    }
-
-
-    public function getHistory()
-    {
-        $resident_id = session()->get('logged_resident');
-        $data['request'] = $this->request_model->getHistory($resident_id);
-
-        return view("request_docs/history", $data);
     }
 
     public function addRequest()
@@ -66,7 +59,7 @@ class RequestDocumentController extends Controller
             $status = $this->request_model->addRequest($data);
 
             if ($status) {
-                $session->setTempdata('success', 'Request has been sent successfully!', 3);
+                $session->setTempdata('success', 'Requested Successfully!', 3);
                 return redirect()->to(base_url() . "RequestDocumentController/request");
             } else {
                 $session->setTempdata('error', 'Something went wrong! Try Again!', 3);

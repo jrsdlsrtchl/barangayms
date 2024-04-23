@@ -159,6 +159,21 @@
 
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="form-group">
+                                <label>Age</label>
+                                <input type="number" name="min_age" class="form-control" placeholder="Enter min. age">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
+                                <label>.</label>
+                                <input type="number" name="max_age" class="form-control" placeholder="Enter max. age">
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="form-group">
                                 <label>Purok</label>
                                 <select name="purok_id" class="form-control">
                                     <option value="">Select Purok</option>

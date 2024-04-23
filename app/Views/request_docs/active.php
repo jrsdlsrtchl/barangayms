@@ -41,7 +41,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <a href="#">Request Document</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Active Request
+                                    Pending Request
                                 </li>
                             </ol>
                         </nav>
@@ -64,7 +64,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Document Type</th>
-                                <th>Date</th>
+                                <th>Date & Time</th>
                                 <th>Purpose</th>
                                 <th>Status</th>
                                 <th class="datatable-nosort">Tracking ID</th>
@@ -74,7 +74,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                             <?php foreach ($request as $req) { ?>
                                 <tr>
                                     <td class="table-plus"><?= $req->certificate_type ?></td>
-                                    <td><?= $req->date; ?></td>
+                                    <td><?= strftime("%B %d, %Y %I:%M:%S %p", strtotime($req->date)) ?></td>
                                     <td><?= $req->purpose; ?></td>
                                     <td>
                                         <span class="badge badge-pill" data-bgcolor="#265ed7" data-color="#ffffff"><?= $req->request_status; ?></span>

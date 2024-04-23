@@ -84,7 +84,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <td><?= $res->gender; ?></td>
                                     <td><?= $res->age; ?></td>
                                     <td><?= $res->mobile; ?></td>
-                                    <td><?= $res->datebirth; ?></td>
+                                    <td><?= strftime("%B %d, %Y", strtotime($res->datebirth)) ?></td>
                                     <td><?= $res->household_desc; ?></td>
                                     <td><?= $res->purok_desc; ?></td>
                                     <td>
@@ -110,7 +110,7 @@ $page_session = \CodeIgniter\Config\Services::session();
     </div>
 </div>
 
-<?= $this->include("resident/view_resident") ?>
+<?= $this->include("resident/view_modal") ?>
 
 <?= $this->include("resident/delete_resident") ?>
 

@@ -64,6 +64,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Resident</th>
+                                <th>Date & Time</th>
                                 <th>Status</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
@@ -72,7 +73,9 @@ $page_session = \CodeIgniter\Config\Services::session();
                             <?php foreach ($userdata as $user) { ?>
                                 <tr>
                                     <td> <?= $user->resfirstname . " " . substr($user->resmiddlename, 0, 1) . ". " . $user->reslastname ?> </td>
-
+                                    <td>
+                                        <?= strftime("%B %d, %Y %I:%M:%S %p", strtotime($user->date_requested)) ?>
+                                    </td>
                                     <td>
                                         <?php if ($user->resident_status == "Pending") { ?>
                                             <span class="badge badge-pill" data-bgcolor="#265ed7" data-color="#ffffff"><?= $user->resident_status; ?></span>

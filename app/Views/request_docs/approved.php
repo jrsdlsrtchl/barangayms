@@ -46,11 +46,11 @@ $page_session = \CodeIgniter\Config\Services::session();
                             </ol>
                         </nav>
                     </div>
-                    <!-- <div class="col-md-6 col-sm-12 text-right">
+                    <div class="col-md-6 col-sm-12 text-right">
                         <button class="btn btn-primary" data-toggle="modal" data-target="#addRequest">
                             Add Request
                         </button>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
@@ -64,7 +64,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Document Type</th>
-                                <th>Date</th>
+                                <th>Date & Time</th>
                                 <th>Purpose</th>
                                 <th>Status</th>
                                 <th class="datatable-nosort">Tracking ID</th>
@@ -74,7 +74,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                             <?php foreach ($request as $req) { ?>
                                 <tr>
                                     <td class="table-plus"><?= $req->certificate_type ?></td>
-                                    <td><?= $req->date; ?></td>
+                                    <td><?= strftime("%B %d, %Y %I:%M:%S %p", strtotime($req->date)) ?></td>
                                     <td><?= $req->purpose; ?></td>
                                     <td>
                                         <span class="badge badge-pill" data-bgcolor="#26d75b" data-color="#ffffff"><?= $req->request_status; ?></span>
@@ -89,5 +89,7 @@ $page_session = \CodeIgniter\Config\Services::session();
         </div>
     </div>
 </div>
+
+<?= $this->include("request_docs/add_request"); ?>
 
 <?= $this->endSection("") ?>

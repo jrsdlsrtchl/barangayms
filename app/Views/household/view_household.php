@@ -73,7 +73,8 @@ $page_session = \CodeIgniter\Config\Services::session();
                                 <th>Contact No.</th>
                                 <th>Date of Birth</th>
                                 <th>Household</th>
-                                <th class="datatable-nosort">Purok</th>
+                                <th>Purok</th>
+                                <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,9 +86,10 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <td><?= $res->gender; ?></td>
                                     <td><?= $res->age; ?></td>
                                     <td><?= $res->mobile; ?></td>
-                                    <td><?= $res->datebirth; ?></td>
+                                    <td><?= strftime("%B %d, %Y", strtotime($res->datebirth)) ?></td>
                                     <td><?= $res->household_desc; ?></td>
                                     <td><?= $res->purok_desc; ?></td>
+                                    <td> <a href="" data-toggle="modal" data-target="#viewResident<?= $res->uniid; ?>"><i class="dw dw-eye"></i> View</a></td>
                                 </tr>
                             <?php }; ?>
                         </tbody>
@@ -97,5 +99,7 @@ $page_session = \CodeIgniter\Config\Services::session();
         </div>
     </div>
 </div>
+
+<?= $this->include("resident/view_modal") ?>
 
 <?= $this->endSection() ?>

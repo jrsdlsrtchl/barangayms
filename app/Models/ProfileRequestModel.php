@@ -11,11 +11,13 @@ class ProfileRequestModel extends Model
         $builder = $this->db->table('tbl_resident_store resto');
         $builder->select('resto.*, res.firstname as resfirstname, res.middlename as resmiddlename, res.lastname as reslastname');
         $builder->join('tbl_resident res', 'resto.resident_id = res.resident_id');
+        $builder->orderBy('resident_id_store', 'ASC');
 
         $result = $builder->get()->getResult();
 
         return $result;
     }
+
 
     public function editProfile($id)
     {

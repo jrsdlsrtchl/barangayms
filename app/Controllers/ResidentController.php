@@ -16,6 +16,9 @@ class ResidentController extends Controller
 
     public function resident()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['resident'] = $this->resident_model->getResidents();
         $data['purok'] = $this->resident_model->getPurok();
         $data['household'] = $this->resident_model->getHousehold();
@@ -26,13 +29,16 @@ class ResidentController extends Controller
     public function addResident()
     {
         $data = [];
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['purok'] = $this->resident_model->getPurok();
         $data['household'] = $this->resident_model->getHousehold();
 
         $session = \CodeIgniter\Config\Services::session();
 
         if ($this->request->getMethod() == 'post') {
-
+            $uniid = md5(str_shuffle('abcsefghijklmonpqrtuvwxyz' . time()));
             $datebirth = $this->request->getVar('datebirth');
             $date = date('Y-m-d', strtotime($datebirth));
             $res_data = [
@@ -57,6 +63,7 @@ class ResidentController extends Controller
                 'precinct' => $this->request->getVar('precinct'),
                 'purok_id' => $this->request->getVar('purok_id'),
                 'household_id' => $this->request->getVar('household_id'),
+                'uniid' => $uniid,
 
             ];
 

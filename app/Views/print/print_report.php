@@ -2,11 +2,12 @@
 <html>
 
 <head>
-    <title></title>
+    <title> Resident Data Report </title>
     <style>
         body {
             width: 90%;
             margin: auto;
+            font-family: "Times New Roman", Times, serif;
         }
 
         h3 {
@@ -81,7 +82,7 @@
         }
 
         .title {
-            font-size: 22px;
+            font-size: 18px;
             flex: 2;
             text-align: center;
         }

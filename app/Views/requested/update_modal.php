@@ -9,7 +9,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="<?= base_url() ?>RequestedDocController/updateRequest/<?= $req->request_id; ?>">
+                <form method="post" action="<?= base_url() ?>RequestedDocController/updateRequest/<?= $req->request_id; ?>/<?= $req->certificate_id ?>">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row modal-body mt-2 mx-3">
