@@ -15,8 +15,9 @@
                             <h4><?= $res->firstname . " " . substr($res->middlename, 0, 1) . ". " . $res->lastname ?></h4>
                             <p class="text-secondary mb-0"> <?= $res->purok_desc ?> </p>
                             <p class="text-secondary"> <?= $res->mobile ?> </p>
-                            <button class="btn btn-primary btn-sm">Edit</button>
-                            <button class="btn btn-outline-primary btn-sm">Delete</button>
+                            <a href="<?= base_url() ?>residentcontroller/viewprofile/<?= $res->resident_id ?>">
+                                <button class="btn btn-outline-primary btn-sm">View Profile</button>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -85,7 +86,7 @@
                                     <p class="text-muted"> <?= $res->ethnicity ?> </p>
                                 </div>
                             </div>
-                            <h6>Assistance</h6>
+                            <h6>Vulnerabilities</h6>
                             <hr class="mt-0 mb-4">
                             <div class="row pt-1">
                                 <div class="col-lg-4 col-6 mb-3">

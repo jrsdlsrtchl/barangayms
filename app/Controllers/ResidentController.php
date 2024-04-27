@@ -20,10 +20,19 @@ class ResidentController extends Controller
         $data['document'] = $this->request->data;
 
         $data['resident'] = $this->resident_model->getResidents();
-        $data['purok'] = $this->resident_model->getPurok();
-        $data['household'] = $this->resident_model->getHousehold();
 
         return view("resident/resident", $data);
+    }
+
+    public function viewProfile($id)
+    {
+        // Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
+        $data['resident'] = $this->resident_model->getResidentsProfile($id);
+        $data['assistance'] = $this->resident_model->getAssistance($id);
+
+        return view("resident/view_profile", $data);
     }
 
     public function addResident()
@@ -84,6 +93,8 @@ class ResidentController extends Controller
     public function editResident($id)
     {
         $data = [];
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
         $data['resident'] = $this->resident_model->getResidentsID($id);
         $data['purok'] = $this->resident_model->getPurok();
         $data['household'] = $this->resident_model->getHousehold();
@@ -135,8 +146,9 @@ class ResidentController extends Controller
     {
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->resident_model->deleteResident($id);
+        $deleteUser = $this->resident_model->deleteUser($id);
 
-        if (!$delete) {
+        if (!$delete && !$deleteUser) {
             $session->setTempdata('success', 'Deleted Successfully!', 3);
             return redirect()->to(base_url() . "residentcontroller/resident");
         } else {

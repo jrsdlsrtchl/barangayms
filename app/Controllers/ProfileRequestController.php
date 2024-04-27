@@ -16,6 +16,9 @@ class ProfileRequestController extends Controller
 
     public function getRequest()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['userdata'] = $this->profile_model->getRequest();
 
         return view("profile_request/profile_request", $data);
@@ -23,6 +26,9 @@ class ProfileRequestController extends Controller
 
     public function editProfile($id)
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['resident'] = $this->profile_model->editProfile($id);
         $data['purok'] = $this->profile_model->getPurok();
         $data['household'] = $this->profile_model->getHousehold();
@@ -32,6 +38,7 @@ class ProfileRequestController extends Controller
 
     public function updateProfile($id, $store_id)
     {
+
         $session = \CodeIgniter\Config\Services::session();
 
         if ($this->request->getMethod() == 'post') {
@@ -69,7 +76,7 @@ class ProfileRequestController extends Controller
             $status = $this->profile_model->updateProfile($res_data, $id);
 
             if ($status || $chel) {
-                $session->setTempdata('success', 'Profile udpated successfully!', 3);
+                $session->setTempdata('success', 'Upated successfully!', 3);
                 return redirect()->to(base_url() . "ProfileRequestController/getrequest");
             } else {
                 $session->setTempdata('error', 'Something went wrong!', 3);
@@ -84,7 +91,7 @@ class ProfileRequestController extends Controller
         $delete = $this->profile_model->deleteRequest($id);
 
         if (!$delete) {
-            $session->setTempdata('success', 'Request Deleted Successfully!', 3);
+            $session->setTempdata('success', 'Deleted Successfully!', 3);
             return redirect()->to(base_url() . "ProfileRequestController/getrequest");
         } else {
             $session->setTempdata('error', 'Something went wrong!', 3);

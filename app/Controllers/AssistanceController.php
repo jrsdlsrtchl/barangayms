@@ -16,6 +16,9 @@ class AssistanceController extends Controller
 
     public function assistance()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['assistance'] = $this->assistance_model->assistance();
 
         return view("assistance/assistance", $data);
@@ -23,6 +26,9 @@ class AssistanceController extends Controller
 
     public function listAssistance()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['assistance'] = $this->assistance_model->getCertType();
 
         return view("assistance/list_assistance", $data);
@@ -30,6 +36,9 @@ class AssistanceController extends Controller
 
     public function addAssistance()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['assistance'] = $this->assistance_model->getCertType();
         $data['official'] = $this->assistance_model->getOfficial();
         $data['resident'] = $this->assistance_model->getResidents();
@@ -59,7 +68,7 @@ class AssistanceController extends Controller
             }
 
             if ($status) {
-                $session->setTempdata('success', 'Assistance added successfully!', 3);
+                $session->setTempdata('success', 'Added successfully!', 3);
                 return redirect()->to(base_url() . "AssistanceController/assistance");
             } else {
                 $session->setTempdata('error', 'Something went wrong!', 3);
@@ -82,7 +91,7 @@ class AssistanceController extends Controller
             $status = $this->assistance_model->addTypeAssistance($ass_data);
 
             if ($status) {
-                $session->setTempdata('success', 'Assistance Type Added Successfully!', 3);
+                $session->setTempdata('success', 'Added Successfully!', 3);
                 return redirect()->to(base_url() . "AssistanceController/listAssistance");
             } else {
                 $session->setTempdata('error', 'Not Added! Try Again!', 3);
@@ -104,7 +113,7 @@ class AssistanceController extends Controller
             $status = $this->assistance_model->editTypeAssistance($ass_data, $id);
 
             if ($status) {
-                $session->setTempdata('success', 'Assistance Type Updated Successfully!', 3);
+                $session->setTempdata('success', 'Updated Successfully!', 3);
                 return redirect()->to(base_url() . "assistancecontroller/listassistance");
             } else {
                 $session->setTempdata('error', 'Not Added! Try Again!', 3);
@@ -119,7 +128,7 @@ class AssistanceController extends Controller
         $delete = $this->assistance_model->deleteTypeAssistance($id);
 
         if (!$delete) {
-            $session->setTempdata('success', 'Assistance Deleted Successfully!', 3);
+            $session->setTempdata('success', 'Deleted Successfully!', 3);
             return redirect()->to(base_url() . "assistancecontroller/listassistance");
         } else {
             $session->setTempdata('error', 'Something went wrong!', 3);
@@ -129,6 +138,9 @@ class AssistanceController extends Controller
 
     public function getAssResidents($id)
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['resident'] = $this->assistance_model->getAssResidents($id);
         $data['assistance'] = $this->assistance_model->getAssName($id);
         $data['getresident'] = $this->assistance_model->getResidents();
@@ -142,7 +154,7 @@ class AssistanceController extends Controller
         $delete = $this->assistance_model->deleteAssistance($id);
 
         if (!$delete) {
-            $session->setTempdata('success', 'Assistance Deleted Successfully!', 3);
+            $session->setTempdata('success', 'Deleted Successfully!', 3);
             return redirect()->to(base_url() . "assistancecontroller/assistance");
         } else {
             $session->setTempdata('error', 'Something went wrong!', 3);
@@ -152,6 +164,9 @@ class AssistanceController extends Controller
 
     public function editAssistance($id)
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['assistance'] = $this->assistance_model->getCertType();
         $data['official'] = $this->assistance_model->getOfficial();
         $data['resident'] = $this->assistance_model->getResidents();
@@ -185,7 +200,7 @@ class AssistanceController extends Controller
 
 
             if ($status) {
-                $session->setTempdata('success', 'Assistance updated successfully!', 3);
+                $session->setTempdata('success', 'Updated successfully!', 3);
                 return redirect()->to(base_url() . "AssistanceController/assistance");
             } else {
                 $session->setTempdata('error', 'Something went wrong!', 3);
@@ -200,11 +215,17 @@ class AssistanceController extends Controller
         $delete = $this->assistance_model->deleteRecipient($id);
 
         if (!$delete) {
-            $session->setTempdata('success', 'Recepient Deleted Successfully!', 3);
+            $session->setTempdata('success', 'Deleted Successfully!', 3);
             return redirect()->to(base_url() . "assistancecontroller/assistance");
         } else {
             $session->setTempdata('error', 'Something went wrong!', 3);
             return redirect()->to(base_url() . "assistancecontroller/assistance");
         }
+    }
+
+    public function printAssistance($id)
+    {
+        $data = $this->assistance_model->printAssistance($id);
+        print_r($data);
     }
 }

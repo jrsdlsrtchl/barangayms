@@ -15,6 +15,9 @@ class purokcontroller extends Controller
 
     public function purok()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         // Count Population from each Purok
         $data['purokUno'] = $this->purok_model->purokUno();
         $data['purokDos'] = $this->purok_model->purokDos();
@@ -38,6 +41,9 @@ class purokcontroller extends Controller
 
     public function viewPurok($puroknumber)
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['resident'] = $this->purok_model->viewPurok($puroknumber);
         $data['purok'] = $this->purok_model->getPurok($puroknumber);
 

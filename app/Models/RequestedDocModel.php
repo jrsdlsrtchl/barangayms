@@ -105,4 +105,16 @@ class RequestedDocModel extends Model
             return [];
         }
     }
+
+    public function getCaptain()
+    {
+        $builder = $this->db->table('tbl_official off');
+        $builder->select('res.firstname, res.middlename, res.lastname');
+        $builder->join('tbl_resident res', 'off.resident_id = res.resident_id');
+        $builder->where('off.position', 'Captain');
+
+        $result = $builder->get()->getResult();
+
+        return $result;
+    }
 }

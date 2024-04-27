@@ -72,19 +72,7 @@
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested Document</span>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="<?= base_url() ?>RequestedDocController/getRequest">Pending Request</a></li>
-                        <li><a href="<?= base_url() ?>RequestedDocController/getApproved">Approved Request</a></li>
-                        <li><a href="<?= base_url() ?>RequestedDocController/getCancelled">Cancelled Request</a></li>
-                        <li><a href="<?= base_url() ?>RequestedDocController/document">List Documents</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested</span>
+                        <span class="micon bi bi-envelope-paper"></span><span class="mtext">Requested Docs</span>
                     </a>
                     <ul class="submenu">
                         <?php foreach ($document as $doc) { ?>

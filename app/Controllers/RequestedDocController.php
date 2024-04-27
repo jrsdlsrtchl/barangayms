@@ -27,6 +27,7 @@ class RequestedDocController extends Controller
 
     public function updateRequest($id, $id2)
     {
+
         $session = \CodeIgniter\Config\Services::session();
 
         if ($this->request->getMethod() == 'post') {
@@ -64,6 +65,9 @@ class RequestedDocController extends Controller
 
     public function document()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['document'] = $this->requested_model->document();
 
         return view("requested/document", $data);
@@ -109,12 +113,17 @@ class RequestedDocController extends Controller
         $session = \CodeIgniter\Config\Services::session();
 
         if ($certID == 1) {
+            $data['official'] = $this->requested_model->getCaptain();
             $data['request'] = $this->brgyResidency($reqID);
             return view("print/print_residency", $data);
         } elseif ($certID == 2) {
-            $this->brgyClearance($reqID);
+            $data['official'] = $this->requested_model->getCaptain();
+            $data['request'] = $this->brgyCertification($reqID);
+            return view("print/print_certification", $data);
         } elseif ($certID == 3) {
-            $this->brgyIndigency($reqID);
+            $data['official'] = $this->requested_model->getCaptain();
+            $data['request'] = $this->brgyIndigency($reqID);
+            return view("print/print_indigency", $data);
         } else {
             $session->setTempdata('error', 'No Format Available! Please Contact Developers!', 3);
             return redirect()->to(base_url() . "RequestedDocController/getRequest/$certID");
@@ -126,7 +135,7 @@ class RequestedDocController extends Controller
         return $this->requested_model->printRequest($reqID);
     }
 
-    public function  brgyClearance($reqID)
+    public function  brgyCertification($reqID)
     {
         return $this->requested_model->printRequest($reqID);
     }
@@ -134,10 +143,5 @@ class RequestedDocController extends Controller
     public function brgyIndigency($reqID)
     {
         return $this->requested_model->printRequest($reqID);
-    }
-
-    public function printSample()
-    {
-        return view("print/print_residency");
     }
 }

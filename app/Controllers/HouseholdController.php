@@ -16,6 +16,9 @@ class HouseholdController extends Controller
 
     public function household($puroknum)
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['household'] = $this->household_model->household($puroknum);
         $data['purok'] = $this->household_model->getPurok($puroknum);
         $data['selectpurok'] = $this->household_model->selectPurok();
@@ -27,6 +30,8 @@ class HouseholdController extends Controller
     {
         $data = [];
         $session = \CodeIgniter\Config\Services::session();
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
 
         if ($this->request->getMethod() == 'post') {
             $HHdata = [
@@ -37,7 +42,7 @@ class HouseholdController extends Controller
             $status = $this->household_model->addHousehold($HHdata);
 
             if ($status) {
-                $session->setTempdata('success', 'Household Added Successfully!', 3);
+                $session->setTempdata('success', 'Added Successfully!', 3);
                 return redirect()->to(base_url() . "householdcontroller/household/1");
             } else {
                 $session->setTempdata('error', 'Something went wrong! Try Again!', 3);
@@ -49,6 +54,9 @@ class HouseholdController extends Controller
 
     public function gethouseholdmembers($id)
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['resident'] = $this->household_model->getHouseholdMembers($id);
         $data['householdhead'] = $this->household_model->getHouseholdheadName($id);
 
@@ -61,7 +69,7 @@ class HouseholdController extends Controller
         $delete = $this->household_model->deleteHousehold($id);
 
         if (!$delete) {
-            $session->setTempdata('success', 'Household Deleted Successfully!', 3);
+            $session->setTempdata('success', 'Deleted Successfully!', 3);
             return redirect()->to(base_url() . "HouseholdController/household/1");
         } else {
             $session->setTempdata('error', 'Something went wrong!', 3);

@@ -82,7 +82,7 @@
         }
 
         .title {
-            font-size: 18px;
+            font-size: 20px;
             flex: 2;
             text-align: center;
         }
@@ -91,6 +91,13 @@
             font-size: 10px;
             display: flex;
             justify-content: flex-end;
+        }
+
+        .copyright {
+            font-size: 10px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
         }
 
         /* Adjustments for print */
@@ -164,9 +171,15 @@
                 <?php }; ?>
             </tbody>
         </table>
-        <div class="footer-wrap pd-20 mb-20 card-box">
-            <div><span>&copy; Barangay Raw-an Management System - <?php echo date('Y') ?> Version 1.0</span></div>
+        <div class="footer-wrap pd-20 mb-20 card-box copyright">
+
+            <?php
+            date_default_timezone_set('Asia/Manila');
+            $current_time = date("h:i A") ?>
+            <div>Printed By: Pedro Penduko <?= $current_time ?> </div>
+            <div>&copy; Barangay Raw-an Management System - <?php echo date('Y') ?> Version 1.0</div>
         </div>
+
         <script type="text/javascript">
             window.print();
         </script>

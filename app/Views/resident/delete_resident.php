@@ -12,7 +12,7 @@
                 <div class="modal-body">Are you sure you want to delete <strong> <?= $res->firstname . " " . $res->lastname; ?></strong> ?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary btn-sm" href="<?= base_url() ?>residentcontroller/deleteresident/<?= $res->uniid; ?>">Delete</a>
+                    <a class="btn btn-primary btn-sm" href="<?= base_url() ?>residentcontroller/deleteresident/<?= $res->resident_id; ?>">Delete</a>
                 </div>
             </div>
         </div>

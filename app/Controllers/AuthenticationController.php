@@ -16,10 +16,8 @@ class AuthenticationController extends Controller
         $this->session = \Config\Services::session();
     }
 
-
     public function login()
     {
-
         $data['validation'] = null;
         if ($this->request->getMethod() == 'post') {
             $rules = [

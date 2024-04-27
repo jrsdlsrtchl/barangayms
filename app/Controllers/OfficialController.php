@@ -16,6 +16,9 @@ class OfficialController extends Controller
 
     public function official()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['official'] = $this->official_model->getOfficial();
 
         return view("official/official", $data);
@@ -24,6 +27,8 @@ class OfficialController extends Controller
     public function addOfficial()
     {
         $data = [];
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
         $data['resident'] = $this->official_model->getResidents();
         $data['purok'] = $this->official_model->getPurok();
 
@@ -46,7 +51,7 @@ class OfficialController extends Controller
             $status = $this->official_model->addOfficial($res_data);
 
             if ($status) {
-                $session->setTempdata('success', 'Brgy. Official Added Successfully!', 3);
+                $session->setTempdata('success', 'Added Successfully!', 3);
                 return redirect()->to(base_url() . "officialcontroller/official");
             } else {
                 $session->setTempdata('error', 'Something went wrong! Try Again!', 3);
@@ -60,6 +65,8 @@ class OfficialController extends Controller
     public function editOfficial($id)
     {
         $data = [];
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
         $data['official'] = $this->official_model->getOfficialsID($id);
         $data['resident'] = $this->official_model->getResidents();
         $data['purok'] = $this->official_model->getPurok();
@@ -80,7 +87,7 @@ class OfficialController extends Controller
             $status = $this->official_model->editOfficial($res_data, $id);
 
             if ($status) {
-                $session->setTempdata('success', 'Brgy. Official Edited Successfully!', 3);
+                $session->setTempdata('success', 'Edited Successfully!', 3);
                 return redirect()->to(base_url() . "officialcontroller/official");
             } else {
                 $session->setTempdata('error', 'Something went wrong! Try Again!', 3);
@@ -97,7 +104,7 @@ class OfficialController extends Controller
         $delete = $this->official_model->deleteOfficial($id);
 
         if (!$delete) {
-            $session->setTempdata('success', 'Brgy. Official Deleted Successfully!', 3);
+            $session->setTempdata('success', 'Deleted Successfully!', 3);
             return redirect()->to(base_url() . "officialcontroller/official");
         } else {
             $session->setTempdata('error', 'Was not Deleted!', 3);

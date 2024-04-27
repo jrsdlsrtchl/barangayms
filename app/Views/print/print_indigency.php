@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title> Certificate of Residency </title>
+    <title> Certificate of Indigency </title>
     <style>
         body {
             width: 90%;
@@ -104,11 +104,11 @@
             font-size: 13px;
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .signature {
-            margin-top: 60px;
+            margin-top: 20px;
         }
 
         @media print {
@@ -146,20 +146,20 @@
         </div>
     </div>
 
-
     <div class="certification">
 
         <div class="office">
             <h4>OFFICE OF THE PUNONG BARANGAY</h4>
         </div>
         <div class="cert-title">
-            <h1>CERTIFICATE OF RESIDENCY</h1>
+            <h1>CERTIFICATE OF INDIGENCY</h1>
         </div>
 
         <div class="content">
             <h4>TO WHOM IT MAY CONCERN;</h4><br>
             <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; THIS IS TO CERTIFY that <b><u><?= strtoupper($request['0']->firstname) . " " . substr($request['0']->middlename, 0, 1) . ". " . strtoupper($request['0']->lastname)  ?></u></b>,&nbsp; <b><u><?= $request['0']->age ?></u></b> years of age a Filipino
-                citizen, and a bona fide resident of Purok - <b><u><?= $request['0']->purok_id ?></u></b>, Raw-an, Lala, Lanao del Norte. </p>
+                citizen, and a bona fide resident of Purok - <b><u><?= $request['0']->purok_id ?></u></b>, Raw-an, Lala, Lanao del Norte. The said person has a good moral
+                character and an active member of the community. He/She is one of those who belong to a low-income family. </p>
             <br>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This certification is being issued upon the request
                 of the above named person for whatever legal purposes it may serve his/her best.
@@ -189,6 +189,7 @@
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Issued this <b><u><?= $currentDay ?></u></b><?= $daySuffix ?> day of <b><u><?= $currentMonthYear ?></u></b> at the
                 Barangay Office of Raw-an, Lala, Lanao del Norte.
             </p> <br>
+
 
         </div>
         <div class="signature">

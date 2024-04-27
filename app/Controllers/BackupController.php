@@ -17,10 +17,10 @@ class BackupController extends Controller
         $dump->start('D:/BRMS/brms-backup-' . $date . '.sql');
 
         if ($dump) {
-            $session->setTempdata('success', 'Database backup completed successfully!', 3);
+            $session->setTempdata('success', 'Backup Successfully!', 3);
             return redirect()->to(base_url() . "DashboardController/dashboard");
         } else {
-            $session->setTempdata('success', 'Failed to backup the database!', 3);
+            $session->setTempdata('error', 'Failed Backup!', 3);
             return redirect()->to(base_url() . "DashboardController/dashboard");
         }
     }

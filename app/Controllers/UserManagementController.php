@@ -16,6 +16,9 @@ class UserManagementController extends Controller
 
     public function user()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['useraccount'] = $this->usermanage_model->getUser();
 
         return view("user_management/user_management", $data);
@@ -24,6 +27,10 @@ class UserManagementController extends Controller
     public function addUser()
     {
         $data = [];
+
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['resident'] = $this->usermanage_model->getResident();
 
         $session = \CodeIgniter\Config\Services::session();
@@ -74,11 +81,5 @@ class UserManagementController extends Controller
             $session->setTempdata('error', 'Was not Deleted!', 3);
             return redirect()->to(base_url() . "UserManagementController/user");
         }
-    }
-
-    public function getRequestProfile()
-    {
-
-        return view("user_management/profile_table");
     }
 }

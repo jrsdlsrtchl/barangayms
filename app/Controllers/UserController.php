@@ -76,7 +76,7 @@ class UserController extends Controller
             $status = $this->user_model->updateProfile($res_data);
 
             if ($status) {
-                $session->setTempdata('success', 'Update profile has been sent. The staff will review your inputted information!', 3);
+                $session->setTempdata('success', 'The Brgy. Staff will review your inputted information!', 3);
                 return redirect()->to(base_url() . "UserController/manageprofile");
             } else {
                 $session->setTempdata('error', 'Something went wrong!', 3);

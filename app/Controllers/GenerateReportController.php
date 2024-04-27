@@ -72,9 +72,6 @@ class GenerateReportController extends Controller
 
     public function print()
     {
-        //Sidebar list of certificates
-        $data['document'] = $this->request->data;
-
         $data['purok'] = $this->report_model->getPurok();
         $data['household'] = $this->report_model->getHousehold();
 
@@ -102,10 +99,5 @@ class GenerateReportController extends Controller
         }
 
         return view("print/print_report", $data);
-    }
-
-    public function modal()
-    {
-        return view("modal");
     }
 }

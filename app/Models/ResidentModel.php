@@ -20,6 +20,41 @@ class ResidentModel extends Model
         }
     }
 
+    public function getResidentsProfile($id)
+    {
+        if ($id === null) {
+            return [];
+        }
+
+        $builder = $this->db->table('tbl_resident');
+        $builder->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $builder->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $builder->where('tbl_resident.resident_id', $id);
+        $result = $builder->get()->getResult();
+
+        if ($result !== false && !empty($result)) {
+            return $result;
+        } else {
+            return [];
+        }
+    }
+
+
+    public function getAssistance($id)
+    {
+        $builder = $this->db->table('tbl_assistance ass');
+        $builder->select('ass.resident_id, type.type_assistance');
+        $builder->join('tbl_type_assistance type', 'ass.type_assistance_id = type.type_assistance_id');
+        $builder->where('ass.resident_id', $id);
+        $result = $builder->get()->getResult();
+
+        if (!empty($result)) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
     public function addResident($data)
     {
         $this->db->table('tbl_resident')->insert($data);
@@ -81,6 +116,12 @@ class ResidentModel extends Model
     public function deleteResident($id)
     {
         $builder = $this->db->table('tbl_resident');
-        $builder->delete(['uniid' => $id]);
+        $builder->delete(['resident_id' => $id]);
+    }
+
+    public function deleteUser($id)
+    {
+        $builder = $this->db->table('tbl_user');
+        $builder->delete(['resident_id' => $id]);
     }
 }

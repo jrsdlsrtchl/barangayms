@@ -15,6 +15,9 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['population'] = $this->dashboard_model->population();
         $data['male'] = $this->dashboard_model->male();
         $data['female'] = $this->dashboard_model->female();
@@ -36,6 +39,9 @@ class DashboardController extends Controller
 
     public function populationDash()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['title'] = 'Population Table Dashboard';
         $data['resident'] = $this->dashboard_model->populationDash();
 
@@ -60,6 +66,9 @@ class DashboardController extends Controller
 
     public function maleDash()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['title'] = 'Male Table Dashboard';
         $data['resident'] = $this->dashboard_model->maleDash();
 
@@ -84,6 +93,9 @@ class DashboardController extends Controller
 
     public function femaleDash()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['title'] = 'Female Table Dashboard';
         $data['resident'] = $this->dashboard_model->femaleDash();
 
@@ -108,6 +120,9 @@ class DashboardController extends Controller
 
     public function seniorDash()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['title'] = 'Senior Citizen Table Dashboard';
         $data['resident'] = $this->dashboard_model->seniorDash();
 
@@ -132,6 +147,9 @@ class DashboardController extends Controller
 
     public function pwdDash()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['title'] = 'PWD Table Dashboard';
         $data['resident'] = $this->dashboard_model->pwdDash();
 
@@ -156,6 +174,9 @@ class DashboardController extends Controller
 
     public function for4psDash()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['title'] = '4PS Table Dashboard';
         $data['resident'] = $this->dashboard_model->for4psDash();
 
@@ -180,6 +201,9 @@ class DashboardController extends Controller
 
     public function voterDash()
     {
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
         $data['title'] = 'Voters Table Dashboard';
         $data['resident'] = $this->dashboard_model->voterDash();
 

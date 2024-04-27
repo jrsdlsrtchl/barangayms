@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title> Certificate of Residency </title>
+    <title> Barangay Certification</title>
     <style>
         body {
             width: 90%;
@@ -108,7 +108,7 @@
         }
 
         .signature {
-            margin-top: 60px;
+            margin-top: 40px;
         }
 
         @media print {
@@ -153,18 +153,18 @@
             <h4>OFFICE OF THE PUNONG BARANGAY</h4>
         </div>
         <div class="cert-title">
-            <h1>CERTIFICATE OF RESIDENCY</h1>
+            <h1>BARANGAY CERTIFICATION</h1>
         </div>
 
         <div class="content">
             <h4>TO WHOM IT MAY CONCERN;</h4><br>
             <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; THIS IS TO CERTIFY that <b><u><?= strtoupper($request['0']->firstname) . " " . substr($request['0']->middlename, 0, 1) . ". " . strtoupper($request['0']->lastname)  ?></u></b>,&nbsp; <b><u><?= $request['0']->age ?></u></b> years of age a Filipino
-                citizen, and a bona fide resident of Purok - <b><u><?= $request['0']->purok_id ?></u></b>, Raw-an, Lala, Lanao del Norte. </p>
+                citizen, and a bona fide resident of Purok - <b><u><?= $request['0']->purok_id ?></u></b>, Raw-an, Lala, Lanao del Norte is known to me as a person with good moral
+                and has no derogatory record filed in this office. </p>
             <br>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This certification is being issued upon the request
                 of the above named person for whatever legal purposes it may serve his/her best.
             </p> <br>
-
             <?php
             // Set the default timezone to Asia/Manila
             date_default_timezone_set('Asia/Manila');
@@ -190,10 +190,12 @@
                 Barangay Office of Raw-an, Lala, Lanao del Norte.
             </p> <br>
 
+
         </div>
         <div class="signature">
             <div class="name">
                 <p><b><u><?= !empty($official) ? strtoupper($official[0]->firstname) . " " . substr($official[0]->middlename, 0, 1) . ". " . strtoupper($official[0]->lastname) : '' ?></u></b></p>
+
             </div>
             <div class="position">
                 <p>Barangay Chairman</p>
@@ -217,7 +219,6 @@
         <div>Printed By: Pedro Penduko <?= $current_time ?> </div>
         <div>&copy; Barangay Raw-an Management System - <?php echo date('Y') ?> Version 1.0</div>
     </div>
-
     <script type="text/javascript">
         window.print();
     </script>

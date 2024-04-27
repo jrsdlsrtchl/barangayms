@@ -7,7 +7,7 @@
         <div class="min-height-200px">
 
             <div class="title pb-20">
-                <h2 class="h3 mb-0">Filter Report</h2>
+                <h2 class="h3 mb-0">View Report</h2>
             </div>
 
             <div class="card-box mb-30">
