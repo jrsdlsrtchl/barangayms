@@ -15,6 +15,7 @@ class BackupController extends Controller
 
         $dump = new Mysqldump('mysql:host=localhost;dbname=brmsdb;port=3306', 'root', '');
         $dump->start('D:/BRMS/brms-backup-' . $date . '.sql');
+        $dump->start('C:/xampp/htdocs/barangayrms/sql/brms-backup-' . $date . '.sql');
 
         if ($dump) {
             $session->setTempdata('success', 'Backup Successfully!', 3);
