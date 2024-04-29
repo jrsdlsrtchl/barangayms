@@ -111,4 +111,11 @@ class OfficialController extends Controller
             return redirect()->to(base_url() . "officialcontroller/official");
         }
     }
+
+    public function printOfficial()
+    {
+        $data['resident'] = $this->official_model->printOfficial();
+
+        return view("print/print_official", $data);
+    }
 }

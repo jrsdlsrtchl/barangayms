@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Barangay Official List Report </title>
+    <style>
+        body {
+            width: 90%;
+            margin: auto;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        h3 {
+            font-size: 15px;
+            margin: 0;
+            text-align: center;
+        }
+
+        table {
+            border: 1px solid #ddd;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 12px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        td,
+        th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            width: auto;
+        }
+
+        table th {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        span {
+            margin-left: 20px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        #no {
+            width: 30px;
+        }
+
+        .print {
+            text-align: center;
+            margin-top: 50px;
+            flex: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-left,
+        .logo-right {
+            flex: auto;
+
+        }
+
+        .logo-left {
+            left: 0px;
+        }
+
+        .logo-right {
+            right: 10px;
+        }
+
+        .logo-left img,
+        .logo-right img {
+            max-width: 100px;
+        }
+
+        .title {
+            font-size: 20px;
+            flex: 2;
+            text-align: center;
+        }
+
+        .footer-wrap {
+            font-size: 10px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .copyright {
+            font-size: 10px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        /* Adjustments for print */
+        @media print {
+            .print {
+                margin-top: 0;
+                flex: auto;
+            }
+
+            .header {
+                margin-bottom: 10px;
+                flex: auto;
+            }
+
+            table {
+                font-size: 10px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="print">
+        <div class="header">
+            <div class="logo-left">
+                <img src="<?= base_url() ?>public/vendors/images/lala-logo.png" alt="Left Logo">
+            </div>
+            <div class="title">
+                <h5>Republic of the Philippines<br>Province of Lanao del Norte<br>Municipality of Lala<br>Barangay Raw-an</h5>
+            </div>
+            <div class="logo-right">
+                <img src="<?= base_url() ?>public/vendors/images/rawan-logo.png" alt="Right Logo">
+            </div>
+        </div>
+
+        <h3>BARANGAY OFFICIAL LIST REPORT</h3>
+        <?php
+        ?>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="center" id="no">#</th>
+                    <th>Name</th>
+                    <th>Purok</th>
+                    <th>Committee</th>
+                    <th>Vice Chair Committee</th>
+                    <th>Position</th>
+                    <th>Term</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $no = 1;
+                foreach ($resident as $res) { ?>
+                    <tr>
+                        <th class="center"><?= $no++ ?></th>
+                        <td class="table-plus"><?= $res->firstname . " " . substr($res->middlename, 0, 1) . ". " . $res->lastname ?></td>
+                        <td>Purok-<?= $res->purok_id; ?></td>
+                        <td><?= $res->committee; ?></td>
+                        <td><?= $res->vice_committee; ?></td>
+                        <td><?= $res->position; ?></td>
+                        <td><?= $res->term; ?></td>
+                        <td><?= $res->status; ?></td>
+                    </tr>
+                <?php }; ?>
+            </tbody>
+        </table>
+        <div class="footer-wrap pd-20 mb-20 card-box copyright">
+
+            <?php
+            date_default_timezone_set('Asia/Manila');
+            $current_time = date("h:i A") ?>
+            <div>Printed By: Pedro Penduko <?= $current_time ?> </div>
+            <div>&copy; Barangay Raw-an Management System - <?php echo date('Y') ?> Version 1.0</div>
+        </div>
+
+        <script type="text/javascript">
+            window.print();
+        </script>
+</body>
+
+</html>

@@ -56,8 +56,10 @@ $page_session = \CodeIgniter\Config\Services::session();
 
             <!-- Data Table -->
             <div class="card-box mb-30">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <h4 class="text-blue mt-2 h4">Barangay Official Information Table</h4>
+                    <a href="<?= base_url() ?>officialcontroller/printofficial" target="_blank" class="btn btn-danger">
+                        <span class="micon bi bi-printer"></span> Print</a>
                 </div>
                 <div class="pb-20 mt-3 mx-3">
                     <table class="data-table table stripe hover nowrap">

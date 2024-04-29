@@ -84,4 +84,32 @@ class OfficialModel extends Model
         $builder = $this->db->table('tbl_official');
         $builder->delete(['off_uniid' => $id]);
     }
+
+    public function printOfficial()
+    {
+        $query = $this->db->query('SELECT *
+                                    FROM tbl_official off
+                                    JOIN tbl_resident res
+                                        ON off.resident_id = res.resident_id
+                                    ORDER BY
+                                        CASE 
+                                            WHEN position = "Captain" THEN 1
+                                            WHEN position = "Councilor-1" THEN 2
+                                            WHEN position = "Councilor-2" THEN 3
+                                            WHEN position = "Councilor-3" THEN 4
+                                            WHEN position = "Councilor-4" THEN 5
+                                            WHEN position = "Councilor-5" THEN 6
+                                            WHEN position = "Councilor-6" THEN 7
+                                            WHEN position = "Councilor-7" THEN 8
+                                            ELSE 4
+                                        END');
+
+        $result = $query->getResult();
+
+        if (!empty($result)) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }

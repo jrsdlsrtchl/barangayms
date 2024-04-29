@@ -217,7 +217,7 @@
                     <h4 class="text-blue mt-2 h4">Residents Information Table</h4>
                 </div>
                 <div class="pb-20 mt-3 mx-3">
-                    <table class="table stripe hover nowrap">
+                    <table class="data-table table stripe hover nowrap">
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort">Last Name</th>

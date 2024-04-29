@@ -9,6 +9,9 @@ class BackupController extends Controller
 {
     public function backupDatabase()
     {
+        // Set the default timezone to Asia/Manila
+        date_default_timezone_set('Asia/Manila');
+
         $session = \CodeIgniter\Config\Services::session();
 
         $date = date('Y-m-d');

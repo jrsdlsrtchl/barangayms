@@ -175,7 +175,10 @@ class AssistanceModel extends Model
     {
         $builder = $this->db->table('tbl_assistance ass')
             ->join('tbl_resident res', 'ass.resident_id = res.resident_id')
-            ->where('ass.type_assistance_id', $id);
+            ->join('tbl_purok pur', 'res.purok_id = pur.purok_id')
+            ->join('tbl_household hos', 'res.household_id = hos.household_id')
+            ->where('ass.type_assistance_id', $id)
+            ->orderBy('res.lastname', 'ASC');
         $result = $builder->get()->getResult();
 
         if (!empty($result)) {

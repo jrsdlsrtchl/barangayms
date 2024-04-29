@@ -56,9 +56,11 @@ $page_session = \CodeIgniter\Config\Services::session();
 
             <!-- Data Table -->
             <div class="card-box mb-30">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <?php if (!empty($assistance)) { ?>
                         <h4 class="text-blue mt-2 h4"><?= $assistance['0']->type_assistance; ?> Assistance Table</h4>
+                        <a href="<?= base_url() ?>assistancecontroller/printAssistance/<?= $assistance['0']->type_assistance_id ?>" target="_blank" class="btn btn-danger">
+                            <span class="micon bi bi-printer"></span> Print</a>
                     <?php } ?>
                 </div>
                 <div class="pb-20 mt-3 mx-3">

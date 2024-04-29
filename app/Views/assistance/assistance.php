@@ -81,8 +81,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <td>
                                         <a href="<?= base_url() ?>assistancecontroller/getAssResidents/<?= $ass->type_assistance_id ?>"><i class=" dw dw-eye"></i> View</a> |
                                         <a href="<?= base_url() ?>assistancecontroller/editAssistance/<?= $ass->type_assistance_id ?>"><i class=" dw dw-edit2"></i> Edit</a> |
-                                        <a href="#" data-toggle="modal" data-target="#deleteAssistance<?= $ass->type_assistance_id  ?>"><i class="dw dw-delete-3"></i> Delete</a> |
-                                        <a href="<?= base_url() ?>assistancecontroller/printAssistance/<?= $ass->type_assistance_id ?>"><i class=" dw dw-print"></i> Print</a>
+                                        <a href="#" data-toggle="modal" data-target="#deleteAssistance<?= $ass->type_assistance_id  ?>"><i class="dw dw-delete-3"></i> Delete</a>
                                     </td>
                                 </tr>
                             <?php };

@@ -225,7 +225,9 @@ class AssistanceController extends Controller
 
     public function printAssistance($id)
     {
-        $data = $this->assistance_model->printAssistance($id);
-        print_r($data);
+        $data['resident'] = $this->assistance_model->printAssistance($id);
+        $data['assistance'] = $this->assistance_model->getAssName($id);
+
+        return view("print/print_assistance", $data);
     }
 }
