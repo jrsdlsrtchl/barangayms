@@ -63,17 +63,17 @@ class HouseholdController extends Controller
         return view("household/view_household", $data);
     }
 
-    public function deleteHousehold($id)
+    public function deleteHousehold($id, $purID)
     {
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->household_model->deleteHousehold($id);
 
         if (!$delete) {
             $session->setTempdata('success', 'Deleted Successfully!', 3);
-            return redirect()->to(base_url() . "HouseholdController/household/1");
+            return redirect()->to(base_url() . "HouseholdController/household/$purID");
         } else {
             $session->setTempdata('error', 'Something went wrong!', 3);
-            return redirect()->to(base_url() . "HouseholdController/household/1");
+            return redirect()->to(base_url() . "HouseholdController/household/$purID");
         }
     }
 }

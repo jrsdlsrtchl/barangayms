@@ -8,7 +8,6 @@ class UserModel extends Model
 {
     public function getLoggedInUserData($resident_id)
     {
-
         $query = $this->db->table('tbl_resident')->select('*');
         $query->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
         $query->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
@@ -118,6 +117,57 @@ class UserModel extends Model
         $builder->where('resident_id', $id);
         $builder->orderBy('activity_id', 'DESC');
         $builder->limit(10);
+        $result = $builder->get()->getResult();
+
+        if (count($result) > 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function getPassword($resident_id)
+    {
+        $query = $this->db->table('tbl_resident');
+        $query->join('tbl_user', 'tbl_resident.resident_id = tbl_user.resident_id');
+        $query->where('tbl_user.resident_id', $resident_id);
+        $result = $query->get()->getRow(); // Changed getResult() to getRow()
+
+        return $result; // Return the row directly, no need for count()
+    }
+
+
+    public function updatePassword($newpass, $id)
+    {
+        $this->db->table('tbl_user')
+            ->where('resident_id', $id)
+            ->update(['password' => $newpass]);
+
+        if ($this->db->affectedRows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateImage($path, $id)
+    {
+        $this->db->table('tbl_resident')
+            ->where('resident_id', $id)
+            ->update(['image' => $path]);
+
+        if ($this->db->affectedRows() >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getAssistance($id)
+    {
+        $builder = $this->db->table('tbl_assistance ass')
+            ->join('tbl_type_assistance type', 'ass.type_assistance_id = type.type_assistance_id')
+            ->where('ass.resident_id', $id);
         $result = $builder->get()->getResult();
 
         if (count($result) > 0) {

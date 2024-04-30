@@ -24,7 +24,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'sidebar' => \App\Filters\SidebarMiddleware::class
+        'sidebar' => \App\Filters\SidebarMiddleware::class,
     ];
 
     /**
@@ -38,7 +38,7 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
-            'sidebar'
+            'sidebar',
 
         ],
         'after' => [

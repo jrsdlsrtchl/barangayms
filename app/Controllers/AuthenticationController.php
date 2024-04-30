@@ -123,4 +123,13 @@ class AuthenticationController extends Controller
 
         return redirect()->to(base_url() . 'AuthenticationController/login');
     }
+
+    public function logoutAdmin()
+    {
+
+        session()->remove('logged_admin');
+        session()->destroy();
+
+        return redirect()->to(base_url() . 'AuthenticationController/login');
+    }
 }

@@ -68,4 +68,22 @@ class RequestDocumentModel extends Model
             return false;
         }
     }
+
+    public function notification($data)
+    {
+        $this->db->table('tbl_notification')->insert($data);
+        if ($this->db->affectedRows() == 1) {
+            return $this->db->insertID();
+        } else {
+            return false;
+        }
+    }
+
+    public function getImage($id)
+    {
+        $builder = $this->db->table('tbl_resident')
+            ->select('image')
+            ->where('resident_id', $id);
+        return $builder->get()->getRow();
+    }
 }

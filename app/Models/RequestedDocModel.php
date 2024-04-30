@@ -117,4 +117,32 @@ class RequestedDocModel extends Model
 
         return $result;
     }
+
+    public function getPrintedBy($id)
+    {
+        $builder = $this->db->table('tbl_user use')
+            ->join('tbl_resident res', 'use.resident_id = res.resident_id')
+            ->where('use.resident_id', $id);
+        $result = $builder->get()->getResult();
+
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    public function getNotification()
+    {
+        $builder = $this->db->table('tbl_notification notif')
+            ->join('tbl_resident res', 'notif.resident_id = res.resident_id')
+            ->join('tbl_certificate cert', 'notif.doc_type = cert.certificate_id');
+        $result = $builder->get()->getResult();
+
+        if ($result) {
+            return $result;
+        } else {
+            return [];
+        }
+    }
 }

@@ -4,19 +4,27 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\DashboardModel;
+use App\Models\RequestedDocModel;
 
 class DashboardController extends Controller
 {
     public $dashboard_model;
+    public $notification;
     public function __construct()
     {
         $this->dashboard_model = new DashboardModel();
+        $this->notification = new RequestedDocModel();
     }
 
     public function dashboard()
     {
+        // $admin_id = session()->get('logged_admin');
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->notification->getNotification();
 
         $data['population'] = $this->dashboard_model->population();
         $data['male'] = $this->dashboard_model->male();

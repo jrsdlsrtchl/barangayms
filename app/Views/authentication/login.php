@@ -81,7 +81,7 @@ $page_session = \CodeIgniter\Config\Services::session();
 
         setTimeout(function() {
             $(".text-danger").hide();
-        }, 4000);
+        }, 3000);
     </script>
 
 </head>
@@ -96,7 +96,7 @@ $page_session = \CodeIgniter\Config\Services::session();
             </div>
             <div class="login-menu">
                 <ul>
-                    <li><a href="register.html">Register</a></li>
+                    <li><a href="register.html">Home</a></li>
                 </ul>
             </div>
         </div>

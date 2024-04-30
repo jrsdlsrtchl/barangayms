@@ -187,4 +187,18 @@ class AssistanceModel extends Model
             return [];
         }
     }
+
+    public function getPrintedBy($id)
+    {
+        $builder = $this->db->table('tbl_user use')
+            ->join('tbl_resident res', 'use.resident_id = res.resident_id')
+            ->where('use.resident_id', $id);
+        $result = $builder->get()->getResult();
+
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }

@@ -29,7 +29,7 @@
                 </li>
 
                 <li>
-                    <a href="#" class="dropdown-toggle no-arrow">
+                    <a href="<?= base_url() ?>usercontroller/resetpassword" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-key"></span><span class="mtext">Reset Password</span>
                     </a>
                 </li>

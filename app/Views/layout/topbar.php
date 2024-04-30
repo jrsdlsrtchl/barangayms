@@ -3,13 +3,6 @@
         <div class="menu-icon bi bi-list"></div>
     </div>
     <div class="header-right">
-        <div class="dashboard-setting user-notification">
-            <div class="dropdown">
-                <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
-                    <i class="dw dw-settings2"></i>
-                </a>
-            </div>
-        </div>
         <div class="user-notification">
             <div class="dropdown">
                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
@@ -19,66 +12,58 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="notification-list mx-h-350 customscroll">
                         <ul>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/img.jpg" alt="" />
-                                    <h3>John Doe</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/photo1.jpg" alt="" />
-                                    <h3>Lea R. Frith</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/photo2.jpg" alt="" />
-                                    <h3>Erik L. Richards</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/photo3.jpg" alt="" />
-                                    <h3>John Doe</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/photo4.jpg" alt="" />
-                                    <h3>Renee I. Hansen</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/img.jpg" alt="" />
-                                    <h3>Vicki M. Coleman</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
+                            <?php foreach ($notification as $notif) { ?>
+                                <li>
+                                    <a href="<?= base_url() ?>RequestedDocController/getRequest/<?= $notif->certificate_id ?>">
+                                        <div class="img-container-3">
+                                            <?php if ($notif->image == '') { ?>
+                                                <?php if ($notif->gender == 'Male') { ?>
+                                                    <img src="<?= base_url(); ?>public/vendors/images/male.png" alt="" class="avatar-photo" />
+                                                <?php } elseif ($notif->gender == 'Female') { ?>
+                                                    <img src="<?= base_url(); ?>public/vendors/images/female.png" alt="" class="avatar-photo" />
+                                                <?php } else { ?>
+                                                    <img src="<?= base_url(); ?>public/vendors/images/nogender.png" alt="" class="avatar-photo" />
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <img src="<?= $notif->image_notif ?>" alt="" />
+                                            <?php } ?>
+                                        </div>
+                                        <h3> <?= $notif->firstname . " " . substr($notif->middlename, 0, 1) . ". " . $notif->lastname ?> </h3>
+                                        <p>
+                                            <?= $notif->action ?> <b> <?= $notif->certificate_type ?></b>
+                                        </p>
+                                        <div class="text-muted">
+                                            <small>
+                                                <?php
+                                                date_default_timezone_set('Asia/Manila');
+
+                                                // Get the time from the database
+                                                $date_db = new DateTime($notif->date_notif);
+                                                // Get the current time
+                                                $current_time = new DateTime();
+                                                // Calculate the difference
+                                                $interval = $current_time->diff($date_db);
+
+                                                // Output the time difference
+                                                if ($interval->y > 0) {
+                                                    echo $interval->format('%y years ago');
+                                                } elseif ($interval->m > 0) {
+                                                    echo $interval->format('%m months ago');
+                                                } elseif ($interval->d > 0) {
+                                                    echo $interval->format('%d days ago');
+                                                } elseif ($interval->h > 0) {
+                                                    echo $interval->format('%h hours ago');
+                                                } elseif ($interval->i > 0) {
+                                                    echo $interval->format('%i minutes ago');
+                                                } else {
+                                                    echo 'Just now';
+                                                }
+                                                ?>
+                                            </small>
+                                        </div>
+                                    </a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -87,14 +72,14 @@
         <div class="user-info-dropdown mr-3 ">
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-name mr-3">Ross C. Lopez</span>
                     <span class="user-icon">
                         <img src="<?= base_url() ?>public/vendors/images/photo1.jpg" alt="" />
                     </span>
-                    <span class="user-name">Ross C. Lopez</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
-                    <a class="dropdown-item" href="#"><i class="dw dw-settings2"></i> Setting</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar" href="faq.html"><i class="dw dw-settings2"></i> Settings</a>
                     <a class="dropdown-item" href="#"><i class="dw dw-help"></i> Help</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutAdminModal"><i class="dw dw-logout"></i> Log Out</a>
                 </div>
@@ -117,7 +102,7 @@
             <div class="modal-footer">
                 <div class="text-center">
                     <button class="flex-fill btn btn-secondary p-2 rounded-0" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="flex-fill btn btn-danger p-2 rounded-0" href="<?= base_url(); ?>AdminController/logoutAdmin">Logout</a>
+                    <a class="flex-fill btn btn-danger p-2 rounded-0" href="<?= base_url(); ?>AuthenticationController/logoutAdmin">Logout</a>
                 </div>
             </div>
         </div>

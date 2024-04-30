@@ -8,6 +8,16 @@
     setTimeout(function() {
         $('#hidemessage').slideUp('slow');
     }, 3000);
+
+    setTimeout(function() {
+        $(".text-danger").slideUp('slow');
+    }, 3000);
+</script>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
 </script>
 
 <!-- Javascript -->

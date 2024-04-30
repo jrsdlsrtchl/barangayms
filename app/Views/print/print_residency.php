@@ -107,9 +107,6 @@
             margin-top: 20px;
         }
 
-        .signature {
-            margin-top: 60px;
-        }
 
         @media print {
             .print {
@@ -207,15 +204,17 @@
     <?php
     ?>
 
-    <div class="footer-wrap card-box" id="note">
-        <div class="col-auto"><br><br><br><br>Note: This certification is validated with an official seal and does not have alteration.
-            In case of alteration, it is countersighted by the issuing officer.
+    <div class="end-footer">
+        <div class="footer-wrap card-box" id="note">
+            <div class="col-auto"><br><br><br><br>Note: This certification is validated with an official seal and does not have alteration.
+                In case of alteration, it is countersighted by the issuing officer.
+            </div>
         </div>
-    </div>
-    <div class="footer-wrap pd-20 mb-20 card-box copyright">
-        <?php $current_time = date("h:i A") ?>
-        <div>Printed By: Pedro Penduko <?= $current_time ?> </div>
-        <div>&copy; Barangay Raw-an Management System - <?php echo date('Y') ?> Version 1.0</div>
+        <div class="footer-wrap pd-20 mb-20 card-box copyright">
+            <?php $current_time = date("h:i A") ?>
+            <div>Printed By: <?= !empty($printed) ? strtoupper($printed[0]->firstname) . " " . substr($printed[0]->middlename, 0, 1) . ". " . strtoupper($printed[0]->lastname) : '' ?>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<?= $current_time ?> </div>
+            <div>&copy; Barangay Raw-an Management System - <?php echo date('Y') ?> Version 1.0</div>
+        </div>
     </div>
 
     <script type="text/javascript">

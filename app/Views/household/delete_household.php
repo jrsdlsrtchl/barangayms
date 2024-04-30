@@ -12,7 +12,7 @@
                 <div class="modal-body">Are you sure you want to delete this household?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary btn-sm" href="<?= base_url() ?>householdcontroller/deletehousehold/<?= $house->household_id ?>">Delete</a>
+                    <a class="btn btn-primary btn-sm" href="<?= base_url() ?>householdcontroller/deletehousehold/<?= $house->household_id ?>/<?= $house->purok_id ?>">Delete</a>
                 </div>
             </div>
         </div>

@@ -30,10 +30,12 @@ class RequestedDocController extends Controller
 
         $session = \CodeIgniter\Config\Services::session();
 
+        $admin_id = session()->get('logged_admin');
+
         if ($this->request->getMethod() == 'post') {
             $data = [
                 'request_status' => $this->request->getVar('request_status'),
-                'official_id' => $this->request->getVar('official_id'),
+                'official_id' => $admin_id
             ];
 
             $status = $this->requested_model->updateRequest($data, $id);
@@ -113,14 +115,20 @@ class RequestedDocController extends Controller
         $session = \CodeIgniter\Config\Services::session();
 
         if ($certID == 1) {
+            $admin_id = session()->get('logged_admin');
+            $data['printed'] = $this->requested_model->getPrintedBy($admin_id);
             $data['official'] = $this->requested_model->getCaptain();
             $data['request'] = $this->brgyResidency($reqID);
             return view("print/print_residency", $data);
         } elseif ($certID == 2) {
+            $admin_id = session()->get('logged_admin');
+            $data['printed'] = $this->requested_model->getPrintedBy($admin_id);
             $data['official'] = $this->requested_model->getCaptain();
             $data['request'] = $this->brgyCertification($reqID);
             return view("print/print_certification", $data);
         } elseif ($certID == 3) {
+            $admin_id = session()->get('logged_admin');
+            $data['printed'] = $this->requested_model->getPrintedBy($admin_id);
             $data['official'] = $this->requested_model->getCaptain();
             $data['request'] = $this->brgyIndigency($reqID);
             return view("print/print_indigency", $data);

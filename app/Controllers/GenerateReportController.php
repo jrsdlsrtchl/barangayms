@@ -27,7 +27,6 @@ class GenerateReportController extends Controller
 
     public function generateReport()
     {
-
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
 
@@ -72,6 +71,9 @@ class GenerateReportController extends Controller
 
     public function print()
     {
+        $admin_id = session()->get('logged_admin');
+        $data['printed'] = $this->report_model->getPrintedBy($admin_id);
+
         $data['purok'] = $this->report_model->getPurok();
         $data['household'] = $this->report_model->getHousehold();
 

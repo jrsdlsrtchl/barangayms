@@ -176,7 +176,7 @@
             <?php
             date_default_timezone_set('Asia/Manila');
             $current_time = date("h:i A") ?>
-            <div>Printed By: Pedro Penduko <?= $current_time ?> </div>
+            <div>Printed By:<?= !empty($printed) ? strtoupper($printed[0]->firstname) . " " . substr($printed[0]->middlename, 0, 1) . ". " . strtoupper($printed[0]->lastname) : '' ?>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<?= $current_time ?> </div>
             <div>&copy; Barangay Raw-an Management System - <?php echo date('Y') ?> Version 1.0</div>
         </div>
 

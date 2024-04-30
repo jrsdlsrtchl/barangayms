@@ -225,6 +225,9 @@ class AssistanceController extends Controller
 
     public function printAssistance($id)
     {
+        $admin_id = session()->get('logged_admin');
+        $data['printed'] = $this->assistance_model->getPrintedBy($admin_id);
+
         $data['resident'] = $this->assistance_model->printAssistance($id);
         $data['assistance'] = $this->assistance_model->getAssName($id);
 

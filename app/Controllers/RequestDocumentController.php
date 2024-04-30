@@ -47,18 +47,27 @@ class RequestDocumentController extends Controller
 
         if ($this->request->getMethod() == 'post') {
             $resident_id = session()->get('logged_resident');
+            $action = "requested a";
+            $image = $this->request_model->getImage($resident_id);
+            $image_notif = $image->image;
             $tracking_id = md5(str_shuffle('abcsefghijklmonpqrtuvwxyz' . time()));
             $data = [
                 'resident_id' => $resident_id,
                 'purpose' => $this->request->getVar('purpose'),
                 'certificate_id' => $this->request->getVar('certificate_id'),
                 'tracking_id' => $tracking_id,
-
+            ];
+            $data_notif = [
+                'resident_id' => $resident_id,
+                'action' => $action,
+                'image_notif' => $image_notif,
+                'doc_type' => $this->request->getVar('certificate_id'),
             ];
 
             $status = $this->request_model->addRequest($data);
+            $notif = $this->request_model->notification($data_notif);
 
-            if ($status) {
+            if ($status && $notif) {
                 $session->setTempdata('success', 'Requested Successfully!', 3);
                 return redirect()->to(base_url() . "RequestDocumentController/request");
             } else {

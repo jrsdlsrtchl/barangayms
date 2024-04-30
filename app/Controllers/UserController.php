@@ -33,7 +33,9 @@ class UserController extends Controller
     public function manageProfile()
     {
         $resident_id = session()->get('logged_resident');
+
         $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
+        $data['assistance'] = $this->user_model->getAssistance($resident_id);
         $data['purok'] = $this->user_model->getPurok();
         $data['household'] = $this->user_model->getHousehold();
 
@@ -85,5 +87,96 @@ class UserController extends Controller
         }
 
         return view("resident/add_resident");
+    }
+
+    public function resetPassword()
+    {
+        $data['validation'] = null;
+        $session = \Config\Services::session();
+        $resident_id = session()->get('logged_resident');
+        $userdata = $this->user_model->getPassword($resident_id);
+
+        if ($this->request->getMethod() == 'post') {
+            $rules = [
+                'oldpass' => 'required',
+                'newpass' => [
+                    'rules' => 'required|min_length[7]|max_length[15]',
+                    'errors' => [
+                        'required' => 'Password is required',
+                        'min_length' => 'Password must contain 7 characters',
+                        'max_length' => 'Password must not exceed 15 characters'
+                    ],
+                ],
+                'confirmpass' => [
+                    'rules' => 'required|matches[newpass]',
+                    'errors' => [
+                        'required' => 'Password is required',
+                        'matches' => 'Password do not match',
+                    ],
+                ],
+            ];
+
+            if ($this->validate($rules)) {
+                $oldpass = $this->request->getVar('oldpass');
+                $newpass = $this->request->getVar('newpass');
+
+                if ($oldpass == $userdata->password) {
+                    if ($this->user_model->updatePassword($newpass, $resident_id)) {
+                        $session->setTempdata('success', 'Password updated successfully!', 3);
+                        return redirect()->to(current_url());
+                    } else {
+                        $session->setTempdata('error', 'Something went wrong! Try again!', 3);
+                        return redirect()->to(current_url());
+                    }
+                } else {
+                    $session->setTempdata('error', 'Invalid old password!', 3);
+                    return redirect()->to(current_url());
+                }
+            } else {
+                $data['validation'] = $this->validator;
+            }
+        }
+
+        return view("user/reset_password", $data);
+    }
+
+    public function getImage()
+    {
+        $resident_id = session()->get('logged_resident');
+        $data['purok'] = $this->user_model->getPurok();
+        $data['household'] = $this->user_model->getHousehold();
+        $data['assistance'] = $this->user_model->getAssistance($resident_id);
+        $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
+        if ($this->request->getMethod() == 'post') {
+            $rules = [
+                'image' => 'uploaded[image]|max_size[image,2024]|ext_in[image,png,jpg,gif]',
+            ];
+            if ($this->validate($rules)) {
+                $file = $this->request->getFile('image');
+                if ($file->isValid() && !$file->hasMoved()) {
+                    if ($file->move(FCPATH . 'public/profile_pics', $file->getRandomName())) {
+                        $path = base_url() . '/public/profile_pics/' . $file->getName();
+                        $status = $this->user_model->updateImage($path, $resident_id);
+                        if ($status == true) {
+                            session()->setTempdata('success', 'Image uploaded successfully', 3);
+                            return redirect()->to(current_url());
+                        } else {
+                            session()->setTempdata('error', 'Something went wrong!', 3);
+                            return redirect()->to(current_url());
+                        }
+                    } else {
+                        session()->setTempdata('error', $file->getErrorString(), 3);
+                        return redirect()->to(current_url());
+                    }
+                } else {
+                    session()->setTempdata('error', 'Uploaded invalid file', 3);
+                    return redirect()->to(current_url());
+                }
+            } else {
+                session()->setTempdata('error', 'Invalid file upload!', 3);
+                return redirect()->to(current_url());
+            }
+        }
+        return view("user/manage_profile", $data);
     }
 }

@@ -114,6 +114,8 @@ class OfficialController extends Controller
 
     public function printOfficial()
     {
+        $admin_id = session()->get('logged_admin');
+        $data['printed'] = $this->official_model->getPrintedBy($admin_id);
         $data['resident'] = $this->official_model->printOfficial();
 
         return view("print/print_official", $data);
