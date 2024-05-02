@@ -16,8 +16,20 @@ class UserManagementController extends Controller
 
     public function user()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->usermanage_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->usermanage_model->getNotification();
 
         $data['useraccount'] = $this->usermanage_model->getUser();
 
@@ -26,10 +38,22 @@ class UserManagementController extends Controller
 
     public function addUser()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $data = [];
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->usermanage_model->getLoggedInUserData($admin_id);
 
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->usermanage_model->getNotification();
 
         $data['resident'] = $this->usermanage_model->getResident();
 
@@ -71,6 +95,10 @@ class UserManagementController extends Controller
 
     public function deleteUser($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->usermanage_model->deleteUser($id);
 

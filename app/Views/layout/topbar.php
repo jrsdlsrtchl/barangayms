@@ -25,26 +25,22 @@
                                                     <img src="<?= base_url(); ?>public/vendors/images/nogender.png" alt="" class="avatar-photo" />
                                                 <?php } ?>
                                             <?php } else { ?>
-                                                <img src="<?= $notif->image_notif ?>" alt="" />
+                                                <img src="<?= $notif->image_notif ?>" alt="" class="avatar-photo" />
                                             <?php } ?>
                                         </div>
                                         <h3> <?= $notif->firstname . " " . substr($notif->middlename, 0, 1) . ". " . $notif->lastname ?> </h3>
                                         <p>
-                                            <?= $notif->action ?> <b> <?= $notif->certificate_type ?></b>
+                                            requested a <b> <?= $notif->certificate_type ?></b>
                                         </p>
                                         <div class="text-muted">
                                             <small>
                                                 <?php
                                                 date_default_timezone_set('Asia/Manila');
 
-                                                // Get the time from the database
                                                 $date_db = new DateTime($notif->date_notif);
-                                                // Get the current time
                                                 $current_time = new DateTime();
-                                                // Calculate the difference
                                                 $interval = $current_time->diff($date_db);
 
-                                                // Output the time difference
                                                 if ($interval->y > 0) {
                                                     echo $interval->format('%y years ago');
                                                 } elseif ($interval->m > 0) {
@@ -72,13 +68,25 @@
         <div class="user-info-dropdown mr-3 ">
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                    <span class="user-name mr-3">Ross C. Lopez</span>
+                    <span class="user-name mr-3"> <b>STAFF</b> | <?= $userdata['0']->firstname . " " . " " . $userdata['0']->lastname  ?></span>
                     <span class="user-icon">
-                        <img src="<?= base_url() ?>public/vendors/images/photo1.jpg" alt="" />
+
+                        <?php if ($userdata['0']->image == '') { ?>
+                            <?php if ($userdata['0']->gender == 'Male') { ?>
+                                <img src="<?= base_url(); ?>public/vendors/images/male.png" alt="" class="avatar-photo" />
+                            <?php } elseif ($userdata['0']->gender == 'Female') { ?>
+                                <img src="<?= base_url(); ?>public/vendors/images/female.png" alt="" class="avatar-photo" />
+                            <?php } else { ?>
+                                <img src="<?= base_url(); ?>public/vendors/images/nogender.png" alt="" class="avatar-photo" />
+                            <?php } ?>
+                        <?php } else { ?>
+                            <img src="<?= $userdata['0']->image ?>" alt="" class="avatar-photo" />
+                        <?php } ?>
+
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" href="<?= base_url() ?>usercontroller/admin"><i class="dw dw-user1"></i> Profile</a>
                     <a class="dropdown-item" class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar" href="faq.html"><i class="dw dw-settings2"></i> Settings</a>
                     <a class="dropdown-item" href="#"><i class="dw dw-help"></i> Help</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutAdminModal"><i class="dw dw-logout"></i> Log Out</a>
@@ -101,8 +109,8 @@
             <div class="modal-body mx-3 mb-4"> Are you sure you want to go out? </div>
             <div class="modal-footer">
                 <div class="text-center">
-                    <button class="flex-fill btn btn-secondary p-2 rounded-0" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="flex-fill btn btn-danger p-2 rounded-0" href="<?= base_url(); ?>AuthenticationController/logoutAdmin">Logout</a>
+                    <button class="flex-fill btn btn-secondary p-2" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="flex-fill btn btn-danger p-2" href="<?= base_url(); ?>AuthenticationController/logoutAdmin">Logout</a>
                 </div>
             </div>
         </div>

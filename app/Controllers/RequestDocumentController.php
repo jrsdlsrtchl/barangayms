@@ -16,6 +16,19 @@ class RequestDocumentController extends Controller
 
     public function request()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        //Logged Resident
+        $resident_id = session()->get('logged_resident');
+
+        //Notification top-bar
+        $data['notification'] = $this->request_model->getNotification($resident_id);
+
+        //Get User Information
+        $data['userdata'] = $this->request_model->getLoggedInUserData($resident_id);
+
         $resident_id = session()->get('logged_resident');
         $data['request'] = $this->request_model->getRequest($resident_id);
         $data['document'] = $this->request_model->getDocType();
@@ -25,6 +38,19 @@ class RequestDocumentController extends Controller
 
     public function getApproved()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        //Logged Resident
+        $resident_id = session()->get('logged_resident');
+
+        //Notification top-bar
+        $data['notification'] = $this->request_model->getNotification($resident_id);
+
+        //Get User Information
+        $data['userdata'] = $this->request_model->getLoggedInUserData($resident_id);
+
         $resident_id = session()->get('logged_resident');
         $data['request'] = $this->request_model->getApproved($resident_id);
         $data['document'] = $this->request_model->getDocType();
@@ -34,6 +60,19 @@ class RequestDocumentController extends Controller
 
     public function getCancelled()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        //Logged Resident
+        $resident_id = session()->get('logged_resident');
+
+        //Notification top-bar
+        $data['notification'] = $this->request_model->getNotification($resident_id);
+
+        //Get User Information
+        $data['userdata'] = $this->request_model->getLoggedInUserData($resident_id);
+
         $resident_id = session()->get('logged_resident');
         $data['request'] = $this->request_model->getCancelled($resident_id);
         $data['document'] = $this->request_model->getDocType();
@@ -43,11 +82,14 @@ class RequestDocumentController extends Controller
 
     public function addRequest()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
 
         if ($this->request->getMethod() == 'post') {
             $resident_id = session()->get('logged_resident');
-            $action = "requested a";
             $image = $this->request_model->getImage($resident_id);
             $image_notif = $image->image;
             $tracking_id = md5(str_shuffle('abcsefghijklmonpqrtuvwxyz' . time()));
@@ -59,7 +101,6 @@ class RequestDocumentController extends Controller
             ];
             $data_notif = [
                 'resident_id' => $resident_id,
-                'action' => $action,
                 'image_notif' => $image_notif,
                 'doc_type' => $this->request->getVar('certificate_id'),
             ];

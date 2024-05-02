@@ -71,7 +71,6 @@ class AuthenticationController extends Controller
                             $this->session->set('logged_resident', $userdata['resident_id']);
                             return redirect()->to(base_url() . 'UserController/user');
                         } elseif ($usertype == 'Admin' && $usertype == $userdata['usertype']) {
-                            // echo "Welcome Admin";
                             $this->session->set('logged_admin', $userdata['resident_id']);
                             return redirect()->to(base_url() . 'DashboardController/dashboard');
                         } else {

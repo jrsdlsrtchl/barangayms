@@ -4,12 +4,12 @@
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content rounded">
                 <div class="modal-header">
-                    <h5 class="modal-title font-weight-bold ml-4" id="formviewResidentLabel"> Add Request</h5>
+                    <h5 class="modal-title font-weight-bold ml-4" id="formviewResidentLabel"> Update Request</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="<?= base_url() ?>RequestedDocController/updateRequest/<?= $req->request_id; ?>/<?= $req->certificate_id ?>">
+                <form method="post" action="<?= base_url() ?>RequestedDocController/updateRequest/<?= $req->request_id; ?>/<?= $req->certificate_id ?>/<?= $req->resident_id ?>">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row modal-body mt-2 mx-3">
@@ -17,8 +17,8 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label>Status:</label>
-                                        <select name="request_status" class="form-control">
-                                            <option value="Pending" selected>Pending</option>
+                                        <select name="request_status" class="form-control" required>
+                                            <option value="" hidden selected>Pending</option>
                                             <option value="Approved">Approved</option>
                                             <option value="Cancelled">Cancelled</option>
                                         </select>

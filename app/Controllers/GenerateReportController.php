@@ -16,8 +16,20 @@ class GenerateReportController extends Controller
 
     public function report()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->report_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->report_model->getNotification();
 
         $data['purok'] = $this->report_model->getPurok();
         $data['household'] = $this->report_model->getHousehold();
@@ -27,8 +39,20 @@ class GenerateReportController extends Controller
 
     public function generateReport()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->report_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->report_model->getNotification();
 
         $data['purok'] = $this->report_model->getPurok();
         $data['household'] = $this->report_model->getHousehold();
@@ -60,8 +84,20 @@ class GenerateReportController extends Controller
 
     public function printReport()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->report_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->report_model->getNotification();
 
         $data['purok'] = $this->report_model->getPurok();
         $data['household'] = $this->report_model->getHousehold();
@@ -71,6 +107,10 @@ class GenerateReportController extends Controller
 
     public function print()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $admin_id = session()->get('logged_admin');
         $data['printed'] = $this->report_model->getPrintedBy($admin_id);
 

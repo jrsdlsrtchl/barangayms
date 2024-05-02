@@ -6,6 +6,33 @@ use CodeIgniter\Model;
 
 class RequestedDocModel extends Model
 {
+    public function getNotification()
+    {
+        $builder = $this->db->table('tbl_notification notif')
+            ->join('tbl_resident res', 'notif.resident_id = res.resident_id')
+            ->join('tbl_certificate cert', 'notif.doc_type = cert.certificate_id')
+            ->groupBy('notif.notif_id', 'DESC');
+        $result = $builder->get()->getResult();
+
+        if ($result) {
+            return $result;
+        } else {
+            return [];
+        }
+    }
+
+    public function getLoggedInUserData($resident_id)
+    {
+        $query = $this->db->table('tbl_resident')->select('*');
+        $query->join('tbl_purok', 'tbl_resident.purok_id = tbl_purok.purok_id');
+        $query->join('tbl_household', 'tbl_resident.household_id = tbl_household.household_id');
+        $query->where('resident_id', $resident_id);
+        $result = $query->get()->getResult();
+
+        return $result;
+    }
+
+
     public function getRequest($id)
     {
         $builder = $this->db->table('tbl_requested_cert');
@@ -132,17 +159,13 @@ class RequestedDocModel extends Model
         }
     }
 
-    public function getNotification()
+    public function userNotifs($data)
     {
-        $builder = $this->db->table('tbl_notification notif')
-            ->join('tbl_resident res', 'notif.resident_id = res.resident_id')
-            ->join('tbl_certificate cert', 'notif.doc_type = cert.certificate_id');
-        $result = $builder->get()->getResult();
-
-        if ($result) {
-            return $result;
+        $this->db->table('tbl_notif_user')->insert($data);
+        if ($this->db->affectedRows() == 1) {
+            return $this->db->insertID();
         } else {
-            return [];
+            return false;
         }
     }
 }

@@ -70,7 +70,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($userdata as $user) { ?>
+                            <?php foreach ($userdataa as $user) { ?>
                                 <tr>
                                     <td> <?= $user->resfirstname . " " . substr($user->resmiddlename, 0, 1) . ". " . $user->reslastname ?> </td>
                                     <td>

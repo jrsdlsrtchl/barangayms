@@ -16,8 +16,20 @@ class ResidentController extends Controller
 
     public function resident()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->resident_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->resident_model->getNotification();
 
         $data['resident'] = $this->resident_model->getResidents();
 
@@ -26,8 +38,20 @@ class ResidentController extends Controller
 
     public function viewProfile($id)
     {
-        // Sidebar list of certificates
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->resident_model->getLoggedInUserData($admin_id);
+
+        //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->resident_model->getNotification();
 
         $data['resident'] = $this->resident_model->getResidentsProfile($id);
         $data['assistance'] = $this->resident_model->getAssistance($id);
@@ -37,9 +61,22 @@ class ResidentController extends Controller
 
     public function addResident()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $data = [];
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->resident_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->resident_model->getNotification();
 
         $data['purok'] = $this->resident_model->getPurok();
         $data['household'] = $this->resident_model->getHousehold();
@@ -92,8 +129,23 @@ class ResidentController extends Controller
 
     public function editResident($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $data = [];
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->resident_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->resident_model->getNotification();
+
         $data['document'] = $this->request->data;
         $data['resident'] = $this->resident_model->getResidentsID($id);
         $data['purok'] = $this->resident_model->getPurok();
@@ -144,6 +196,10 @@ class ResidentController extends Controller
 
     public function deleteResident($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->resident_model->deleteResident($id);
         $deleteUser = $this->resident_model->deleteUser($id);

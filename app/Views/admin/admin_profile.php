@@ -2,7 +2,7 @@
 $page_session = \CodeIgniter\Config\Services::session();
 ?>
 
-<?= $this->extend("layout/base_user") ?>
+<?= $this->extend("layout/base") ?>
 
 <?= $this->section("content") ?>
 
@@ -52,7 +52,6 @@ $page_session = \CodeIgniter\Config\Services::session();
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
                     <div class="pd-20 card-box">
                         <div class="profile-photo">
-                            <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i class="fa fa-pencil"></i></a>
 
                             <?php if (!empty($userdata) && isset($userdata['0']->gender) && isset($userdata['0']->image)) {
                                 $gender = $userdata['0']->gender;
@@ -113,6 +112,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <p class="text-center text-muted font-14">
                             <?= $userdata['0']->mobile ?>
                         </p>
+                        <p class="text-center"><b>BRGY. STAFF ACCOUNT</b></p>
 
                         <div class="profile-info">
                             <h5 class="mb-20 h5 text-blue">Assistace</h5>
@@ -138,15 +138,11 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <li class="nav-item">
                                         <a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Personal Data</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#editprofile" role="tab">Edit Profile</a>
-                                    </li>
+
                                 </ul>
                                 <div class="tab-content">
 
                                     <?= $this->include("user/view_profile") ?>
-
-                                    <?= $this->include("user/edit_profile") ?>
 
                                 </div>
                             </div>

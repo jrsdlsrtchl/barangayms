@@ -18,8 +18,19 @@ class UserController extends Controller
 
     public function user()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        //Logged Resident
         $resident_id = session()->get('logged_resident');
+
+        //Notification top-bar
+        $data['notification'] = $this->user_model->getNotification($resident_id);
+
+        //Get User Information
         $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
+
         $data['pending'] = $this->user_model->countPending($resident_id);
         $data['approved'] = $this->user_model->countApproved($resident_id);
         $data['cancelled'] = $this->user_model->countCancelled($resident_id);
@@ -30,9 +41,37 @@ class UserController extends Controller
         return view("user/user_home", $data);
     }
 
+    public function admin()
+    {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        //Get Admin Information
+        $admin_id = session()->get('logged_admin');
+
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
+        //Notification top-bar
+        $data['notification'] = $this->user_model->adminNotification();
+
+        $data['userdata'] = $this->user_model->getLoggedInUserData($admin_id);
+        $data['assistance'] = $this->user_model->getAssistance($admin_id);
+
+        return view("admin/admin_profile", $data);
+    }
+
     public function manageProfile()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $resident_id = session()->get('logged_resident');
+
+        //Notification top-bar
+        $data['notification'] = $this->user_model->getNotification($resident_id);
 
         $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
         $data['assistance'] = $this->user_model->getAssistance($resident_id);
@@ -44,6 +83,9 @@ class UserController extends Controller
 
     public function updateProfile($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
 
         $session = \CodeIgniter\Config\Services::session();
 
@@ -91,7 +133,21 @@ class UserController extends Controller
 
     public function resetPassword()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $data['validation'] = null;
+
+        //Logged Resident
+        $resident_id = session()->get('logged_resident');
+
+        //Notification top-bar
+        $data['notification'] = $this->user_model->getNotification($resident_id);
+
+        //Get User Information
+        $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
+
         $session = \Config\Services::session();
         $resident_id = session()->get('logged_resident');
         $userdata = $this->user_model->getPassword($resident_id);
@@ -142,6 +198,19 @@ class UserController extends Controller
 
     public function getImage()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        //Logged Resident
+        $resident_id = session()->get('logged_resident');
+
+        //Notification top-bar
+        $data['notification'] = $this->user_model->getNotification($resident_id);
+
+        //Get User Information
+        $data['userdata'] = $this->user_model->getLoggedInUserData($resident_id);
+
         $resident_id = session()->get('logged_resident');
         $data['purok'] = $this->user_model->getPurok();
         $data['household'] = $this->user_model->getHousehold();
@@ -155,7 +224,7 @@ class UserController extends Controller
                 $file = $this->request->getFile('image');
                 if ($file->isValid() && !$file->hasMoved()) {
                     if ($file->move(FCPATH . 'public/profile_pics', $file->getRandomName())) {
-                        $path = base_url() . '/public/profile_pics/' . $file->getName();
+                        $path = base_url() . 'public/profile_pics/' . $file->getName();
                         $status = $this->user_model->updateImage($path, $resident_id);
                         if ($status == true) {
                             session()->setTempdata('success', 'Image uploaded successfully', 3);

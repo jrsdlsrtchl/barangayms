@@ -16,8 +16,20 @@ class HouseholdController extends Controller
 
     public function household($puroknum)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->household_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->household_model->getNotification();
 
         $data['household'] = $this->household_model->household($puroknum);
         $data['purok'] = $this->household_model->getPurok($puroknum);
@@ -28,7 +40,23 @@ class HouseholdController extends Controller
 
     public function addHousehold()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $data = [];
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->household_model->getLoggedInUserData($admin_id);
+
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->household_model->getNotification();
+
         $session = \CodeIgniter\Config\Services::session();
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
@@ -54,8 +82,20 @@ class HouseholdController extends Controller
 
     public function gethouseholdmembers($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->household_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->household_model->getNotification();
 
         $data['resident'] = $this->household_model->getHouseholdMembers($id);
         $data['householdhead'] = $this->household_model->getHouseholdheadName($id);
@@ -65,6 +105,10 @@ class HouseholdController extends Controller
 
     public function deleteHousehold($id, $purID)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->household_model->deleteHousehold($id);
 

@@ -16,8 +16,20 @@ class AssistanceController extends Controller
 
     public function assistance()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->assistance_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->assistance_model->getNotification();
 
         $data['assistance'] = $this->assistance_model->assistance();
 
@@ -26,8 +38,20 @@ class AssistanceController extends Controller
 
     public function listAssistance()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->assistance_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->assistance_model->getNotification();
 
         $data['assistance'] = $this->assistance_model->getCertType();
 
@@ -36,8 +60,20 @@ class AssistanceController extends Controller
 
     public function addAssistance()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->assistance_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->assistance_model->getNotification();
 
         $data['assistance'] = $this->assistance_model->getCertType();
         $data['official'] = $this->assistance_model->getOfficial();
@@ -81,6 +117,10 @@ class AssistanceController extends Controller
 
     public function addTypeAssistance()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
 
         if ($this->request->getMethod() == 'post') {
@@ -102,6 +142,10 @@ class AssistanceController extends Controller
 
     public function editTypeAssistance($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
 
         $session = \CodeIgniter\Config\Services::session();
 
@@ -124,6 +168,10 @@ class AssistanceController extends Controller
 
     public function deleteTypeAssistance($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->assistance_model->deleteTypeAssistance($id);
 
@@ -138,8 +186,20 @@ class AssistanceController extends Controller
 
     public function getAssResidents($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->assistance_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->assistance_model->getNotification();
 
         $data['resident'] = $this->assistance_model->getAssResidents($id);
         $data['assistance'] = $this->assistance_model->getAssName($id);
@@ -150,6 +210,10 @@ class AssistanceController extends Controller
 
     public function deleteAssistance($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->assistance_model->deleteAssistance($id);
 
@@ -164,8 +228,20 @@ class AssistanceController extends Controller
 
     public function editAssistance($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->assistance_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->assistance_model->getNotification();
 
         $data['assistance'] = $this->assistance_model->getCertType();
         $data['official'] = $this->assistance_model->getOfficial();
@@ -177,6 +253,9 @@ class AssistanceController extends Controller
 
     public function updateAssistance($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
 
         $session = \CodeIgniter\Config\Services::session();
 
@@ -211,6 +290,10 @@ class AssistanceController extends Controller
 
     public function deleteRecipient($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->assistance_model->deleteRecipient($id);
 
@@ -225,6 +308,10 @@ class AssistanceController extends Controller
 
     public function printAssistance($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $admin_id = session()->get('logged_admin');
         $data['printed'] = $this->assistance_model->getPrintedBy($admin_id);
 

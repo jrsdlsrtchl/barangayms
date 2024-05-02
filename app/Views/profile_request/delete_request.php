@@ -1,5 +1,5 @@
 <!-- Modal for deleting data -->
-<?php foreach ($userdata as $user) { ?>
+<?php foreach ($userdataa as $user) { ?>
     <div class="modal fade" id="deleteRequest<?= $user->resident_id_store ?>" tabindex="-1" role="dialog" aria-labelledby="deleteResidentLabel" aria-hidden="true">
         <div class="modal-dialog rounded-0" role="document">
             <div class="modal-content rounded">

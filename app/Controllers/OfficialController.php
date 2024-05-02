@@ -16,8 +16,20 @@ class OfficialController extends Controller
 
     public function official()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->official_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->official_model->getNotification();
 
         $data['official'] = $this->official_model->getOfficial();
 
@@ -26,9 +38,23 @@ class OfficialController extends Controller
 
     public function addOfficial()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $data = [];
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->official_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->official_model->getNotification();
+
         $data['resident'] = $this->official_model->getResidents();
         $data['purok'] = $this->official_model->getPurok();
 
@@ -64,8 +90,23 @@ class OfficialController extends Controller
 
     public function editOfficial($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $data = [];
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->official_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->official_model->getNotification();
+
         $data['document'] = $this->request->data;
         $data['official'] = $this->official_model->getOfficialsID($id);
         $data['resident'] = $this->official_model->getResidents();
@@ -100,6 +141,10 @@ class OfficialController extends Controller
 
     public function deleteOfficial($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->official_model->deleteOfficial($id);
 
@@ -114,7 +159,12 @@ class OfficialController extends Controller
 
     public function printOfficial()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $admin_id = session()->get('logged_admin');
+
         $data['printed'] = $this->official_model->getPrintedBy($admin_id);
         $data['resident'] = $this->official_model->printOfficial();
 

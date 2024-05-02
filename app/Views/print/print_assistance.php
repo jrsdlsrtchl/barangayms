@@ -165,7 +165,7 @@
                         <td><?= $res->gender; ?></td>
                         <td><?= $res->age; ?></td>
                         <td><?= $res->mobile; ?></td>
-                        <td><?= $res->datebirth; ?></td>
+                        <td><?= strftime("%B %d, %Y", strtotime($res->datebirth)) ?></td>
                         <td><?= $res->purok_desc; ?></td>
                     </tr>
                 <?php }; ?>

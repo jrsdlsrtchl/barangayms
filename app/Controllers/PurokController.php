@@ -15,8 +15,20 @@ class purokcontroller extends Controller
 
     public function purok()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->purok_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->purok_model->getNotification();
 
         // Count Population from each Purok
         $data['purokUno'] = $this->purok_model->purokUno();
@@ -41,8 +53,20 @@ class purokcontroller extends Controller
 
     public function viewPurok($puroknumber)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->purok_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->purok_model->getNotification();
 
         $data['resident'] = $this->purok_model->viewPurok($puroknumber);
         $data['purok'] = $this->purok_model->getPurok($puroknumber);

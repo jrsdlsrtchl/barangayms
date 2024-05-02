@@ -10,7 +10,24 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-flex flex-column align-items-center text-center">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="resident" class="rounded-circle" width="150">
+
+                        <?php if (!empty(isset($res->gender) && isset($res->image))) {
+                            $gender = $res->gender;
+                            $image = $res->image;
+
+                            if ($image == '') {
+                                if ($gender == 'Male') { ?>
+                                    <img src="<?= base_url(); ?>public/vendors/images/male.png" alt="resident" class="rounded-circle" width="150" />
+                                <?php } elseif ($gender == 'Female') { ?>
+                                    <img src="<?= base_url(); ?>public/vendors/images/female.png" alt="resident" class="rounded-circle" width="150" />
+                                <?php } else { ?>
+                                    <img src="<?= base_url(); ?>public/vendors/images/nogender.png" alt="resident" class="rounded-circle" width="150" />
+                                <?php }
+                            } else { ?>
+                                <img src="<?= $image ?>" alt="resident" class="rounded-circle" width="150" />
+                            <?php } ?>
+                        <?php } ?>
+
                         <div class="mt-3">
                             <h4><?= $res->firstname . " " . substr($res->middlename, 0, 1) . ". " . $res->lastname ?></h4>
                             <p class="text-secondary mb-0"> <?= $res->purok_desc ?> </p>

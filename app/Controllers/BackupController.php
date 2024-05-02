@@ -9,6 +9,10 @@ class BackupController extends Controller
 {
     public function backupDatabase()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         // Set the default timezone to Asia/Manila
         date_default_timezone_set('Asia/Manila');
 

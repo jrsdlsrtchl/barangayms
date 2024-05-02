@@ -8,29 +8,57 @@ use App\Models\RequestedDocModel;
 class RequestedDocController extends Controller
 {
     public $requested_model;
+    public $notification;
     public function __construct()
     {
         helper('form');
         $this->requested_model = new RequestedDocModel();
+        $this->notification = new RequestedDocModel();
     }
 
     public function getRequest($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->requested_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->requested_model->getNotification();
 
         $data['request'] = $this->requested_model->getRequest($id);
         $data['official'] = $this->requested_model->getOfficial();
         $data['certificate'] = $this->requested_model->getCert($id);
+
         return view("requested/requested", $data);
     }
 
-    public function updateRequest($id, $id2)
+    public function updateRequest($id, $id2, $id3)
     {
-
-        $session = \CodeIgniter\Config\Services::session();
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
 
         $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->requested_model->getLoggedInUserData($admin_id);
+
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->requested_model->getNotification();
+
+
+        $session = \CodeIgniter\Config\Services::session();
 
         if ($this->request->getMethod() == 'post') {
             $data = [
@@ -40,7 +68,16 @@ class RequestedDocController extends Controller
 
             $status = $this->requested_model->updateRequest($data, $id);
 
-            if ($status) {
+            $notif_data = [
+                'resident_id' => $id3,
+                'certificate_id' => $id2,
+                'admin_id' => $admin_id,
+                'req_status' => $this->request->getVar('request_status')
+            ];
+
+            $notif_data = $this->requested_model->userNotifs($notif_data);
+
+            if ($status && $notif_data) {
                 $session->setTempdata('success', 'Updated Successfully!', 3);
                 return redirect()->to(base_url() . "RequestedDocController/getrequest/$id2");
             } else {
@@ -52,6 +89,10 @@ class RequestedDocController extends Controller
 
     public function  deleteRequest($id, $id2)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->requested_model->deleteRequest($id);
 
@@ -67,8 +108,20 @@ class RequestedDocController extends Controller
 
     public function document()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->requested_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->requested_model->getNotification();
 
         $data['document'] = $this->requested_model->document();
 
@@ -77,6 +130,10 @@ class RequestedDocController extends Controller
 
     public function addDocument()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
 
         if ($this->request->getMethod() == 'post') {
@@ -98,6 +155,10 @@ class RequestedDocController extends Controller
 
     public function deleteDocument($document_id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->requested_model->deleteDocument($document_id);
 
@@ -112,6 +173,21 @@ class RequestedDocController extends Controller
 
     public function routeCertId($reqID, $certID)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->requested_model->getLoggedInUserData($admin_id);
+
+        //Sidebar list of certificates
+        $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->requested_model->getNotification();
+
         $session = \CodeIgniter\Config\Services::session();
 
         if ($certID == 1) {

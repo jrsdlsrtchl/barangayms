@@ -76,11 +76,11 @@ $page_session = \CodeIgniter\Config\Services::session();
 
     <script>
         setTimeout(function() {
-            $("#hidemessage").hide();
-        }, 4000);
+            $("#hidemessage").slideUp('slow');
+        }, 3000);
 
         setTimeout(function() {
-            $(".text-danger").hide();
+            $(".text-danger").slideUp('slow');
         }, 3000);
     </script>
 

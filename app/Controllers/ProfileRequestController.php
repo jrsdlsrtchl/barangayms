@@ -16,18 +16,42 @@ class ProfileRequestController extends Controller
 
     public function getRequest()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->profile_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
 
-        $data['userdata'] = $this->profile_model->getRequest();
+        //Notification
+        $data['notification'] = $this->profile_model->getNotification();
+
+        $data['userdataa'] = $this->profile_model->getRequest();
 
         return view("profile_request/profile_request", $data);
     }
 
     public function editProfile($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->profile_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->profile_model->getNotification();
 
         $data['resident'] = $this->profile_model->editProfile($id);
         $data['purok'] = $this->profile_model->getPurok();
@@ -38,6 +62,9 @@ class ProfileRequestController extends Controller
 
     public function updateProfile($id, $store_id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
 
         $session = \CodeIgniter\Config\Services::session();
 
@@ -87,6 +114,10 @@ class ProfileRequestController extends Controller
 
     public function deleteRequest($id)
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
         $session = \CodeIgniter\Config\Services::session();
         $delete = $this->profile_model->deleteRequest($id);
 

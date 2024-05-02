@@ -12,81 +12,73 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="notification-list mx-h-350 customscroll">
                         <ul>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/img.jpg" alt="" />
-                                    <h3>John Doe</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/photo1.jpg" alt="" />
-                                    <h3>Lea R. Frith</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/photo2.jpg" alt="" />
-                                    <h3>Erik L. Richards</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/photo3.jpg" alt="" />
-                                    <h3>John Doe</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/photo4.jpg" alt="" />
-                                    <h3>Renee I. Hansen</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img src="<?= base_url() ?>public/vendors/images/img.jpg" alt="" />
-                                    <h3>Vicki M. Coleman</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit, sed...
-                                    </p>
-                                </a>
-                            </li>
+                            <?php if (empty($notification)) { ?>
+                                <li class="text-center">No Notifications Available</li>
+                            <?php } else { ?>
+                                <?php foreach ($notification as $notif) { ?>
+                                    <li>
+                                        <a href="#">
+                                            <img src="<?= base_url() ?>public/vendors/images/admin.png" alt="" />
+                                            <h3> Brgy. Staff <?= $notif->firstname . " " . $notif->lastname ?></h3>
+                                            <p>
+                                                <?= $notif->req_status ?> your <?= $notif->certificate_type ?>
+                                            </p>
+                                            <div class="text-muted">
+                                                <small>
+                                                    <?php
+                                                    date_default_timezone_set('Asia/Manila');
+
+                                                    $date_db = new DateTime($notif->usernotif_date);
+                                                    $current_time = new DateTime();
+                                                    $interval = $current_time->diff($date_db);
+
+                                                    if ($interval->y > 0) {
+                                                        echo $interval->format('%y years ago');
+                                                    } elseif ($interval->m > 0) {
+                                                        echo $interval->format('%m months ago');
+                                                    } elseif ($interval->d > 0) {
+                                                        echo $interval->format('%d days ago');
+                                                    } elseif ($interval->h > 0) {
+                                                        echo $interval->format('%h hours ago');
+                                                    } elseif ($interval->i > 0) {
+                                                        echo $interval->format('%i minutes ago');
+                                                    } else {
+                                                        echo 'Just now';
+                                                    }
+                                                    ?>
+                                                </small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="user-info-dropdown mr-3 ">
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                    <span class="user-name mr-3">Ross C. Lopez</span>
+                    <span class="user-name mr-3"><?= $userdata['0']->firstname . " " . " " . $userdata['0']->lastname  ?></span>
                     <span class="user-icon">
-                        <img src="<?= base_url() ?>public/vendors/images/photo1.jpg" alt="" />
+
+                        <?php if ($userdata['0']->image == '') { ?>
+                            <?php if ($userdata['0']->gender == 'Male') { ?>
+                                <img src="<?= base_url(); ?>public/vendors/images/male.png" alt="" class="avatar-photo" />
+                            <?php } elseif ($userdata['0']->gender == 'Female') { ?>
+                                <img src="<?= base_url(); ?>public/vendors/images/female.png" alt="" class="avatar-photo" />
+                            <?php } else { ?>
+                                <img src="<?= base_url(); ?>public/vendors/images/nogender.png" alt="" class="avatar-photo" />
+                            <?php } ?>
+                        <?php } else { ?>
+                            <img src="<?= $userdata['0']->image ?>" alt="" class="avatar-photo" />
+                        <?php } ?>
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" href="<?= base_url() ?>usercontroller/manageprofile"><i class="dw dw-user1"></i> Profile</a>
                     <a class="dropdown-item" class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar" href="faq.html"><i class="dw dw-settings2"></i> Settings</a>
                     <a class="dropdown-item" href="#"><i class="dw dw-help"></i> Help</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutUserModal"><i class="dw dw-logout"></i> Log Out</a>

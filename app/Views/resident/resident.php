@@ -105,7 +105,6 @@ $page_session = \CodeIgniter\Config\Services::session();
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

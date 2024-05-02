@@ -7,7 +7,7 @@
 <script>
     setTimeout(function() {
         $('#hidemessage').slideUp('slow');
-    }, 3000);
+    }, 2000);
 
     setTimeout(function() {
         $(".text-danger").slideUp('slow');

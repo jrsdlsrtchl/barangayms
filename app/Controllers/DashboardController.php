@@ -18,7 +18,14 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
-        // $admin_id = session()->get('logged_admin');
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->dashboard_model->getLoggedInUserData($admin_id);
 
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
@@ -47,8 +54,20 @@ class DashboardController extends Controller
 
     public function populationDash()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->dashboard_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->notification->getNotification();
 
         $data['title'] = 'Population Table Dashboard';
         $data['resident'] = $this->dashboard_model->populationDash();
@@ -74,8 +93,20 @@ class DashboardController extends Controller
 
     public function maleDash()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->dashboard_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->notification->getNotification();
 
         $data['title'] = 'Male Table Dashboard';
         $data['resident'] = $this->dashboard_model->maleDash();
@@ -101,8 +132,20 @@ class DashboardController extends Controller
 
     public function femaleDash()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->dashboard_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->notification->getNotification();
 
         $data['title'] = 'Female Table Dashboard';
         $data['resident'] = $this->dashboard_model->femaleDash();
@@ -128,8 +171,20 @@ class DashboardController extends Controller
 
     public function seniorDash()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->dashboard_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->notification->getNotification();
 
         $data['title'] = 'Senior Citizen Table Dashboard';
         $data['resident'] = $this->dashboard_model->seniorDash();
@@ -155,8 +210,20 @@ class DashboardController extends Controller
 
     public function pwdDash()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->dashboard_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->notification->getNotification();
 
         $data['title'] = 'PWD Table Dashboard';
         $data['resident'] = $this->dashboard_model->pwdDash();
@@ -182,8 +249,20 @@ class DashboardController extends Controller
 
     public function for4psDash()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->dashboard_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->notification->getNotification();
 
         $data['title'] = '4PS Table Dashboard';
         $data['resident'] = $this->dashboard_model->for4psDash();
@@ -209,8 +288,20 @@ class DashboardController extends Controller
 
     public function voterDash()
     {
+        if (!(session()->has('logged_resident') || session()->has('logged_admin'))) {
+            return redirect()->to(base_url() . "authenticationcontroller/login");
+        }
+
+        $admin_id = session()->get('logged_admin');
+
+        // Get Admin Information
+        $data['userdata'] = $this->dashboard_model->getLoggedInUserData($admin_id);
+
         //Sidebar list of certificates
         $data['document'] = $this->request->data;
+
+        //Notification
+        $data['notification'] = $this->notification->getNotification();
 
         $data['title'] = 'Voters Table Dashboard';
         $data['resident'] = $this->dashboard_model->voterDash();
