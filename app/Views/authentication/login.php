@@ -90,13 +90,13 @@ $page_session = \CodeIgniter\Config\Services::session();
     <div class="login-header box-shadow">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
-                <a href="login.html">
+                <a href="<?= base_url() ?>authenticationcontroller/login">
                     <img src="<?= base_url() ?>public/vendors/images/rawan-logo-white.png" alt="" />
                 </a>
             </div>
             <div class="login-menu">
                 <ul>
-                    <li><a href="register.html">Home</a></li>
+                    <li><a href="<?= base_url() ?>landingpagecontroller/home">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -121,7 +121,9 @@ $page_session = \CodeIgniter\Config\Services::session();
                         </div>
 
                         <form action="<?= base_url() ?>AuthenticationController/login" method="post">
+
                             <span class="text-danger"> <?= display_error($validation, 'usertype') ?></span>
+
                             <div class="select-role">
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn">
@@ -144,6 +146,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                             </div>
 
                             <span class="text-danger"> <?= display_error($validation, 'username') ?></span>
+
                             <div class="input-group custom">
                                 <input type="text" class="form-control form-control-lg" placeholder="Username" name="username" value="<?= set_value('username') ?>" />
                                 <div class="input-group-append custom">
@@ -182,7 +185,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                         OR
                                     </div>
                                     <div class="input-group mb-0">
-                                        <a class="btn btn-outline-primary btn-lg btn-block" href="register.html">Register To Create Account</a>
+                                        <a class="btn btn-outline-primary btn-lg btn-block" href="register.html">Contact Brgy. Staff</a>
                                     </div>
                                 </div>
                             </div>

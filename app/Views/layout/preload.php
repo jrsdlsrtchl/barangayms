@@ -1,7 +1,8 @@
+<!-- Preload -->
 <div class="pre-loader">
     <div class="pre-loader-box">
         <div class="loader-logo">
-            <img src="<?= base_url() ?>public/vendors/images/deskapp-logo.svg" alt="" />
+            <img src="<?= base_url(); ?>public/vendors/images/rawan.png" alt="" height="50" width="200" />
         </div>
         <div class="loader-progress" id="progress_div">
             <div class="bar" id="bar1"></div>

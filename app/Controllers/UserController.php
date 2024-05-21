@@ -150,7 +150,8 @@ class UserController extends Controller
 
         $session = \Config\Services::session();
         $resident_id = session()->get('logged_resident');
-        $userdata = $this->user_model->getPassword($resident_id);
+        $usertype = 'Resident';
+        $userdata = $this->user_model->getPassword($resident_id, $usertype);
 
         if ($this->request->getMethod() == 'post') {
             $rules = [
@@ -177,7 +178,7 @@ class UserController extends Controller
                 $newpass = $this->request->getVar('newpass');
 
                 if ($oldpass == $userdata->password) {
-                    if ($this->user_model->updatePassword($newpass, $resident_id)) {
+                    if ($this->user_model->updatePassword($newpass, $resident_id, $usertype)) {
                         $session->setTempdata('success', 'Password updated successfully!', 3);
                         return redirect()->to(current_url());
                     } else {

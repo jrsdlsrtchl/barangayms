@@ -83,7 +83,7 @@ $page_session = \CodeIgniter\Config\Services::session();
                                     <td><?= $req->tracking_id; ?></td>
                                     <td>
                                         <?php if ($req->request_status == "Pending") { ?>
-                                            <a href="#" data-toggle="modal" data-target="#updateRequest<?= $req->request_id ?>"><i class="dw dw-edit2"></i> Update </a> |
+
                                             <a href="<?= base_url() ?>RequestedDocController/routecertid/<?= $req->request_id ?>/<?= $req->certificate_id ?>" target="_blank"><i class="icon-copy bi bi-printer"></i> Print </a>
                                         <?php } else { ?>
                                             <a href="#" data-toggle="modal" data-target="#deleteRequest<?= $req->request_id ?>"><i class="dw dw-trash"></i> Delete </a>

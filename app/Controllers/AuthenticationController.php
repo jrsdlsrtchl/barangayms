@@ -72,7 +72,7 @@ class AuthenticationController extends Controller
                             return redirect()->to(base_url() . 'UserController/user');
                         } elseif ($usertype == 'Admin' && $usertype == $userdata['usertype']) {
                             $this->session->set('logged_admin', $userdata['resident_id']);
-                            return redirect()->to(base_url() . 'DashboardController/dashboard');
+                            return redirect()->to(base_url() . 'DashboardController/welcome');
                         } else {
                             echo "Invalid usertype";
                             $this->session->setTempdata('error', 'Sorry, your usertype is invalid!', 3);

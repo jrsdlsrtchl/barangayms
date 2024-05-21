@@ -3,6 +3,16 @@
     <div class="col-auto"><span>&copy; Barangay Raw-an Management System - <?php echo date('Y') ?> Version 1.0</span></div>
 </div>
 
+<script>
+    setTimeout(function() {
+        $('#hidemessage').slideUp('slow');
+    }, 2000);
+
+    setTimeout(function() {
+        $(".text-danger").slideUp('slow');
+    }, 3000);
+</script>
+
 <!-- Javascript -->
 <script src="<?= base_url() ?>public/vendors/scripts/core.js"></script>
 <script src="<?= base_url() ?>public/vendors/scripts/script.min.js"></script>

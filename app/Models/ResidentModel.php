@@ -151,4 +151,16 @@ class ResidentModel extends Model
         $builder = $this->db->table('tbl_user');
         $builder->delete(['resident_id' => $id]);
     }
+
+    public function getHouseholdID($id)
+    {
+        $builder = $this->db->table('tbl_household');
+        $builder->select('*')->where('purok_id', $id);
+        $result = $builder->get()->getResult();
+        if (count($result) >= 0) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
 }

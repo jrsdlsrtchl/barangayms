@@ -168,4 +168,16 @@ class RequestedDocModel extends Model
             return false;
         }
     }
+
+    public function updateStatus($data, $id)
+    {
+        $builder = $this->db->table('tbl_requested_cert')->where('request_id', $id);
+        $builder->update($data);
+
+        if ($this->db->affectedRows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

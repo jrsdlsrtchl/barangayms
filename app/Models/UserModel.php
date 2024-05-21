@@ -126,21 +126,21 @@ class UserModel extends Model
         }
     }
 
-    public function getPassword($resident_id)
+    public function getPassword($resident_id, $usertype)
     {
-        $query = $this->db->table('tbl_resident');
-        $query->join('tbl_user', 'tbl_resident.resident_id = tbl_user.resident_id');
-        $query->where('tbl_user.resident_id', $resident_id);
+        $query = $this->db->table('tbl_user');
+        $query->where('resident_id', $resident_id)->where('usertype', $usertype);
         $result = $query->get()->getRow(); // Changed getResult() to getRow()
 
         return $result; // Return the row directly, no need for count()
     }
 
 
-    public function updatePassword($newpass, $id)
+    public function updatePassword($newpass, $id, $usertype)
     {
         $this->db->table('tbl_user')
             ->where('resident_id', $id)
+            ->where('usertype', $usertype)
             ->update(['password' => $newpass]);
 
         if ($this->db->affectedRows() > 0) {

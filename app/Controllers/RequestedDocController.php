@@ -192,18 +192,31 @@ class RequestedDocController extends Controller
 
         if ($certID == 1) {
             $admin_id = session()->get('logged_admin');
+            $status = [
+                'request_status' => 'Approved',
+            ];
+            $this->requested_model->updateStatus($status, $reqID);
             $data['printed'] = $this->requested_model->getPrintedBy($admin_id);
             $data['official'] = $this->requested_model->getCaptain();
             $data['request'] = $this->brgyResidency($reqID);
+
             return view("print/print_residency", $data);
         } elseif ($certID == 2) {
             $admin_id = session()->get('logged_admin');
+            $status = [
+                'request_status' => 'Approved',
+            ];
+            $this->requested_model->updateStatus($status, $reqID);
             $data['printed'] = $this->requested_model->getPrintedBy($admin_id);
             $data['official'] = $this->requested_model->getCaptain();
             $data['request'] = $this->brgyCertification($reqID);
             return view("print/print_certification", $data);
         } elseif ($certID == 3) {
             $admin_id = session()->get('logged_admin');
+            $status = [
+                'request_status' => 'Approved',
+            ];
+            $this->requested_model->updateStatus($status, $reqID);
             $data['printed'] = $this->requested_model->getPrintedBy($admin_id);
             $data['official'] = $this->requested_model->getCaptain();
             $data['request'] = $this->brgyIndigency($reqID);

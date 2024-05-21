@@ -1,6 +1,6 @@
 <div class="left-side-bar">
     <div class="brand-logo">
-        <a href="index.html">
+        <a href="<?= base_url() ?>UserController/user">
             <img src="<?= base_url() ?>public/vendors/images/rawan-logo-white.png" alt="" class="dark-logo" />
             <img src="<?= base_url() ?>public/vendors/images/rawan-logo-black.png" alt="" class="light-logo" />
         </a>
@@ -54,7 +54,7 @@
                 </li>
 
                 <li>
-                    <a href="sitemap.html" class="dropdown-toggle no-arrow">
+                    <a href="<?= base_url() ?>landingpagecontroller/home" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-house"></span><span class="mtext">Landing Page</span>
                     </a>
                 </li>

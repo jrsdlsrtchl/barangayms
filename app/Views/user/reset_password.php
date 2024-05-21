@@ -59,14 +59,14 @@ $page_session = \CodeIgniter\Config\Services::session();
                         <div class="col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>New Password</label>
-                                <input type="text" class="form-control" name="newpass" placeholder="Enter new password">
+                                <input type="password" class="form-control" name="newpass" placeholder="Enter new password">
                                 <span class="text-danger"> <?= display_error($validation, 'newpass') ?></span>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <div class="form-group">
                                 <label>Confirm New Password</label>
-                                <input type="text" class="form-control" name="confirmpass" placeholder="Enter confirm password">
+                                <input type="password" class="form-control" name="confirmpass" placeholder="Enter confirm password">
                                 <span class="text-danger"> <?= display_error($validation, 'confirmpass') ?></span>
                             </div>
                         </div>
