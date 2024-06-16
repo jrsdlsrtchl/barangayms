@@ -100,7 +100,7 @@ class ResidentController extends Controller
                 'gender' => 'required',
                 'age' => 'required|numeric',
                 'datebirth' => 'required',
-                'placebirth' => 'required|alpha_space',
+                'placebirth' => 'required',
                 'civilstatus' => 'required',
                 'ethnicity' => 'required',
                 'occupation' => 'required|alpha_space',
