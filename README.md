@@ -1,68 +1,36 @@
-# CodeIgniter 4 Application Starter
+# Web-Based Barangay Management System
 
-## What is CodeIgniter?
+## Project Overview
+The **Web-Based Barangay Management System** is a comprehensive tool designed to streamline barangay operations by digitizing essential processes. The system serves two types of users: **Barangay Officials** and **Residents**. It provides efficient management of barangay records, automates report generation, and facilitates document requests from residents.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Features
+### For Barangay Officials
+- **Dashboard**: A comprehensive view of barangay data and system activity.
+- **Resident Management**: View and manage resident information.
+- **Assistance Tracking**: Record and monitor barangay assistance provided to residents.
+- **Document Requests**: Process and print requested documents such as barangay clearance, certificates, etc.
+- **Report Generation**: Automatically generate reports on various aspects such as population data, assistance distributed, and more.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+### For Residents
+- **Account Management**: View and update personal information.
+- **Request Documents**: Request barangay documents online.
+- **View Assistance**: See the list of barangay assistance received by the resident.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## System Features
+- **Multi-user**: Two types of user roles – Barangay Officials and Residents.
+- **Report Generation**: Automatically generate and download various reports.
+- **Document Printing**: Print resident-requested documents such as clearances, certificates, etc.
+- **Assistance Tracking**: Record assistance received by the barangay and track residents who have received specific assistance.
+- **Secure Login**: User authentication for secure access to the system.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## Technology Stack
+- **Frontend**: HTML, CSS, JavaScript
+- **Backend**: PHP (CodeIgniter 4)
+- **Database**: MySQL
+- **Other Tools**: Bootstrap for UI components, FPDF for generating PDF documents
 
-## Installation & updates
+## Installation
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
-
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
-
-## Setup
-
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
-
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> The end of life date for PHP 7.4 was November 28, 2022.
-> The end of life date for PHP 8.0 was November 26, 2023.
-> If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> The end of life date for PHP 8.1 will be November 25, 2024.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/barangay-management-system.git
